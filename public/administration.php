@@ -90,6 +90,9 @@
                 </tr>
               </tbody>
             </table>
+            <button class="btn btn-success btn-custom" type="submit">
+            <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
+          </button>
           </div>
         </div>
       </div>

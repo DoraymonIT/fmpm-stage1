@@ -160,13 +160,9 @@ if (empty($_SESSION['username'])) {
             <br>
             <label>Choisir un jour pour voir les horaires disponibles
               <span>*</span></label>
-            <!-- <input type="date" name="" class="form-control form-control-sm" /> -->
-
             <input class="datepicker form-control form-control-sm" type="date" name="" id="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" required onChange="getCreneaux(this.value);" />
-
             <br />
-            <!-- This staffs will be displayed when a student choose some day !! -->
-            <!-- <div id="state-list"></div> -->
+
             <div class="row horaires" id="creneux">
               <div class="col-md-12">
                 <label>Les créneaux disponibles :

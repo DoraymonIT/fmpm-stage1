@@ -7,7 +7,9 @@
   .myTable{
     text-align: center;
   }
-
+  .title {
+    text-align: center;
+  }
   .btn-success {
     background-color: teal;
     color: white;
