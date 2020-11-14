@@ -47,12 +47,12 @@
                 <td>12/07/2020 | 12h00</td>
                 <td>
                   <form action="bla.php" method="post">
-                    <input class="form-check-input" type="radio" name="etat" value="1" />
+                    <input class="form-check-input" type="radio" name="etat" value="1" onChange="getIfYesOrNon(this.value)" />
                     <label class="form-check-label"> Oui </label>
                     <span id="bla">
                       <!-- When the button is "NON" a Popup opens say the admin to put in
                          the form why he or she choose No "Description of the problem"  -->
-                      <input class="form-check-input" type="radio" name="etat" value="2" />
+                      <input class="form-check-input" type="radio" name="etat" value="2" onChange="getIfYesOrNon(this.value)" />
                       <label class="form-check-label"> Non </label></span>
                   </form>
                 </td>
@@ -62,11 +62,14 @@
                   </button>
                 </td>
               </tr>
+              
             </tbody>
+
           </table>
-          <button class="btn btn-success btn-custom" type="submit">
+          <div class="row" id="problem_admin" ></div>
+          <!-- <button class="btn btn-success btn-custom" type="submit">
             <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -83,5 +86,18 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  function getIfYesOrNon(val) {
+    $.ajax({
+      type: "POST",
+      url: "showMe.php",
+      data: 'etat_admin=' + val,
+      success: function(data) {
+        $("#problem_admin").html(data);
+        // $("#problem").fadeOut(3000);
+      }
+    });
+  }
+</script>
 </html>

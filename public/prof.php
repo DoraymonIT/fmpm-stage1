@@ -66,10 +66,10 @@
                   <td>12/07/2020 | 12h00</td>
                   <td>
                     <form action="bla.php" method="post">
-                      <input
+                      <input 
                         class="form-check-input"
                         type="radio"
-                        name="etat"
+                        name="etat" onChange="getIfYesOrNon(this.value)"
                         value="1"
                       />
                       <label class="form-check-label"> Oui </label>
@@ -78,12 +78,12 @@
                         class="form-check-input"
                         type="radio"
                         name="etat"
-                        value="2"
+                        value="2" onChange="getIfYesOrNon(this.value)"
                       />
                       <label class="form-check-label"> Non </label></span>
                     </form>
                   </td>
-                  <td></td>
+                  <td id="problem"></td>
                 </tr>
               <!--Ajax Call with PHP and AJAX Here
             Etat 1 : En traitement .
@@ -94,7 +94,7 @@
                 <td scope="row">Bla Bla Bla Bla</td>
                 <td>12/07/2020 | 12h00</td>
                 <td>
-                    <form action="bla.php" method="post">
+                    <form action="bla.php" method="post" >
                       <input
                         class="form-check-input"
                         type="radio"
@@ -112,7 +112,9 @@
                       <label class="form-check-label"> Non </label></span>
                     </form>
                   </td>
-                <td></td>
+                <td>
+            
+                </td>
               </tr>
               <tr>
                 <td scope="row">Bla Bla Bla Bla</td>
@@ -164,4 +166,18 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  function getIfYesOrNon(val) {
+    $.ajax({
+      type: "POST",
+      url: "showMe.php",
+      data: 'etat=' + val,
+      success: function(data) {
+        $("#problem").html(data);
+        // $("#problem").fadeOut(3000);
+      }
+    });
+  }
+</script>
 </html>
