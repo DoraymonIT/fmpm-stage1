@@ -1,0 +1,64 @@
+/* .backk{
+    background-image: url(assets/img/cover.jpeg);
+    background-size: contain;
+} */
+.title {
+  text-align: center;
+}
+label {
+  font-weight: 800;
+}
+span {
+  color: rgb(162, 24, 0);
+}
+.crenau {
+  text-align: center;
+  background-color: teal;
+  color: white;
+  padding: 10px;
+}
+.horaires {
+  text-align: center;
+}
+.btn-success {
+  background-color: teal;
+  color: white;
+  border-color: teal;
+}
+.btn-success.focus,
+.btn-success:focus {
+  box-shadow: 0 0 0 0.2rem teal;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: rgb(0, 72, 72);
+  border-color: rgb(0, 72, 72);
+}
+.btn-success:not(:disabled):not(.disabled).active,
+.btn-success:not(:disabled):not(.disabled):active,
+.show > .btn-success.dropdown-toggle {
+  color: #fff;
+  background-color: teal;
+  border-color: teal;
+}
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgb(0, 72, 72);
+}
+.shadow{
+    
+        padding: 30px 30px 10px 30px;
+        /* background-color: teal; */
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.25);
+
+}
+.myTable{
+  text-align: center;
+}
+#bla{
+  margin-left: 20px;
+}
+#creneux{
+  display: none;
+}
