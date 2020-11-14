@@ -48,8 +48,11 @@ if (!empty($_POST["etat_admin"])) {
     } else { ?>
         <div class="col-md-7"></div>
         <div class="col-md-5">
-            <div class="alert alert-info" role="alert" style="text-align: center;">
+            <div class="alert alert-info alert-dismissible fade show" role="alert" style="text-align: center;">
                 <strong>Cet Étudiant(e) est Accordé avec succès .</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
             </div>
         </div>
 
