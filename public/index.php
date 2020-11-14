@@ -15,7 +15,7 @@ if (empty($_SESSION['username'])) {
   <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.css">
   <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.date.css">
   <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.time.css">
-  <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/rtl.css">
+  <!-- <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/rtl.css"> -->
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -162,9 +162,7 @@ if (empty($_SESSION['username'])) {
               <span>*</span></label>
             <!-- <input type="date" name="" class="form-control form-control-sm" /> -->
 
-            <input class="datepicker form-control form-control-sm" type="date"
-             name="" id="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' 
-             style="text-align: center;" required onChange="getCreneaux(this.value);" />
+            <input class="datepicker form-control form-control-sm" type="date" name="" id="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" required onChange="getCreneaux(this.value);" />
 
             <br />
             <!-- This staffs will be displayed when a student choose some day !! -->
@@ -178,9 +176,9 @@ if (empty($_SESSION['username'])) {
             </div>
             <br>
             <hr>
-            <br /><br />
+            <br /> <button type="submit" class="btn btn-success btn-custom"> <i class="fa fa-check-square" aria-hidden="true"></i> Confirmer</button>
+            <br />
           </form>
-          <button type="submit" class="btn btn-success btn-custom"> <i class="fa fa-check-square" aria-hidden="true"></i> Confirmer</button>
 
         </div>
         <div class="col-md-3"></div>
@@ -210,7 +208,7 @@ if (empty($_SESSION['username'])) {
 <script src="pickadate.js-3.6.2/lib/picker.js"></script>
 <script src="pickadate.js-3.6.2/lib/picker.date.js"></script>
 <script src="pickadate.js-3.6.2/lib/picker.time.js"></script>
-  <!-- <script src="pickadate.js-3.6.2/lib/translations/fr_FR.js"></script> -->
+<!-- <script src="pickadate.js-3.6.2/lib/translations/fr_FR.js"></script> -->
 <script>
   var $input = $('.datepicker').pickadate({
     onClose: function() {
