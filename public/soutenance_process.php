@@ -33,7 +33,7 @@ if (isset($_POST['submit_soutenence'])) {
 
 
     $sql = $db->query("INSERT INTO soutenance(date_depot_sujet,directeur,intitule_these,nature_these,materiel_d_etude_et_echantillioannage,duree_d_etude,lieu_d_etude,objectif_d_etude,mots_cles,president,jury1,jury2,jury3,jury4,etudiant,creneau,etat) VALUES ( '$date_field' , '$directeur_id' ,'$intitule','$nature','$materiel_echan', '$duree' , '$lieu','$objectifs' ,'$mots_cles' , '$president_id' , '$jury1_id' , '$jury2_id' , '$jury3_id', '$jury4_id' , '$etudiant_id', '$creneau_id', '$etat')");
- $creneau_bloc =$db->query("UPDATE creneau SET etat = 2 WHERE id = $creneau_id ");
+    $creneau_bloc = $db->query("UPDATE creneau SET etat = 2 WHERE id = $creneau_id ");
 
     if ($sql) {
         echo "Yesss";

@@ -6,7 +6,7 @@ if (!empty($_POST["date_ex"])) {
     // echo  date_format (new DateTime($countryId), 'Y-m-d');
     $date_formatted = date_format(new DateTime($date_selected), 'Y-m-d');
 
-    $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' ";
+    $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1";
     $result = mysqli_query($db, $query);
 ?>
 
