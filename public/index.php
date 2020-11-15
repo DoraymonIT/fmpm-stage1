@@ -2,8 +2,14 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-if (empty($_SESSION['username'])) {
+if (empty($_SESSION['CNE'])) {
     header('location: loginDuThese.php');
+}
+$cne=$_SESSION['CNE'];
+$query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
+$result = mysqli_query($db, $query);
+if  (mysqli_num_rows($result) != 0) {
+    header('location: etudiant.php');
 }
 ?>
 <!DOCTYPE html>
@@ -47,12 +53,7 @@ if (empty($_SESSION['username'])) {
                     peut annuler votre demande .
 
                 </p>
-                <?php if (isset($_SESSION['username'])) : ?>
-                    <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
-                    <p><a href="logout.php" class="btn btn-primary" href="#" role="button">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-                <?php endif ?>
+
             </div>
         </div>
 
