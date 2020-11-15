@@ -18,6 +18,7 @@
                 // echo $row['nom'] ;
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
+            $_SESSION['id']= $row['id'];
             }
             header('location: index.php');
         } else {
@@ -26,6 +27,8 @@
 
             header('location: loginDuThese.php');
         }
+    }else{
+        echo "Veuillez Ressayer";
     }
 ?>
 
