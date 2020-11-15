@@ -2,8 +2,14 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-if (empty($_SESSION['username'])) {
+if (empty($_SESSION['CNE'])) {
     header('location: loginDuThese.php');
+}
+$cne = $_SESSION['CNE'];
+$query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
+$result = mysqli_query($db, $query);
+if (mysqli_num_rows($result) != 0) {
+    header('location: etudiant.php');
 }
 ?>
 <!DOCTYPE html>
@@ -46,173 +52,162 @@ if (empty($_SESSION['username'])) {
                         peut annuler votre demande .
 
                     </p>
-                    <?php if (isset($_SESSION['username'])) : ?>
-                        <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                            Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
-                        <p><a href="logout.php" class="btn btn-primary" href="#" role="button">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-                    <?php endif ?>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <hr />
-                    <form action="soutenance_process.php" method="post">
-                        <h5 class="crenau"><i class="fa fa-info-circle" aria-hidden="true"></i> Informations Principales
-                        </h5>
-                        <label>Nom et Prénom du thésard (e) : </label>
-                        <br>
-                        <h6 style="  font-weight: 800;">
-                            <?php if (isset($_SESSION['nom'])) : ?>
-                              
-                                <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
-                            <?php endif ?>
-
-                            <br /></h6>
-                        <br />
-                        <label>Date de dépôt du sujet <span>*</span></label>
-                        <input class="datepicker1 form-control form-control-sm" 
-                        type="date" 
-                        placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;"
-                         name="date_depot_sujet" required />
-                        <br />
-                        <label>Directeur de la thèse <span>*</span></label>
-                        <select class="form-control form-control-sm" name="directeur_these" required>
-                            <option value="">Directeur de la thèse</option>
-                            <?php
-                            $directeur_these = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $directeur_these);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-
-                        <br />
-                        <label>Intitulé de la thèse <span>*</span></label>
-                        <input type="text" name="intitule" class="form-control form-control-sm" placeholder="Intitulé de la thèse" required />
-                        <br />
-                        <label>Nature de la thèse <span>*</span></label>
-                        <input type="text" name="nature" class="form-control form-control-sm" placeholder="Nature de la thèse" required />
-                        <br />
-                        <label>Matériel d’étude et échantillonnage <span>*</span></label>
-                        <input type="text" name="materiel_echan" class="form-control form-control-sm" placeholder="Matériel d’étude et échantillonnage" required />
-                        <br />
-                        <label> Durée de l’étude<span>*</span></label>
-                        <input type="text" name="duree" class="form-control form-control-sm" placeholder="Durée de l’étude" required />
-                        <br />
-                        <label>Lieu de l’étude <span>*</span></label>
-                        <input type="text" name="lieu" class="form-control form-control-sm" placeholder="Lieu de l’étude " required />
-                        <br />
-                        <label>Objectifs de l’étude (ne pas dépasser 2 lignes)
-                            <span>*</span></label>
-                        <textarea name="obj_etude" id="" cols="2" rows="2" class="form-control" placeholder="Objectifs de l’étude" required></textarea>
-                        <br />
-                        <label> Mots clés <span>*</span></label>
-                        <input type="text" name="mots_cles" class="form-control form-control-sm" placeholder="Mots clés" required />
-                        <small id="mot" class="form-text text-muted">Utilisez virgule <b>( , )</b> entre un mot et autre
-                            .</small>
-
-                        <span></span>
-                        <br />
-                        <label>Président du Jury<span>*</span></label>
-                        <select class="form-control form-control-sm" name="president_these" required>
-                            <option value="">Président du Jury</option>
-                            <?php
-                            $president_these = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $president_these);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <br />
-                        <label>Membre 1 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury1" required>
-                            <option>Membre 1 du Jury</option>
-                            <?php
-                            $jury1 = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $jury1);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <br />
-                        <label>Membre 2 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury2" required>
-                            <option>Membre 2 du Jury</option>
-                            <?php
-                            $jury2 = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $jury2);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <br />
-                        <label>Membre 3 du Jury<span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury3" required>
-                            <option>Membre 3 du Jury</option>
-                            <?php
-                            $jury3 = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $jury3);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <br />
-                        <label>Membre 4 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury4" required>
-                            <option>Membre 4 du Jury</option>
-                            <?php
-                            $jury4 = "SELECT * FROM prof";
-                            $result = mysqli_query($db, $jury4);
-                            while ($row = $result->fetch_assoc()) {
-
-                            ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
-                            <?php } ?>
-                        </select>
-                        <br />
-                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
-                        <br>
-                        <label>Choisir un jour pour voir les horaires disponibles
-                            <span>*</span></label>
-
-                        <input class="datepicker form-control form-control-sm"
-                         type="date" name="" 
-                          placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" 
-                           onChange="getCreneaux(this.value);" required />
-
-                        <br />
-                        <div class="row horaires" id="creneux">
-                            <div class="col-md-12">
-                                <label>Les créneaux disponibles :
-                                    <span>*</span></label>
-                                <select name="creneau_heure" id="cre-list" class="form-control form-control-sm">
-                                </select></div>
-                        </div>
-                        <br>
-                        <hr>
-                        <br />
-                        <button type="submit" name="submit_soutenence" class="btn btn-success btn-custom"><i class="fa fa-check-square" aria-hidden="true"></i> Confirmer
-                        </button>
-                        <br />
-                    </form>
 
                 </div>
-                <div class="col-md-3"></div>
             </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <hr />
+                        <form action="soutenance_process.php" method="post">
+                            <h5 class="crenau"><i class="fa fa-info-circle" aria-hidden="true"></i> Informations Principales
+                            </h5>
+                            <label>Nom et Prénom du thésard (e) : </label>
+                            <br>
+                            <h6 style="  font-weight: 800;">
+                                <?php if (isset($_SESSION['nom'])) : ?>
+
+                                    <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
+                                <?php endif ?>
+
+                                <br /></h6>
+                            <br />
+                            <label>Date de dépôt du sujet <span>*</span></label>
+                            <input class="datepicker1 form-control form-control-sm" type="date" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" name="date_depot_sujet" required />
+                            <br />
+                            <label>Directeur de la thèse <span>*</span></label>
+                            <select class="form-control form-control-sm" name="directeur_these" required>
+                                <option value="">Directeur de la thèse</option>
+                                <?php
+                                $directeur_these = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $directeur_these);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+
+                            <br />
+                            <label>Intitulé de la thèse <span>*</span></label>
+                            <input type="text" name="intitule" class="form-control form-control-sm" placeholder="Intitulé de la thèse" required />
+                            <br />
+                            <label>Nature de la thèse <span>*</span></label>
+                            <input type="text" name="nature" class="form-control form-control-sm" placeholder="Nature de la thèse" required />
+                            <br />
+                            <label>Matériel d’étude et échantillonnage <span>*</span></label>
+                            <input type="text" name="materiel_echan" class="form-control form-control-sm" placeholder="Matériel d’étude et échantillonnage" required />
+                            <br />
+                            <label> Durée de l’étude<span>*</span></label>
+                            <input type="text" name="duree" class="form-control form-control-sm" placeholder="Durée de l’étude" required />
+                            <br />
+                            <label>Lieu de l’étude <span>*</span></label>
+                            <input type="text" name="lieu" class="form-control form-control-sm" placeholder="Lieu de l’étude " required />
+                            <br />
+                            <label>Objectifs de l’étude (ne pas dépasser 2 lignes)
+                                <span>*</span></label>
+                            <textarea name="obj_etude" id="" cols="2" rows="2" class="form-control" placeholder="Objectifs de l’étude" required></textarea>
+                            <br />
+                            <label> Mots clés <span>*</span></label>
+                            <input type="text" name="mots_cles" class="form-control form-control-sm" placeholder="Mots clés" required />
+                            <small id="mot" class="form-text text-muted">Utilisez virgule <b>( , )</b> entre un mot et autre
+                                .</small>
+
+                            <span></span>
+                            <br />
+                            <label>Président du Jury<span>*</span></label>
+                            <select class="form-control form-control-sm" name="president_these" required>
+                                <option value="">Président du Jury</option>
+                                <?php
+                                $president_these = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $president_these);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <br />
+                            <label>Membre 1 du Jury <span>*</span></label>
+                            <select class="form-control form-control-sm" name="jury1" required>
+                                <option>Membre 1 du Jury</option>
+                                <?php
+                                $jury1 = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $jury1);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <br />
+                            <label>Membre 2 du Jury <span>*</span></label>
+                            <select class="form-control form-control-sm" name="jury2" required>
+                                <option>Membre 2 du Jury</option>
+                                <?php
+                                $jury2 = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $jury2);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <br />
+                            <label>Membre 3 du Jury<span>*</span></label>
+                            <select class="form-control form-control-sm" name="jury3" required>
+                                <option>Membre 3 du Jury</option>
+                                <?php
+                                $jury3 = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $jury3);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <br />
+                            <label>Membre 4 du Jury <span>*</span></label>
+                            <select class="form-control form-control-sm" name="jury4" required>
+                                <option>Membre 4 du Jury</option>
+                                <?php
+                                $jury4 = "SELECT * FROM prof";
+                                $result = mysqli_query($db, $jury4);
+                                while ($row = $result->fetch_assoc()) {
+
+                                ?>
+                                    <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <br />
+                            <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
+                            <br>
+                            <label>Choisir un jour pour voir les horaires disponibles
+                                <span>*</span></label>
+
+                            <input class="datepicker form-control form-control-sm" type="date" name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" onChange="getCreneaux(this.value);" required />
+
+                            <br />
+                            <div class="row horaires" id="creneux">
+                                <div class="col-md-12">
+                                    <label>Les créneaux disponibles :
+                                        <span>*</span></label>
+                                    <select name="creneau_heure" id="cre-list" class="form-control form-control-sm">
+                                    </select></div>
+                            </div>
+                            <br>
+                            <hr>
+                            <br />
+                            <button type="submit" name="submit_soutenence" class="btn btn-success btn-custom"><i class="fa fa-check-square" aria-hidden="true"></i> Confirmer
+                            </button>
+                            <br />
+                        </form>
+
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+     
     </section>
 </body>
 <script src="assets/js/main.js"></script>

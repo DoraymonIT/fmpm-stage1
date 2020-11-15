@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : Dim 15 nov. 2020 à 10:45
+-- Généré le : Dim 15 nov. 2020 à 11:45
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -57,6 +57,8 @@ INSERT INTO `creneau` (`id`, `jour`, `heure`, `lieu`, `etat`) VALUES
 
 CREATE TABLE `etudiant` (
   `CNE` varchar(15) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_apoge` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -65,9 +67,9 @@ CREATE TABLE `etudiant` (
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`CNE`, `email`, `no_apoge`) VALUES
-('G145625311', 'aitdaoudelhoussein@gmail.com', 1234567),
-('R32656', 'email@gmail.com', 554666);
+INSERT INTO `etudiant` (`CNE`, `nom`, `prenom`, `email`, `no_apoge`) VALUES
+('G145625311', 'aitdaoud', 'elhoussein', 'aitdaoudelhoussein@gmail.com', 1234567),
+('R32656', 'test', 'example', 'email@gmail.com', 554666);
 
 -- --------------------------------------------------------
 
@@ -95,10 +97,10 @@ INSERT INTO `prof` (`id`, `nom`, `prenom`, `noProf`, `spec`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `soutenace`
+-- Structure de la table `soutenance`
 --
 
-CREATE TABLE `soutenace` (
+CREATE TABLE `soutenance` (
   `soutenance_id` int(11) NOT NULL,
   `date_depot_sujet` date NOT NULL,
   `directeur` int(11) NOT NULL,
@@ -119,6 +121,13 @@ CREATE TABLE `soutenace` (
   `etat` tinyint(4) NOT NULL,
   `motif` varchar(600) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `soutenance`
+--
+
+INSERT INTO `soutenance` (`soutenance_id`, `date_depot_sujet`, `directeur`, `intitule_these`, `nature_these`, `materiel_d_etude_et_echantillioannage`, `duree_d_etude`, `lieu_d_etude`, `objectif_d_etude`, `mots_cles`, `president`, `jury1`, `jury2`, `jury3`, `jury4`, `etudiant`, `creneau`, `etat`, `motif`) VALUES
+(1, '2020-03-03', 1, 'these1', 'nature', 'materqil', '04:38:28', 'lieu', 'objectif', 'ff,mm,cc', 2, 1, 1, 2, NULL, 'G145625311', 6, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,9 +179,9 @@ ALTER TABLE `prof`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `soutenace`
+-- Index pour la table `soutenance`
 --
-ALTER TABLE `soutenace`
+ALTER TABLE `soutenance`
   ADD PRIMARY KEY (`soutenance_id`),
   ADD KEY `directeur` (`directeur`),
   ADD KEY `president` (`president`),
@@ -207,10 +216,10 @@ ALTER TABLE `prof`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `soutenace`
+-- AUTO_INCREMENT pour la table `soutenance`
 --
-ALTER TABLE `soutenace`
-  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `soutenance`
+  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `these`
@@ -223,17 +232,17 @@ ALTER TABLE `these`
 --
 
 --
--- Contraintes pour la table `soutenace`
+-- Contraintes pour la table `soutenance`
 --
-ALTER TABLE `soutenace`
-  ADD CONSTRAINT `soutenace_ibfk_1` FOREIGN KEY (`directeur`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_2` FOREIGN KEY (`president`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_3` FOREIGN KEY (`jury1`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_4` FOREIGN KEY (`jury2`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_5` FOREIGN KEY (`jury3`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_6` FOREIGN KEY (`jury4`) REFERENCES `prof` (`id`),
-  ADD CONSTRAINT `soutenace_ibfk_7` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`CNE`),
-  ADD CONSTRAINT `soutenace_ibfk_8` FOREIGN KEY (`creneau`) REFERENCES `creneau` (`id`);
+ALTER TABLE `soutenance`
+  ADD CONSTRAINT `soutenance_ibfk_1` FOREIGN KEY (`directeur`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_2` FOREIGN KEY (`president`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_3` FOREIGN KEY (`jury1`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_4` FOREIGN KEY (`jury2`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_5` FOREIGN KEY (`jury3`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_6` FOREIGN KEY (`jury4`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `soutenance_ibfk_7` FOREIGN KEY (`etudiant`) REFERENCES `etudiant` (`CNE`),
+  ADD CONSTRAINT `soutenance_ibfk_8` FOREIGN KEY (`creneau`) REFERENCES `creneau` (`id`);
 
 --
 -- Contraintes pour la table `these`
