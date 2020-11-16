@@ -35,6 +35,7 @@
           <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Sujet</th>
                 <th>Date & Heure</th>
                 <th>L'Accord</th>
@@ -43,7 +44,12 @@
             </thead>
             <tbody>
               <tr>
-                <td scope="row">Bla Bla Bla Bla</td>
+              <td>
+                  <button title="Cliquez Ici pour les relevés de notes et les stages et les cliniques de cet étudiant avant de confirmer la validation ." class="btn btn-sm btn-info">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </button>
+                </td>
+                <td >Bla Bla Bla Bla</td>
                 <td>12/07/2020 | 12h00</td>
                 <td>
                   <form action="bla.php" method="post">
@@ -56,11 +62,11 @@
                       <label class="form-check-label"> Non </label></span>
                   </form>
                 </td>
-                <td>
-                  <button title="Cliquez Ici pour les relevés de notes et les stages et les cliniques de cet étudiant avant de confirmer la validation ." class="btn btn-sm btn-info">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  </button>
-                </td>
+              <td>
+              <button class="btn btn-success btn-custom" type="submit" name="accord_administration">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
+                </button>
+              </td>
               </tr>
               
             </tbody>

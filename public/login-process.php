@@ -2,8 +2,8 @@
     // ob_start();
     require_once("database_connect.php");
     session_start();
-   
-    if(isset($_POST['submit'])) {
+       // Login Etudiant
+    if(isset($_POST['submit_etudiant'])) {
        
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -23,6 +23,34 @@
 
             }
             header('location: acceuilEtudiant.php');
+        } else {
+            echo "Non";
+            $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";
+
+            header('location: loginDuThese.php');
+        }
+    }
+    // Login Prof
+    if(isset($_POST['submit_prof'])) {
+       
+        $email = $_POST['email_prof'];
+        $pass = $_POST['pass_prof'];
+        // $hashed_password = md5($password);
+
+        $query = "SELECT * FROM prof WHERE email='$email' AND noProf='$pass'";
+
+        $result = mysqli_query($db, $query);
+        var_dump(json_encode($result));
+        if  (!$result || mysqli_num_rows($result) === 1) {
+            $_SESSION['prof'] = $email;
+            while ($row = $result->fetch_assoc()) {
+                // echo $row['nom'] ;
+            $_SESSION['nom'] = $row['nom'];
+            $_SESSION['prenom'] = $row['prenom'];
+            $_SESSION['noProf'] = $row['noProf'];
+
+            }
+            header('location: prof.php');
         } else {
             echo "Non";
             $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";

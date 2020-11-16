@@ -1,3 +1,12 @@
+<?php
+require_once('database_connect.php');
+ob_start();
+session_start();
+if (empty($_SESSION['noProf'])) {
+    header('location: loginDuThese.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,8 +52,19 @@
     </header>
     <section>
       <div class="container">
+      <div class="row">
+        <div class="col-md-12 title">
+        <h3><u>Espace Professeur</u></h3>
+            <?php if (isset($_SESSION['noProf'])) : ?>
+                <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
+                    Vous êtes Connecte : <?php echo $_SESSION['nom'] ." ". $_SESSION['prenom'] ?> !</h6>
+                <p><a href="logout.php" class="btn btn-primary"  role="button">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+            <?php endif ?>
+            <hr></div>
+      </div>
         <div class="row">
-          
+       
           <div class="col-md-12">
             <h5 class="crenau">
               <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
@@ -134,9 +154,9 @@
               </tr>
               </tbody>
             </table>
-            <button class="btn btn-success btn-custom" type="submit">
+            <!-- <button class="btn btn-success btn-custom" type="submit">
             <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-          </button>
+          </button> -->
           </div>
      
         </div>
