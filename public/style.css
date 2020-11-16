@@ -62,3 +62,9 @@ span {
 #creneux{
   display: none;
 }
+/* Tabs */
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: teal;
+}

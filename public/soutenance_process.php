@@ -44,5 +44,5 @@ if (isset($_POST['submit_soutenence'])) {
     }
     //  submit_soutenence
 } else {
-    echo "Errur Veuillez ressayer";
+    echo "Erreur Veuillez ressayer";
 }

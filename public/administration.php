@@ -35,15 +35,21 @@
           <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Sujet</th>
                 <th>Date & Heure</th>
                 <th>L'Accord</th>
-                <th>Action</th>
+                <th>Motif</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td scope="row">Bla Bla Bla Bla</td>
+                <td>
+                  <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </button> 
+                </td>
+                <td>Bla Bla Bla Bla</td>
                 <td>12/07/2020 | 12h00</td>
                 <td>
                   <form action="bla.php" method="post">
@@ -56,20 +62,15 @@
                       <label class="form-check-label"> Non </label></span>
                   </form>
                 </td>
-                <td>
-                  <button title="Cliquez Ici pour les relevés de notes et les stages et les cliniques de cet étudiant avant de confirmer la validation ." class="btn btn-sm btn-info">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  </button>
+                <td id="problem_admin">
+
                 </td>
               </tr>
-              
+
             </tbody>
 
           </table>
-          <div class="row" id="problem_admin" ></div>
-          <!-- <button class="btn btn-success btn-custom" type="submit">
-            <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-          </button> -->
+
         </div>
       </div>
     </div>
@@ -83,10 +84,13 @@
   </footer>
 </body>
 <script src="assets/js/main.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script>
   function getIfYesOrNon(val) {
     $.ajax({
@@ -99,5 +103,9 @@
       }
     });
   }
+  $(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
+
 </html>
