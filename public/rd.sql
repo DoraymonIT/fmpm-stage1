@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : Dim 15 nov. 2020 à 22:19
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.2.33
+-- Généré le : lun. 16 nov. 2020 à 17:51
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,8 +45,8 @@ INSERT INTO `creneau` (`id`, `jour`, `heure`, `lieu`, `etat`) VALUES
 (3, '2020-11-29', '09:00:00', 'Amphi 1', 1),
 (4, '2020-11-17', '11:00:00', 'Amphi 2', 1),
 (5, '2020-12-15', '17:02:54', 'Amphi 2', 1),
-(6, '2020-12-16', '15:43:56', 'Amphi 1', 2),
-(7, '2020-12-02', '16:44:26', 'Amphi 6', 1),
+(6, '2020-12-16', '15:43:56', 'Amphi 1', 1),
+(7, '2020-12-02', '16:44:26', 'Amphi 6', 2),
 (8, '2020-12-02', '14:00:00', 'Amphi 4', 1);
 
 -- --------------------------------------------------------
@@ -113,7 +113,7 @@ CREATE TABLE `soutenance` (
   `intitule_these` varchar(126) NOT NULL,
   `nature_these` varchar(126) NOT NULL,
   `materiel_d_etude_et_echantillioannage` varchar(255) NOT NULL,
-  `duree_d_etude` time NOT NULL,
+  `duree_d_etude` varchar(100) NOT NULL,
   `lieu_d_etude` varchar(255) NOT NULL,
   `objectif_d_etude` varchar(1024) NOT NULL,
   `mots_cles` varchar(1024) NOT NULL,
@@ -133,7 +133,8 @@ CREATE TABLE `soutenance` (
 --
 
 INSERT INTO `soutenance` (`soutenance_id`, `date_depot_sujet`, `directeur`, `intitule_these`, `nature_these`, `materiel_d_etude_et_echantillioannage`, `duree_d_etude`, `lieu_d_etude`, `objectif_d_etude`, `mots_cles`, `president`, `jury1`, `jury2`, `jury3`, `jury4`, `etudiant`, `creneau`, `etat`, `motif`) VALUES
-(1, '2020-03-03', 1, 'these1', 'nature', 'materqil', '04:38:28', 'lieu', 'objectif', 'ff,mm,cc', 2, 1, 1, 2, NULL, 'G145625311', 6, 1, NULL);
+(1, '2020-03-03', 1, 'these1', 'nature', 'materqil', '04:38:28', 'lieu', 'objectif', 'ff,mm,cc', 2, 1, 1, 2, NULL, 'G145625311', 6, 1, NULL),
+(2, '2020-05-06', 2, 'sddsda', 'adadada', 'sdasdasdasd', 'adasdasdasda', 'adadsadsd', 'adadasdasdasd', 'asdasdadasdasdas', 2, 4, 8, 6, 4, 'R32656', 7, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -225,7 +226,7 @@ ALTER TABLE `prof`
 -- AUTO_INCREMENT pour la table `soutenance`
 --
 ALTER TABLE `soutenance`
-  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `these`

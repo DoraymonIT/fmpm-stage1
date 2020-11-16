@@ -19,7 +19,6 @@
                 // echo $row['nom'] ;
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
-            $_SESSION['id']= $row['id'];
             $_SESSION['CNE'] = $row['CNE'];
 
             }
