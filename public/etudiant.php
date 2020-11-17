@@ -1,16 +1,15 @@
-
 <?php
 require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['CNE'])) {
-    header('location: loginDuThese.php');
+  header('location: loginDuThese.php');
 }
-$cne=$_SESSION['CNE'];
+$cne = $_SESSION['CNE'];
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
 $result = mysqli_query($db, $query);
-if  (mysqli_num_rows($result) == 0) {
-    header('location: index.php');
+if (mysqli_num_rows($result) == 0) {
+  header('location: index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -30,9 +29,9 @@ if  (mysqli_num_rows($result) == 0) {
     th,
     td {
       border: 2px solid teal;
-    text-align: center;
-    padding: 5px;
-    border-collapse: collapse;
+      text-align: center;
+      padding: 5px;
+      border-collapse: collapse;
     }
   </style>
 </head>
@@ -50,6 +49,21 @@ if  (mysqli_num_rows($result) == 0) {
       </div>
     </div>
   </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 title">
+        <h3><u>Espace Etudiant</u></h3>
+        <?php if (isset($_SESSION['CNE'])) : ?>
+          <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
+            Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
+          <p><a href="logout.php" class="btn btn-primary" role="button">
+              <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+        <?php endif ?>
+        <hr>
+
+      </div>
+    </div>
+  </div>
   <section>
     <div class="container">
       <div class="row">
@@ -60,13 +74,20 @@ if  (mysqli_num_rows($result) == 0) {
             Principales
           </h5>
           <br>
-          <b> Votre Numéro Apogée :</b> 123456789 <br />
-          
-          <b> Votre Nom Complet :</b> Ayoub Bendrimou <br />
-         
-          <b> CNE:</b> K123456789 
-         <hr>
-          <b> <u> Accord du Jury </u> <br />
+          <b> Votre Numéro Apogée :</b> <?php if (isset($_SESSION['no_apoge'])) : ?>
+            <?php echo $_SESSION['no_apoge'] ?>
+          <?php endif ?><br />
+          <b> Votre Nom Complet :</b>
+          <?php if (isset($_SESSION['nom'])) : ?>
+            <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
+          <?php endif ?>
+          <br />
+          <b> CNE:</b>
+          <?php if (isset($_SESSION['nom'])) : ?>
+            <?php echo $_SESSION['CNE'] ?>
+          <?php endif ?>
+          <hr>
+        <b> <i class="fa fa-check-square-o" aria-hidden="true"></i> <u> Accord du Jury </u> :</b> <br />
           <table style="width:100%">
             <tr>
               <th>Jury</th>
@@ -93,17 +114,43 @@ if  (mysqli_num_rows($result) == 0) {
               <td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>
             </tr>
           </table>
-        
 
-        <hr />
+
+          <hr />
           <h5 class="crenau">
             <i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau
           </h5>
           <br />
-          Votre date choisie : <b> 12/07/2020</b> : <b> 12h00 .</b>
-          <br>
-          <a href="index.php"><button class="btn btn-success btn-custom"> <i class="fa fa-pencil" aria-hidden="true"></i> Changer le créneau</button></a>
+          <?php
+          while ($row = $result->fetch_assoc()) {
+            $id = $row['creneau'];
+            $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
+            $result1 = mysqli_query($db, $creneau);
+            while ($row1 = $result1->fetch_assoc()) {
+          ?>
+              <i class="fa fa-calendar" aria-hidden="true"></i> <u> Votre date choisie</u> :
+              <b> <?php
+                  echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
 
+                  ?> </b>
+              <br> <u><i class="fa fa-location-arrow" aria-hidden="true"></i> Lieu</u> :
+              <b>
+            <?php
+              echo $row1['lieu'];
+            } ?>
+</b>
+            <br>
+            <br>
+            <!-- Here , i dont know , i just improvised -->
+            <?php
+            if ($row['etat'] != 0) {
+            ?> <a href="index.php"><button class="btn btn-success btn-custom"> <i class="fa fa-pencil" aria-hidden="true"></i> Changer le créneau</button></a>
+            <?php
+            }
+
+            ?>
+          <?php
+          } ?>
         </div>
         <div class="col-md-3"></div>
       </div>
