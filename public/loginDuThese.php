@@ -68,8 +68,8 @@ if (!empty($_SESSION['username'])) {
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
           <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -79,10 +79,15 @@ if (!empty($_SESSION['username'])) {
             <li class="nav-item">
               <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"> <i class="fa fa-user-md" aria-hidden="true"></i> Professeur(e)</a>
             </li>
-
+            <span style="padding-left: 2px;"></span>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-admin-tab" data-toggle="pill"
+               href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false">
+                <i class="fa fa-user-secret" aria-hidden="true"></i> Adminstration</a>
+            </li>
           </ul>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-2"></div>
       </div>
     </div>
 
@@ -149,7 +154,31 @@ if (!empty($_SESSION['username'])) {
 
 
       </div>
+      <div class="tab-pane fade" id="pills-admin" role="tabpanel" aria-labelledby="pills-admin-tab">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <hr />
+              <div class="shadow">
+                <form action="login-process.php" method="post">
+                  <label>Votre Email <span>*</span></label>
+                  <input type="text" name="email_admin" class="form-control" placeholder="Ex : ahmed@gmail.com" required />
+                  <br />
+                  <label>Votre Numéro Administratif <span>*</span></label>
+                  <input type="password" name="pass_admin" class="form-control" placeholder="***********" required />
+                  <br />
+                  <button type="submit" name="submit_admin" class="btn btn-success btn-custom">Se Connecter</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
 
+
+
+      </div>
     </div>
 
   </section>

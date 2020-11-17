@@ -28,15 +28,13 @@ if (!empty($_POST["etat"])) {
 if (!empty($_POST["etat_admin"])) {
     if ($_POST["etat_admin"] == 2) {
 ?>
-
-      
-            <form action="bla.php" method="post">
+            <form action="administration-process.php" method="post">
                 <!-- <label>Motif
                     <span>*</span></label>
                 <input type="text" name="" class="form-control form-control-sm" placeholder="Motif ou problème" required /> -->
                 <label>Description du problème
                     <span>*</span></label>
-                <textarea name="" id="" cols="2" rows="2" class="form-control" placeholder="Description du problème" required></textarea> <br>
+                <textarea name="motif_admin" id="" cols="2" rows="2" class="form-control" placeholder="Description du problème" required></textarea> <br>
                 <button class="btn btn-success btn-custom" type="submit" name="accord_administration">
                     <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
                 </button>

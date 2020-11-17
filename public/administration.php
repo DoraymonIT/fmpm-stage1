@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require_once('database_connect.php');
+ob_start();
+session_start();
+if (empty($_SESSION['num'])) {
+  header('location: loginDuThese.php');
+}
+$query = "SELECT * FROM soutenance WHERE etat = 0 ";
+$result = mysqli_query($db, $query);
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,47 +37,80 @@
   <section>
     <div class="container">
       <div class="row">
+        <div class="col-md-12 title">
+          <h3><u>Espace Administration</u></h3>
+          <?php if (isset($_SESSION['num'])) : ?>
+            <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
+              Vous êtes Connecté : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
+            <p><a href="logout.php" class="btn btn-primary" role="button">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+          <?php endif ?>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12">
           <h5 class="crenau">
             <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
-            Confirmation d'accord de l'élegibilté de passer le soutenance .
+            Confirmation d'accord de l'éligibilité de passer le soutenance .
           </h5>
           <br />
           <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
             <thead>
               <tr>
                 <th>#</th>
+                <th>Étudiant(e)</th>
+                <th>CNE</th>
+                <!-- <th>Numéro Apogée</th> -->
                 <th>Sujet</th>
-                <th>Date & Heure</th>
+                <th>Date de dépôt de sujet</th>
                 <th>L'Accord</th>
                 <th>Motif</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  </button> 
-                </td>
-                <td>Bla Bla Bla Bla</td>
-                <td>12/07/2020 | 12h00</td>
-                <td>
-                  <form action="bla.php" method="post">
-                    <input class="form-check-input" type="radio" name="etat" value="1" onChange="getIfYesOrNon(this.value)" />
-                    <label class="form-check-label"> Oui </label>
-                    <span id="bla">
-                      <!-- When the button is "NON" a Popup opens say the admin to put in
+              <?php
+              while ($row = $result->fetch_assoc()) {
+
+              ?>
+                <tr>
+                  <td>
+                    <?php echo $row['soutenance_id']; ?>
+                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <?php
+                    $cne = $row['etudiant'];
+                    $etu = "SELECT * FROM etudiant WHERE CNE = '$cne' ";
+                    $res = mysqli_query($db, $etu);
+                    while ($row1 = $res->fetch_assoc()) {
+                      echo $row1['nom'] . " " . $row1['prenom'];
+                    } ?>
+
+                  </td>
+                  <td> <?php echo $row['etudiant'];  ?>
+                  </td>
+                  <td> <?php echo $row['intitule_these']; ?></td>
+                  <td> <?php echo $row['date_depot_sujet']; ?></td>
+                  <td>
+                    <form action="bla.php" method="post">
+                      <input class="form-check-input" type="radio" name="etat" value="1" onChange="getIfYesOrNon(this.value)" />
+                      <label class="form-check-label"> Oui </label>
+                      <span id="bla">
+                        <!-- When the button is "NON" a Popup opens say the admin to put in
                          the form why he or she choose No "Description of the problem"  -->
-                      <input class="form-check-input" type="radio" name="etat" value="2" onChange="getIfYesOrNon(this.value)" />
-                      <label class="form-check-label"> Non </label></span>
-                  </form>
-                </td>
-                <td id="problem_admin">
+                        <input class="form-check-input" type="radio" name="etat" value="2" onChange="getIfYesOrNon(this.value)" />
+                        <label class="form-check-label"> Non </label></span>
+                    </form>
+                  </td>
+                  <td id="problem_admin">
 
-                </td>
-              </tr>
-
+                  </td>
+                </tr>
+              <?php
+              } ?>
             </tbody>
 
           </table>
@@ -104,8 +148,8 @@
     });
   }
   $(document).ready(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-});
+    $('[data-toggle="tooltip"]').tooltip();
+  });
 </script>
 
 </html>
