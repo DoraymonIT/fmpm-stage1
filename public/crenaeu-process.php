@@ -41,7 +41,7 @@ if (isset($_POST['submit-creneau'])) {
 
         if ($sql) {
             echo "Yes";
-            header('location: administration.php');
+            header('location: create_creneau.php');
         } else {
             // echo $mots_cles;
             echo "NO";

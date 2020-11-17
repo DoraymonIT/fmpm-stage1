@@ -67,16 +67,19 @@ $result = mysqli_query($db, $query);
 
               <?php
               while ($row = $result->fetch_assoc()) {
-                
+
               ?>
                 <tr>
-                  <td><?php  echo $row['jour']; ?></td>
-                  <td><?php  echo $row['heure']; ?></td>
-                  <td><?php  echo $row['lieu']; ?></td>
+                  <td><?php echo $row['jour']; ?></td>
+                  <td><?php echo $row['heure']; ?></td>
+                  <td><?php echo $row['lieu']; ?></td>
                   <td>
-                    <button type="submit" class="btn btn-sm btn-danger">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
+                    <?php if ($row['etat'] != 2) { ?>
+                      <button type="submit" id="<?php echo $row['id']; ?>" class="delbutton btn btn-sm btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <?php } else{
+                          echo "-----R-----";
+                        } ?>
                   </td>
                 </tr>
               <?php
@@ -98,35 +101,61 @@ $result = mysqli_query($db, $query);
   </footer>
 </body>
 <script src="assets/js/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
-$('#myTable').DataTable( {
+  $('#myTable').DataTable({
     language: {
-        processing:     "Traitement en cours...",
-        search:         "Rechercher&nbsp;:",
-        lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
-        info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-        infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-        infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-        infoPostFix:    "",
-        loadingRecords: "Chargement en cours...",
-        zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-        emptyTable:     "Aucune donnée disponible dans le tableau",
-        paginate: {
-            first:      "Premier",
-            previous:   "Pr&eacute;c&eacute;dent",
-            next:       "Suivant",
-            last:       "Dernier"
-        },
-        aria: {
-            sortAscending:  ": activer pour trier la colonne par ordre croissant",
-            sortDescending: ": activer pour trier la colonne par ordre décroissant"
-        }
+      processing: "Traitement en cours...",
+      search: "Rechercher&nbsp;:",
+      lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+      info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+      infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+      infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+      infoPostFix: "",
+      loadingRecords: "Chargement en cours...",
+      zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+      emptyTable: "Aucune donnée disponible dans le tableau",
+      paginate: {
+        first: "Premier",
+        previous: "Pr&eacute;c&eacute;dent",
+        next: "Suivant",
+        last: "Dernier"
+      },
+      aria: {
+        sortAscending: ": activer pour trier la colonne par ordre croissant",
+        sortDescending: ": activer pour trier la colonne par ordre décroissant"
+      }
     }
-} );
+  });
 </script>
+<script type="text/javascript">
+  $(function() {
+
+    $(".delbutton").click(function() {
+      var del_id = $(this).attr("id");
+      var info = 'id=' + del_id;
+      var tr = $(this).closest('tr');
+      $.ajax({
+        type: "POST",
+        url: "delete-process.php", //URL to the delete php script
+        data: info,
+        success: function() {
+          tr.fadeOut(1000, function() {
+            $(this).remove();
+          });
+        },
+        error: function() {
+          alert("some error");
+        }
+      });
+
+      return false;
+    });
+  });
+</script>
+
 </html>
