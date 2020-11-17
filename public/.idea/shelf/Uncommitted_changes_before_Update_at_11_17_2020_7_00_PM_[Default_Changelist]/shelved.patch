@@ -1,0 +1,320 @@
+Index: etudiant.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\nrequire_once('database_connect.php');\r\nob_start();\r\nsession_start();\r\nif (empty($_SESSION['CNE'])) {\r\n  header('location: loginDuThese.php');\r\n}\r\n$cne = $_SESSION['CNE'];\r\n$query = \"SELECT * FROM soutenance WHERE etudiant ='$cne' \";\r\n$result = mysqli_query($db, $query);\r\nif (mysqli_num_rows($result) == 0) {\r\n  header('location: index.php');\r\n}\r\n?>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n  <meta charset=\"UTF-8\" />\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\" />\r\n  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n  <link rel=\"stylesheet\" href=\"style.css\" />\r\n  <title>\r\n    Accueil de l'étudiant | Voir le progresse de demande de thèse .\r\n  </title>\r\n  <style>\r\n    table,\r\n    th,\r\n    td {\r\n      border: 2px solid teal;\r\n      text-align: center;\r\n      padding: 5px;\r\n      border-collapse: collapse;\r\n    }\r\n  </style>\r\n</head>\r\n\r\n<body>\r\n  <header class=\"backk\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n          <img style=\"float: left\" src=\"assets/img/minstere.png\" alt=\"Ministere LOGO\" width=\"50%\" />\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <img style=\"float: right\" src=\"assets/img/FMPM.png\" alt=\"FMPM Logo\" width=\"50%\" />\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </header>\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n    <div class=\"col-md-12 title\">\r\n            <h3><u>Espace Etudiant</u></h3>\r\n            <?php if (isset($_SESSION['CNE'])) : ?>\r\n                <h6><i class=\"fa fa-user-circle\" aria-hidden=\"true\"></i>\r\n                    Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>\r\n                <p><a href=\"logout.php\" class=\"btn btn-primary\"  role=\"button\">\r\n                        <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i> Logout</a></p>\r\n            <?php endif ?>\r\n            <hr>\r\n           \r\n        </div>\r\n    </div>\r\n  </div>\r\n  <section>\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-3\"></div>\r\n        <div class=\"col-md-6\">\r\n          <h5 class=\"crenau\">\r\n            <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> Informations\r\n            Principales\r\n          </h5>\r\n          <br>\r\n          <b> Votre Numéro Apogée :</b> <?php if (isset($_SESSION['no_apoge'])) : ?>\r\n            <?php echo $_SESSION['no_apoge'] ?>\r\n          <?php endif ?><br />\r\n          <b> Votre Nom Complet :</b>\r\n          <?php if (isset($_SESSION['nom'])) : ?>\r\n            <?php echo $_SESSION['nom'] . \" \" . $_SESSION['prenom'] ?>\r\n          <?php endif ?>\r\n          <br />\r\n          <b> CNE:</b>\r\n          <?php if (isset($_SESSION['nom'])) : ?>\r\n            <?php echo $_SESSION['CNE'] ?>\r\n          <?php endif ?>\r\n          <hr>\r\n          <b> <u> Accord du Jury </u> <br />\r\n            <table style=\"width:100%\">\r\n              <tr>\r\n                <th>Jury</th>\r\n                <th>Accord</th>\r\n              </tr>\r\n              <tr>\r\n                <td>L'administration</td>\r\n                <td><i class=\"fa fa-check-square\" aria-hidden=\"true\"></i> Validé . </td>\r\n              </tr>\r\n              <tr>\r\n                <td>Président de jury</td>\r\n                <td><i class=\"fa fa-check-square\" aria-hidden=\"true\"></i> Validé .</td>\r\n              </tr>\r\n              <tr>\r\n                <td>L'encadrant ( Rapporteur )</td>\r\n                <td><i class=\"fa fa-check-square\" aria-hidden=\"true\"></i> Validé .</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Comité du thèse </td>\r\n                <td><i class=\"fa fa-check-square\" aria-hidden=\"true\"></i> Validé .</td>\r\n              </tr>\r\n              <tr>\r\n                <td>Chef de service</td>\r\n                <td> <i class=\"fa fa-spinner\" aria-hidden=\"true\"></i> état en cours .</td>\r\n              </tr>\r\n            </table>\r\n\r\n\r\n            <hr />\r\n            <h5 class=\"crenau\">\r\n              <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Choix du Créneau\r\n            </h5>\r\n            <br />\r\n            Votre date choisie : <b> 12/07/2020</b> : <b> 12h00 .</b>\r\n            <br>\r\n            <a href=\"index.php\"><button class=\"btn btn-success btn-custom\"> <i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Changer le créneau</button></a>\r\n\r\n        </div>\r\n        <div class=\"col-md-3\"></div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n  <hr />\r\n  <footer>\r\n    <p>\r\n      Service de scolarité de FMPM\r\n      <i class=\"fa fa-copyright\" aria-hidden=\"true\"></i> 2020\r\n    </p>\r\n  </footer>\r\n</body>\r\n<script src=\"assets/js/main.js\"></script>\r\n<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>\r\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\" integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\" crossorigin=\"anonymous\"></script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- etudiant.php	(revision 1118aefea60ef1d885fe3f23f118726648f9dcd7)
++++ etudiant.php	(date 1605614677845)
+@@ -3,144 +3,172 @@
+ ob_start();
+ session_start();
+ if (empty($_SESSION['CNE'])) {
+-  header('location: loginDuThese.php');
++    header('location: loginDuThese.php');
+ }
+ $cne = $_SESSION['CNE'];
+-$query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
+-$result = mysqli_query($db, $query);
++$query = "SELECT * FROM soutenance WHERE etudiant ='$cne' LIMIT 1 ";
++$result = $db->query($query);
+ if (mysqli_num_rows($result) == 0) {
+-  header('location: index.php');
++    header('location: index.php');
++} else {
++    $soutenance = $result->fetch_assoc();
+ }
++
+ ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+-  <meta charset="UTF-8" />
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+-  <link rel="stylesheet" href="style.css" />
+-  <title>
+-    Accueil de l'étudiant | Voir le progresse de demande de thèse .
+-  </title>
+-  <style>
+-    table,
+-    th,
+-    td {
+-      border: 2px solid teal;
+-      text-align: center;
+-      padding: 5px;
+-      border-collapse: collapse;
+-    }
+-  </style>
++    <meta charset="UTF-8"/>
++    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
++    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
++          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
++    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
++    <link rel="stylesheet" href="style.css"/>
++    <title>
++        Accueil de l'étudiant | Voir le progresse de demande de thèse .
++    </title>
++    <style>
++        table,
++        th,
++        td {
++            border: 2px solid teal;
++            text-align: center;
++            padding: 5px;
++            border-collapse: collapse;
++        }
++    </style>
+ </head>
+ 
+ <body>
+-  <header class="backk">
++<header class="backk">
+     <div class="container">
+-      <div class="row">
+-        <div class="col-md-6">
+-          <img style="float: left" src="assets/img/minstere.png" alt="Ministere LOGO" width="50%" />
+-        </div>
+-        <div class="col-md-6">
+-          <img style="float: right" src="assets/img/FMPM.png" alt="FMPM Logo" width="50%" />
+-        </div>
+-      </div>
++        <div class="row">
++            <div class="col-md-6">
++                <img style="float: left" src="assets/img/minstere.png" alt="Ministere LOGO" width="50%"/>
++            </div>
++            <div class="col-md-6">
++                <img style="float: right" src="assets/img/FMPM.png" alt="FMPM Logo" width="50%"/>
++            </div>
++        </div>
+     </div>
+-  </header>
+-  <div class="container">
++</header>
++<div class="container">
+     <div class="row">
+-    <div class="col-md-12 title">
++        <div class="col-md-12 title">
+             <h3><u>Espace Etudiant</u></h3>
+             <?php if (isset($_SESSION['CNE'])) : ?>
+                 <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
+                     Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
+-                <p><a href="logout.php" class="btn btn-primary"  role="button">
++                <p><a href="logout.php" class="btn btn-primary" role="button">
+                         <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+             <?php endif ?>
+             <hr>
+-           
++
+         </div>
+     </div>
+-  </div>
+-  <section>
++</div>
++<section>
+     <div class="container">
+-      <div class="row">
+-        <div class="col-md-3"></div>
+-        <div class="col-md-6">
+-          <h5 class="crenau">
+-            <i class="fa fa-info-circle" aria-hidden="true"></i> Informations
+-            Principales
+-          </h5>
+-          <br>
+-          <b> Votre Numéro Apogée :</b> <?php if (isset($_SESSION['no_apoge'])) : ?>
+-            <?php echo $_SESSION['no_apoge'] ?>
+-          <?php endif ?><br />
+-          <b> Votre Nom Complet :</b>
+-          <?php if (isset($_SESSION['nom'])) : ?>
+-            <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
+-          <?php endif ?>
+-          <br />
+-          <b> CNE:</b>
+-          <?php if (isset($_SESSION['nom'])) : ?>
+-            <?php echo $_SESSION['CNE'] ?>
+-          <?php endif ?>
+-          <hr>
+-          <b> <u> Accord du Jury </u> <br />
+-            <table style="width:100%">
+-              <tr>
+-                <th>Jury</th>
+-                <th>Accord</th>
+-              </tr>
+-              <tr>
+-                <td>L'administration</td>
+-                <td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>
+-              </tr>
+-              <tr>
+-                <td>Président de jury</td>
+-                <td><i class="fa fa-check-square" aria-hidden="true"></i> Validé .</td>
+-              </tr>
+-              <tr>
+-                <td>L'encadrant ( Rapporteur )</td>
+-                <td><i class="fa fa-check-square" aria-hidden="true"></i> Validé .</td>
+-              </tr>
+-              <tr>
+-                <td>Comité du thèse </td>
+-                <td><i class="fa fa-check-square" aria-hidden="true"></i> Validé .</td>
+-              </tr>
+-              <tr>
+-                <td>Chef de service</td>
+-                <td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>
+-              </tr>
+-            </table>
++        <div class="row">
++            <div class="col-md-3"></div>
++            <div class="col-md-6">
++                <h5 class="crenau">
++                    <i class="fa fa-info-circle" aria-hidden="true"></i> Informations
++                    Principales
++                </h5>
++                <br>
++                <b> Nom Prenom :</b>
++                <?php if (isset($_SESSION['nom'])) : ?>
++                    <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
++                <?php endif ?>
++                <br/>
++                <b> CNE:</b>
++                <?php if (isset($_SESSION['nom'])) : ?>
++                    <?php echo $_SESSION['CNE'] ?>
++                <?php endif ?>
++                <hr>
++                <b> <u> Accord du Jury </u> <br/>
++                    <table style="width:100%">
++                        <tr>
++                            <th>Jury</th>
++                            <th>Accord</th>
++                        </tr>
++                        <tr>
++                            <td>L'administration</td>
++                            <?php
++
++                            if ($soutenance['etat'] >= 1 || $soutenance['etat'] < -1 ) {
++                                echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
++                            } elseif ($soutenance['etat'] == 0) {
++                                echo '<td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
++                            } elseif ($soutenance['etat'] == -1) {
++                                echo '<td><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
++                            }
++                            ?>z`
++
++                        </tr>
++                        <?php
++
++                        if ($soutenance['etat'] >= 1 || $soutenance['etat'] == -2) {
++                            echo '<tr><td>Président de jury</td>';
++                            if ($soutenance['etat'] >= 2) {
++                                echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
++                            } elseif ($soutenance['etat'] == 1) {
++                                echo '<td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
++                            } elseif ($soutenance['etat'] <= -2) {
++                                echo '<td><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
++                            }
++                            echo '</tr>';
++
++
++                        }
++                        ?>
++
++
++                    </table>
++                    <?php
++                        if ($soutenance['etat'] <= -1){
++                            echo '<br><p>MOTIF : '.$soutenance['motif'].'</p>';
++                        }
++                    ?>
+ 
+ 
+-            <hr />
+-            <h5 class="crenau">
+-              <i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau
+-            </h5>
+-            <br />
+-            Votre date choisie : <b> 12/07/2020</b> : <b> 12h00 .</b>
+-            <br>
+-            <a href="index.php"><button class="btn btn-success btn-custom"> <i class="fa fa-pencil" aria-hidden="true"></i> Changer le créneau</button></a>
++                    <hr/>
++                    <h5 class="crenau">
++                        <i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau
++                    </h5>
++                    <br/>
++                    Votre date choisie : <b> 12/07/2020</b> : <b> 12h00 .</b>
++                    <br>
++                    <a href="index.php">
++                        <button class="btn btn-success btn-custom"><i class="fa fa-pencil" aria-hidden="true"></i>
++                            Changer le créneau
++                        </button>
++                    </a>
+ 
+-        </div>
+-        <div class="col-md-3"></div>
+-      </div>
++            </div>
++            <div class="col-md-3"></div>
++        </div>
+     </div>
+-  </section>
+-  <hr />
+-  <footer>
++</section>
++<hr/>
++<footer>
+     <p>
+-      Service de scolarité de FMPM
+-      <i class="fa fa-copyright" aria-hidden="true"></i> 2020
++        Service de scolarité de FMPM
++        <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+     </p>
+-  </footer>
++</footer>
+ </body>
+ <script src="assets/js/main.js"></script>
+-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
++<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
++        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
++        crossorigin="anonymous"></script>
++<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
++        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
++        crossorigin="anonymous"></script>
++<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
++        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
++        crossorigin="anonymous"></script>
+ 
+ </html>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5135fd98-8c32-4449-9567-0c9076dfef38\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/login-process.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/login-process.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/soutenance_process.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/soutenance_process.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1kJrSZunNgjzjFCAIe63Z3HlMQ4\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5135fd98-8c32-4449-9567-0c9076dfef38\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1605429535167</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1605429535167</updated>\r\n      <workItem from=\"1605429536208\" duration=\"4653000\" />\r\n      <workItem from=\"1605543571221\" duration=\"1851000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"794\" y=\"443\" key=\"NewPhpFileDialog\" timestamp=\"1605434149947\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1040\" />\r\n    </state>\r\n    <state x=\"794\" y=\"443\" key=\"NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1605434149947\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 1118aefea60ef1d885fe3f23f118726648f9dcd7)
++++ .idea/workspace.xml	(date 1605636002407)
+@@ -21,8 +21,8 @@
+   <component name="ChangeListManager">
+     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/soutenance_process.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_process.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,7 +56,9 @@
+       <option name="presentableId" value="Default" />
+       <updated>1605429535167</updated>
+       <workItem from="1605429536208" duration="4653000" />
+-      <workItem from="1605543571221" duration="1851000" />
++      <workItem from="1605543571221" duration="2604000" />
++      <workItem from="1605605678824" duration="6576000" />
++      <workItem from="1605629489344" duration="4095000" />
+     </task>
+     <servers />
+   </component>
