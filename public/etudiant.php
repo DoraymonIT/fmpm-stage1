@@ -111,12 +111,25 @@ if (mysqli_num_rows($result) == 0) {
                         <?php
 
                         if ($soutenance['etat'] >= 1 || $soutenance['etat'] == -2) {
-                            echo '<tr><td>Président de jury</td>';
+                            echo '<tr><td>directeur</td>';
                             if ($soutenance['etat'] >= 2) {
                                 echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
                             } elseif ($soutenance['etat'] == 1) {
                                 echo '<td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
                             } elseif ($soutenance['etat'] <= -2) {
+                                echo '<td><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
+                            }
+                            echo '</tr>';
+
+
+                        }
+                        if ($soutenance['etat'] >= 2 || $soutenance['etat'] == -3) {
+                            echo '<tr><td>Président de jury</td>';
+                            if ($soutenance['etat'] >= 3) {
+                                echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
+                            } elseif ($soutenance['etat'] == 2) {
+                                echo '<td> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
+                            } elseif ($soutenance['etat'] <= -3) {
                                 echo '<td><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
                             }
                             echo '</tr>';

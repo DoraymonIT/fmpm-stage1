@@ -47,7 +47,7 @@ if (isset($_POST['submit_prof'])) {
             // echo $row['nom'] ;
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
-            $_SESSION['noProf'] = $row['noProf'];
+            $_SESSION['noProf'] = $row['id'];
         }
         header('location: prof.php');
     } else {

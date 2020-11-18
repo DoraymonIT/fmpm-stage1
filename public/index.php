@@ -252,7 +252,7 @@ if (mysqli_num_rows($result) != 0) {
         for (let i = 1; i < val.options.length ; i++) {
 
             if (values.includes(parseInt(val.options[i].value))){
-                val.options[i].disabled=true;
+                val.options[i].disabled=false;
             }
         }
 

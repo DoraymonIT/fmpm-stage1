@@ -20,9 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/prof-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rd (1).sql" beforeDir="false" afterPath="$PROJECT_DIR$/../rd (1).sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +64,7 @@
       <updated>1605429535167</updated>
       <workItem from="1605429536208" duration="4653000" />
       <workItem from="1605543571221" duration="1851000" />
+      <workItem from="1605720696502" duration="15288000" />
     </task>
     <servers />
   </component>
@@ -84,10 +92,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636146907" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605636160060">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605736411572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636160060" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605736411572" />
     <state x="775" y="240" key="RollbackChangesDialog" timestamp="1605636294618">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
