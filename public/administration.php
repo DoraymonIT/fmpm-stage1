@@ -3,7 +3,7 @@ require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['num'])) {
-    header('location: loginDuThese.php');
+    header('location: index.php');
 }
 $query = "SELECT * FROM soutenance WHERE etat = 0 ";
 $result = mysqli_query($db, $query);
@@ -208,11 +208,16 @@ $result = mysqli_query($db, $query);
             type: "POST",
             url: "administration-process.php",
             data: data,
-            success: function (id) {
-                $("#row_" + id).remove();
+            success: function (data) {
+                if (data.erreur === ''){
+                    $("#row_" + data.id).remove();
+                }else {
+                    alert(data.erreur)
+
+                }
 
             },
-            dataType: 'text'
+            dataType: 'json'
         });
 
     }

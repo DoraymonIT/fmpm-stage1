@@ -3,7 +3,7 @@ require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['noProf'])) {
-    header('location: loginDuThese.php');
+    header('location: index.php');
 }
 
 
@@ -388,11 +388,16 @@ if (empty($_SESSION['noProf'])) {
             type: "POST",
             url: "prof-process.php",
             data: data,
-            success: function (id) {
-                $("#row_" + id).remove();
+            success: function (data) {
+                if (data.erreur === ''){
+                    $("#row_" + data.id).remove();
+                }else {
+                    alert(data.erreur)
+
+                }
 
             },
-            dataType: 'text'
+            dataType: 'json'
         });
 
     }

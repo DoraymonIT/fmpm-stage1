@@ -3,7 +3,7 @@ require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['CNE'])) {
-    header('location: loginDuThese.php');
+    header('location: index.php');
 }
 $cne=$_SESSION['CNE'];
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
@@ -59,7 +59,7 @@ $result = mysqli_query($db, $query);
                 <?php
 
                 if  (mysqli_num_rows($result) == 0) {
-                    echo "<a class='btn btn-outline-dark'  role='button' href='index.php'>Créer une demande de choisir une date de soutenu</a>";
+                    echo "<a class='btn btn-outline-dark'  role='button' href='dem_soutenance.php'>Créer une demande de choisir une date de soutenu</a>";
                 }else{
                     echo "<a class='btn btn-outline-dark'  role='button' href='etudiant.php'>Voir le progresse de demande de thèse</a>";
                 }
