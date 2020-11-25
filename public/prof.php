@@ -97,7 +97,7 @@ if (empty($_SESSION['noProf'])) {
                             <tbody role="tablist" id="accordion-1">
                             <?php
                             $id = $_SESSION['noProf'];
-                            $query = "SELECT * FROM soutenance WHERE etat = 1 ";
+                            $query = "SELECT * FROM soutenance WHERE etat = 1 and president = $id OR directeur =$id";
                             $result = mysqli_query($db, $query);
                             if (mysqli_num_rows($result) == 0) {
                                 echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
@@ -193,130 +193,6 @@ if (empty($_SESSION['noProf'])) {
 
                 </div>
             </div>
-            <div class="tab-pane fade show active" id="president_tab" role="tabpanel" aria-labelledby="pills-home-tab">
-                <div class="row">
-
-                    <div class="col-md-12">
-
-                        <br/>
-                        <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Étudiant(e)</th>
-                                <th>CNE</th>
-                                <!-- <th>Numéro Apogée</th> -->
-                                <th>Sujet</th>
-                                <th>Date choisi</th>
-                                <th>L'Accord</th>
-                                <th>Motif</th>
-                                <th>Info</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody role="tablist" id="accordion-2">
-                            <?php
-                            $id=$_SESSION['noProf'];
-                            $query = "SELECT * FROM soutenance WHERE etat = 2 and president = $id";
-                            $result = mysqli_query($db, $query);
-                            if (mysqli_num_rows($result) == 0) {
-                                echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
-                            }
-                            while ($row = $result->fetch_assoc()) {
-
-                                ?>
-                                <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab" >
-                                    <td>
-                                        <?php echo $row['soutenance_id']; ?>
-                                        <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
-                                        <!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
-                                        <!--                    </button>-->
-                                    </td>
-                                    <td>
-                                        <?php
-                                        $cne = $row['etudiant'];
-                                        $etu = "SELECT * FROM etudiant WHERE CNE = '$cne' ";
-                                        $res = mysqli_query($db, $etu);
-                                        while ($row1 = $res->fetch_assoc()) {
-                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                        } ?>
-
-                                    </td>
-                                    <td> <?php echo $row['etudiant']; ?>
-                                    </td>
-                                    <td> <?php echo $row['intitule_these']; ?></td>
-                                    <td> <?php
-                                        $creneau_id=$row['creneau'];
-                                        $query1 = "SELECT * FROM creneau WHERE id ='$creneau_id' LIMIT 1 ";
-                                        $result1 = $db->query($query1);
-                                        $creneau=$result1->fetch_assoc();
-                                        echo $creneau['jour']." ".$creneau['heure']." ".$creneau['lieu'];
-
-                                        ?></td>
-                                    <td>
-                                        <fieldset class="px-2 ml-1 d-flex flex-column"
-                                                  id="radio_<?php echo $row['soutenance_id'] ?>">
-                                            <div>
-                                                <input class="form-check-input" type="radio"
-                                                       name="radio_<?php echo $row['soutenance_id'] ?>" value="1"
-                                                       onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                                                <label class="form-check-label"> Oui </label>
-                                            </div>
-                                            <span id="bla">
-                        <!-- When the button is "NON" a Popup opens say the admin to put in
-                         the form why he or she choose No "Description of the problem"  -->
-                        <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>"
-                               value="2"
-                               onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                        <label class="form-check-label"> Non </label></span>
-                                        </fieldset>
-
-                                    </td>
-                                    <td>
-                                        <div class="row" style="display: none">
-                                            <div class="mx-2">
-                                        <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name=""
-                                                  class="form-control form-control-sm"
-                                                  placeholder=" Merci de nous dire le motif ou problème de dire NON"
-                                                  required></textarea>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    <td>
-                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-2 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-2 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm"
-                                                onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
-                                            <i class="fa fa-check-square" aria-hidden="true"></i>
-                                            Enregistrer
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="collapse item-<?php echo $row['soutenance_id']?>" role="tabpanel" data-parent="#accordion-1">
-                                    <td colspan="9">
-                                        <div  >
-                                            <div class="card-body">
-                                                info de soutenance id : <?php echo $row['soutenance_id'] ?>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <?php
-                            } ?>
-                        </tbody>
-
-                    </table>
-                    <!-- <button class="btn btn-success btn-custom" type="submit">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-                      </button> -->
-                </div>
-
-            </div>
-
-
         </div>
     </section>
     <hr />

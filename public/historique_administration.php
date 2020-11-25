@@ -54,7 +54,12 @@ $result = mysqli_query($db, $query);
                 <h5 class="crenau">
                 <i class="fa fa-history" aria-hidden="true"></i>   Historique
                 </h5>
-               
+                <div class="row">
+                        <div class="col-md-3"> 
+                        <a class="btn btn-success btn-sm" href="administration.php" role="button"> 
+                       <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>  </div>
+                        <div class="col-md-8"></div>
+                    </div>
                 <br/>
                 <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                     <thead>

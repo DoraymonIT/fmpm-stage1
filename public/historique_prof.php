@@ -73,7 +73,12 @@ if (empty($_SESSION['noProf'])) {
             <div class="row">
 
                 <div class="col-md-12">
-
+                <div class="row">
+                        <div class="col-md-3"> 
+                        <a class="btn btn-success btn-sm" href="prof.php" role="button"> 
+                       <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>  </div>
+                        <div class="col-md-8"></div>
+                    </div>
                     <br />
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                         <thead>
@@ -90,7 +95,7 @@ if (empty($_SESSION['noProf'])) {
                         <tbody>
                             <?php
                             $id = $_SESSION['noProf'];
-                            $query = "SELECT * FROM soutenance";
+                            $query = "SELECT * FROM soutenance WHERE president = $id OR directeur = $id";
                             $result = mysqli_query($db, $query);
                             if (mysqli_num_rows($result) == 0) {
                                 echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
