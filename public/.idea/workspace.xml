@@ -20,19 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dem_soutenance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM__Default_Changelist_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/acceuilEtudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/acceuilEtudiant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loginDuThese.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prof-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../rd (1).sql" beforeDir="false" afterPath="$PROJECT_DIR$/../rd (1).sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +61,9 @@
       <workItem from="1605429536208" duration="4653000" />
       <workItem from="1605543571221" duration="1851000" />
       <workItem from="1605720696502" duration="16274000" />
-      <workItem from="1605891367826" duration="2082000" />
+      <workItem from="1605891367826" duration="2723000" />
+      <workItem from="1606311155497" duration="1157000" />
+      <workItem from="1606313057753" duration="3515000" />
     </task>
     <servers />
   </component>

@@ -15,8 +15,7 @@ $result = mysqli_query($db, $query);
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="style.css"/>
     <title>Interface de l'administration | Voir le progresse de demande de thèse .</title>
@@ -67,10 +66,11 @@ $result = mysqli_query($db, $query);
                         <th>Date de dépôt de sujet</th>
                         <th>L'Accord</th>
                         <th>Motif</th>
+                        <th>info</th>
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody role="tablist" id="accordion-1">
                     <?php
                     if (mysqli_num_rows($result) == 0) {
                         echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
@@ -78,7 +78,7 @@ $result = mysqli_query($db, $query);
                     while ($row = $result->fetch_assoc()) {
 
                         ?>
-                        <tr id="row_<?php echo $row['soutenance_id'] ?>">
+                        <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
                             <td>
                                 <?php echo $row['soutenance_id']; ?>
                                 <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
@@ -130,12 +130,25 @@ $result = mysqli_query($db, $query);
 
                             </td>
                             <td>
+                                <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
+                            </td>
+                            <td>
                                 <button class="btn btn-success btn-sm"
                                         onclick="enregister(<?php echo $row['soutenance_id'] ?>)">
                                     <i class="fa fa-check-square" aria-hidden="true"></i>
                                     Enregistrer
                                 </button>
                             </td>
+                        </tr>
+                        <tr class="collapse item-<?php echo $row['soutenance_id']?>" role="tabpanel" data-parent="#accordion-1">
+                            <td colspan="9">
+                                <div  >
+                                    <div class="card-body">
+                                        info de soutenance id : <?php echo $row['soutenance_id'] ?>
+                                    </div>
+                                </div>
+                            </td>
+
                         </tr>
                         <?php
                     } ?>
@@ -168,6 +181,7 @@ $result = mysqli_query($db, $query);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 <script>
     function getIfYesOrNon(val, id) {

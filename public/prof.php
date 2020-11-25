@@ -129,10 +129,11 @@ if (empty($_SESSION['noProf'])) {
                                 <th>Date choisi</th>
                                 <th>L'Accord</th>
                                 <th>Motif</th>
+                                <th>Info</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody role="tablist" id="accordion-1">
                             <?php
                             $id=$_SESSION['noProf'];
                             $query = "SELECT * FROM soutenance WHERE etat = 1 and directeur = $id";
@@ -143,7 +144,7 @@ if (empty($_SESSION['noProf'])) {
                             while ($row = $result->fetch_assoc()) {
 
                                 ?>
-                                <tr id="row_<?php echo $row['soutenance_id'] ?>">
+                                <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab" >
                                     <td>
                                         <?php echo $row['soutenance_id']; ?>
                                         <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
@@ -205,12 +206,25 @@ if (empty($_SESSION['noProf'])) {
 
                                     </td>
                                     <td>
+                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
+                                    </td>
+                                    <td>
                                         <button class="btn btn-success btn-sm"
                                                 onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
                                             <i class="fa fa-check-square" aria-hidden="true"></i>
                                             Enregistrer
                                         </button>
                                     </td>
+                                </tr>
+                                <tr class="collapse item-<?php echo $row['soutenance_id']?>" role="tabpanel" data-parent="#accordion-1">
+                                    <td colspan="9">
+                                        <div  >
+                                            <div class="card-body">
+                                                info de soutenance id : <?php echo $row['soutenance_id'] ?>
+                                            </div>
+                                        </div>
+                                    </td>
+
                                 </tr>
                                 <?php
                             } ?>
@@ -241,10 +255,11 @@ if (empty($_SESSION['noProf'])) {
                                 <th>Date choisi</th>
                                 <th>L'Accord</th>
                                 <th>Motif</th>
+                                <th>Info</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody role="tablist" id="accordion-2">
                             <?php
                             $id=$_SESSION['noProf'];
                             $query = "SELECT * FROM soutenance WHERE etat = 2 and president = $id";
@@ -255,7 +270,7 @@ if (empty($_SESSION['noProf'])) {
                             while ($row = $result->fetch_assoc()) {
 
                                 ?>
-                                <tr id="row_<?php echo $row['soutenance_id'] ?>">
+                                <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab" >
                                     <td>
                                         <?php echo $row['soutenance_id']; ?>
                                         <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
@@ -314,12 +329,25 @@ if (empty($_SESSION['noProf'])) {
 
                                     </td>
                                     <td>
+                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-2 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-2 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
+                                    </td>
+                                    <td>
                                         <button class="btn btn-success btn-sm"
                                                 onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
                                             <i class="fa fa-check-square" aria-hidden="true"></i>
                                             Enregistrer
                                         </button>
                                     </td>
+                                </tr>
+                                <tr class="collapse item-<?php echo $row['soutenance_id']?>" role="tabpanel" data-parent="#accordion-1">
+                                    <td colspan="9">
+                                        <div  >
+                                            <div class="card-body">
+                                                info de soutenance id : <?php echo $row['soutenance_id'] ?>
+                                            </div>
+                                        </div>
+                                    </td>
+
                                 </tr>
                                 <?php
                             } ?>
@@ -362,6 +390,7 @@ if (empty($_SESSION['noProf'])) {
         crossorigin="anonymous"
 ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     function enregister(row_id,etat) {
         row = document.getElementsByName('radio_' + row_id.toString());
