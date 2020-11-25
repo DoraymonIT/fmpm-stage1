@@ -3,13 +3,13 @@ require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['CNE'])) {
-    header('location: loginDuThese.php');
+    header('location: index.php');
 }
 $cne = $_SESSION['CNE'];
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' LIMIT 1 ";
 $result = $db->query($query);
 if (mysqli_num_rows($result) == 0) {
-    header('location: index.php');
+    header('location: dem_soutenance.php');
 } else {
     $soutenance = $result->fetch_assoc();
 }

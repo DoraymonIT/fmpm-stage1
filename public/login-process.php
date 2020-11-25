@@ -27,7 +27,7 @@ if (isset($_POST['submit_etudiant'])) {
         echo "Non";
         $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";
 
-        header('location: loginDuThese.php');
+        header('location: index.php');
     }
 }
 // Login Prof
@@ -54,7 +54,7 @@ if (isset($_POST['submit_prof'])) {
         echo "Non";
         $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";
 
-        header('location: loginDuThese.php');
+        header('location: index.php');
     }
 } else {
     echo "Veuillez Ressayer";
@@ -85,7 +85,7 @@ if (isset($_POST['submit_admin'])) {
         echo "Non";
         $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";
 
-        header('location: loginDuThese.php');
+        header('location: index.php');
     }
 } else {
     echo "Veuillez Ressayer";
