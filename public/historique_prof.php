@@ -66,18 +66,14 @@ if (empty($_SESSION['noProf'])) {
             <div class="row">
                 <div class="col-md-12">
                     <h5 class="crenau">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
-                        Confirmation d accord pour les dates
+                        <i class="fa fa-history" aria-hidden="true"></i> Historique .
                     </h5>
                 </div>
             </div>
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique_prof.php" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
-                        <div class="col-md-8"></div>
-                    </div>
+
                     <br />
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                         <thead>
@@ -89,14 +85,12 @@ if (empty($_SESSION['noProf'])) {
                                 <th>Sujet</th>
                                 <th>Date choisi</th>
                                 <th>L'Accord</th>
-                                <th>Motif</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $id = $_SESSION['noProf'];
-                            $query = "SELECT * FROM soutenance WHERE etat = 1 ";
+                            $query = "SELECT * FROM soutenance";
                             $result = mysqli_query($db, $query);
                             if (mysqli_num_rows($result) == 0) {
                                 echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
@@ -136,33 +130,17 @@ if (empty($_SESSION['noProf'])) {
                                             ?></td>
 
                                     <td>
-                                        <fieldset class="px-2 ml-1 d-flex flex-column" id="radio_<?php echo $row['soutenance_id'] ?>">
-                                            <div>
-                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
-                                                <label class="form-check-label"> Oui </label>
-                                            </div>
-                                            <span id="bla">
-                                                <!-- When the button is "NON" a Popup opens say the admin to put in
-                         the form why he or she choose No "Description of the problem"  -->
-                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="2" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
-                                                <label class="form-check-label"> Non </label></span>
-                                        </fieldset>
+                                        <?php if ($row['etat'] == 2) {
+                                            echo "OUI";
+                                        } else if ($row['etat'] == -2) {
+                                            echo "NON";
+                                        } else {
+                                            echo "En cours de traitement ...";
+                                        }
+                                        ?>
 
                                     </td>
-                                    <td>
-                                        <div class="row" style="display: none">
-                                            <div class="mx-2">
-                                                <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name="" class="form-control form-control-sm" placeholder=" Merci de nous dire le motif ou problème de dire NON" required></textarea>
-                                            </div>
-                                        </div>
 
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm" onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
-                                            <i class="fa fa-check-square" aria-hidden="true"></i>
-                                            Enregistrer
-                                        </button>
-                                    </td>
                                 </tr>
                             <?php
                             } ?>
@@ -170,12 +148,11 @@ if (empty($_SESSION['noProf'])) {
 
                     </table>
                     <!-- <button class="btn btn-success btn-custom" type="submit">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-                      </button> -->
+        <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
+      </button> -->
                 </div>
 
             </div>
-
 
         </div>
     </section>

@@ -1,11 +1,11 @@
-﻿<?php
+<?php
 require_once('database_connect.php');
 ob_start();
 session_start();
 if (empty($_SESSION['num'])) {
     header('location: loginDuThese.php');
 }
-$query = "SELECT * FROM soutenance WHERE etat = 0 ";
+$query = "SELECT * FROM soutenance ";
 $result = mysqli_query($db, $query);
 
 ?>
@@ -52,13 +52,9 @@ $result = mysqli_query($db, $query);
         <div class="row">
             <div class="col-md-12">
                 <h5 class="crenau">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
-                    Confirmation d'accord de l'éligibilité de passer le soutenance .
+                <i class="fa fa-history" aria-hidden="true"></i>   Historique
                 </h5>
-                <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique_administration.php" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
-                        <div class="col-md-8"></div>
-                    </div>
+               
                 <br/>
                 <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                     <thead>
@@ -71,13 +67,13 @@ $result = mysqli_query($db, $query);
                         <th>Date de dépôt de sujet</th>
                         <th>L'Accord</th>
                         <th>Motif</th>
-                        <th>Action</th>
+                  
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                     <?php
                     if (mysqli_num_rows($result) == 0) {
-                        echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
+                        echo '<tr><td colspan="8" class="text-center">Aucun soutenance trouvé </td></tr>';
                     }
                     while ($row = $result->fetch_assoc()) {
 
@@ -104,42 +100,21 @@ $result = mysqli_query($db, $query);
                             <td> <?php echo $row['intitule_these']; ?></td>
                             <td> <?php echo $row['date_depot_sujet']; ?></td>
                             <td>
-                                <fieldset class="px-2 ml-1 d-flex flex-column"
-                                          id="radio_<?php echo $row['soutenance_id'] ?>">
-                                    <div>
-                                        <input class="form-check-input" type="radio"
-                                               name="radio_<?php echo $row['soutenance_id'] ?>" value="1"
-                                               onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                                        <label class="form-check-label"> Oui </label>
-                                    </div>
-                                    <span id="bla">
-                        <!-- When the button is "NON" a Popup opens say the admin to put in
-                         the form why he or she choose No "Description of the problem"  -->
-                        <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>"
-                               value="2"
-                               onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                        <label class="form-check-label"> Non </label></span>
-                                </fieldset>
+                            <?php if ($row['etat'] == 1) {
+                                            echo "OUI";
+                                        } else if ($row['etat'] == -1) {
+                                            echo "NON";
+                                        } else {
+                                            echo "En cours de traitement ...";
+                                        }
+                                        ?>
 
                             </td>
                             <td>
-                                <div class="row" style="display: none">
-                                    <div class="mx-2">
-                                        <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name=""
-                                                  class="form-control form-control-sm"
-                                                  placeholder=" Merci de nous dire le motif ou problème de dire NON"
-                                                  required ></textarea>
-                                    </div>
-                                </div>
+                            <?php echo $row['motif'] ?>
 
                             </td>
-                            <td>
-                                <button class="btn btn-success btn-sm"
-                                        onclick="enregister(<?php echo $row['soutenance_id'] ?>)">
-                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                    Enregistrer
-                                </button>
-                            </td>
+                         
                         </tr>
                         <?php
                     } ?>

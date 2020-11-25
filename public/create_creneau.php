@@ -77,9 +77,17 @@ $result = mysqli_query($db, $query);
                     <?php if ($row['etat'] != 2) { ?>
                       <button type="submit" id="<?php echo $row['id']; ?>" class="delbutton btn btn-sm btn-danger">
                         <i class="fa fa-trash" aria-hidden="true"></i></button>
-                        <?php } else{
+                    <?php } else {
+                      $soutenance = "SELECT * FROM soutenance ";
+                      $result1 = mysqli_query($db, $soutenance);
+                      while ($row1 = $result1->fetch_assoc()) {
+                        if ($row1['creneau'] == $row['id']) {
+                          echo 'Réservée par ' . "<b>" . $row1['etudiant'] . "</b>";
+                        } else {
                           echo "-----R-----";
-                        } ?>
+                        }
+                      }
+                    } ?>
                   </td>
                 </tr>
               <?php
