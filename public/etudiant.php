@@ -134,16 +134,18 @@ if (mysqli_num_rows($result) == 0) {
                             ?>
 
 
-                        </table>
+                        </table> 
                         <br>
                         <?php
                         if ($soutenance['etat'] <= -1) { ?>
-                            <h5 class="alert alert-warning" role="alert" style="text-align: center;">
-                                <?php echo "<b>" . $soutenance['motif'] . "</b>" ?>
+                            <h5 class="alert alert-warning" role="alert">
+                                <?php echo "<i class='fa fa-exclamation-triangle' ></i> Motif est : <b>" . $soutenance['motif'] . "</b>" ?>
                             </h5>
                             <hr>
                             <small id="mot" class="form-text text-muted">
-                                Pou réactiver a nouveau votre demande , veuillez contacter le service concerné pour trouver la solution de votre problème lli mktuub Lfooo9 puis cliquez ici : </small>
+                                Pou réactiver a nouveau votre demande , veuillez contacter le service 
+                                concerné pour trouver la solution de votre problème cites ci-dessous <i class="fa fa-arrow-up"
+                                 aria-hidden="true"></i> puis cliquez sur le button RÉACTIVER : </small>
                             <br>
                             <a href="#"><button class="btn  btn-success btn-custom btn-sm">
                                     <i class="fa fa-pencil" aria-hidden="true"></i> Réactiver</button></a>

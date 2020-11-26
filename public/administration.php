@@ -127,14 +127,17 @@ $result = mysqli_query($db, $query);
                                     <div class="mx-2">
                                         <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name=""
                                                   class="form-control form-control-sm"
-                                                  placeholder=" Merci de nous dire le motif ou problème de dire NON"
+                                                  placeholder="le motif ou problème "
                                                   required ></textarea>
                                     </div>
                                 </div>
 
                             </td>
                             <td>
-                                <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
+                                <a data-toggle="collapse" aria-expanded="true"
+                                 aria-controls="accordion-1 .item-<?php echo $row['soutenance_id']?>" 
+                                 class="btn btn-info btn-sm" href="#accordion-1 .item-<?php echo $row['soutenance_id']?>">
+                                 <i class="fa fa-caret-down"></i></a>
                             </td>
                             <td>
                                 <button class="btn btn-success btn-sm"

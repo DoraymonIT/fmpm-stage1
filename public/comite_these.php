@@ -1,3 +1,7 @@
+<?php
+ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +35,7 @@
             <div class="row">
                 <div class="col-md-12 title">
                     <h3><u>Espace Comité du thèse </u></h3>
-                    <?php if (isset($_SESSION['noProf'])) : ?>
+                    <?php if (isset($_SESSION['num'])) : ?>
                         <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                             Vous êtes Connecte : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
                         <p><a href="logout.php" class="btn btn-primary" role="button">

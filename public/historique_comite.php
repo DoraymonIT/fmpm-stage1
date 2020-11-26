@@ -39,13 +39,13 @@ $result = mysqli_query($db, $query);
     <div class="container">
         <div class="row">
             <div class="col-md-12 title">
-                <h3><u>Espace Administration</u></h3>
-                <?php if (isset($_SESSION['num'])) : ?>
-                    <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Vous êtes Connecté : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
-                    <p><a href="logout.php" class="btn btn-primary" role="button">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-                <?php endif ?>
+            <h3><u>Espace Comité du thèse </u></h3>
+                    <?php if (isset($_SESSION['num'])) : ?>
+                        <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
+                            Vous êtes Connecte : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
+                        <p><a href="logout.php" class="btn btn-primary" role="button">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                    <?php endif ?>
                 <hr>
             </div>
         </div>
