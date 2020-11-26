@@ -20,12 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM__Default_Changelist_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/soutenance_prob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration-process.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comite_these.php" beforeDir="false" afterPath="$PROJECT_DIR$/comite_these.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crenaeu-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/crenaeu-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/database_connect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dem_soutenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/dem_soutenance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historique_administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/historique.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historique_prof.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_soutenenaces_valides.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenances.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prof-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rd (1).sql" beforeDir="false" afterPath="$PROJECT_DIR$/../rd (1).sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/showMe.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/soutenance_process.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +76,8 @@
       <workItem from="1605720696502" duration="16274000" />
       <workItem from="1605891367826" duration="2723000" />
       <workItem from="1606311155497" duration="1157000" />
-      <workItem from="1606313057753" duration="3515000" />
+      <workItem from="1606313057753" duration="3724000" />
+      <workItem from="1606387699549" duration="23580000" />
     </task>
     <servers />
   </component>
@@ -87,6 +101,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="344" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1605636474181" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606394725664">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606394725664" />
     <state x="184" y="86" key="MergeDialog" timestamp="1605636146907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

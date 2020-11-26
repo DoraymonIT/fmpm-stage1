@@ -2,11 +2,26 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-if (empty($_SESSION['num'])) {
-    header('location: loginDuThese.php');
-}
-$query = "SELECT * FROM soutenance ";
-$result = mysqli_query($db, $query);
+$who = $_GET['who'];
+if (!empty($_SESSION['noProf'])) {
+    $id = $_SESSION['noProf'];
+    if ($who==1){
+        $titre="directeur";
+        $query = "SELECT * FROM soutenance WHERE  directeur = $id AND etat >=3 or etat <= -3";
+    }elseif ($who==2){
+        $titre="president";
+        $query = "SELECT * FROM soutenance WHERE president = $id AND etat >=4 or etat <= -4";
+    }else header('location: index.php');
+}elseif (!empty($_SESSION['comite']) && $who ==3){
+
+    $titre="commite de these";
+    $query = "SELECT * FROM soutenance WHERE etat >=2 or etat <= -2";
+
+}elseif (!empty($_SESSION['num']) && $who ==4){
+    $titre="administration";
+    $query = "SELECT * FROM soutenance WHERE etat >=1 or etat <= -1";
+}else header('location: index.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +34,22 @@ $result = mysqli_query($db, $query);
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="style.css"/>
-    <title>Interface de l'administration | Voir le progresse de demande de thèse .</title>
+    <style>
+        a {
+            color: black;
+            /* font-weight: 800; */
+            text-decoration: none;
+            background-color: transparent;
+            -webkit-text-decoration-skip: objects;
+        }
+
+        a:hover {
+            color: black;
+        }
+    </style>
+    <title>
+        Accueil du professeurs | Voir le progresse de demande de thèse .
+    </title>
 </head>
 
 <body>
@@ -39,29 +69,37 @@ $result = mysqli_query($db, $query);
     <div class="container">
         <div class="row">
             <div class="col-md-12 title">
-                <h3><u>Espace Administration</u></h3>
-                <?php if (isset($_SESSION['num'])) : ?>
+                <h3><u>Espace Professeur</u></h3>
+                <?php if (isset($_SESSION['noProf'])) : ?>
                     <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Vous êtes Connecté : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
+                        Vous êtes Connecte : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
                     <p><a href="logout.php" class="btn btn-primary" role="button">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
                 <?php endif ?>
                 <hr>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <h5 class="crenau">
-                <i class="fa fa-history" aria-hidden="true"></i>   Historique
+                    <i class="fa fa-history" aria-hidden="true"></i> Historique en tant
+                    que <?php echo $titre ?>
                 </h5>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
                 <div class="row">
-                        <div class="col-md-3"> 
-                        <a class="btn btn-success btn-sm" href="administration.php" role="button"> 
-                       <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>  </div>
-                        <div class="col-md-8"></div>
-                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-success btn-sm" href="prof.php" role="button">
+                            <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a></div>
+                    <div class="col-md-8"></div>
+                </div>
                 <br/>
-                <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
+                <table class="table table-hover table-striped table-bordered myTable table-responsive-xl " style="table-layout: fixed;
+    word-wrap: break-word;">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -69,16 +107,15 @@ $result = mysqli_query($db, $query);
                         <th>CNE</th>
                         <!-- <th>Numéro Apogée</th> -->
                         <th>Sujet</th>
-                        <th>Date de dépôt de sujet</th>
+                        <th>Date choisi</th>
                         <th>L'Accord</th>
-                        <th>Motif</th>
-                  
                     </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
                     <?php
+                    $result = mysqli_query($db, $query);
                     if (mysqli_num_rows($result) == 0) {
-                        echo '<tr><td colspan="8" class="text-center">Aucun soutenance trouvé </td></tr>';
+                        echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
                     }
                     while ($row = $result->fetch_assoc()) {
 
@@ -103,32 +140,61 @@ $result = mysqli_query($db, $query);
                             <td> <?php echo $row['etudiant']; ?>
                             </td>
                             <td> <?php echo $row['intitule_these']; ?></td>
-                            <td> <?php echo $row['date_depot_sujet']; ?></td>
+                            <td> <?php
+                                $creneau_id = $row['creneau'];
+                                $query1 = "SELECT * FROM creneau WHERE id ='$creneau_id' LIMIT 1 ";
+
+                                $result1 = $db->query($query1);
+
+                                $creneau = $result1->fetch_assoc();
+                                echo $creneau['jour'] . " : " . date('H:i', strtotime($creneau['heure'])) . " " . $creneau['lieu'];
+
+                                ?></td>
+
                             <td>
-                            <?php if ($row['etat'] == 1) {
-                                            echo "OUI";
-                                        } else if ($row['etat'] == -1) {
-                                            echo "NON";
-                                        } else {
-                                            echo "En cours de traitement ...";
-                                        }
-                                        ?>
+                                <?php
+                                switch ($who){
+                                    case 1:
+                                        $etat=3;
+                                        break;
+                                    case 2:
+                                        $etat=4;
+                                        break;
+                                    case 3:
+                                        $etat=2;
+                                        break;
+                                    case 4:
+                                        $etat=1;
+                                        break;
+
+
+
+
+
+                                }
+
+                                if ($row['etat'] >=$etat || $row['etat'] < (int)$etat*-1) {
+                                    echo "OUI";
+                                } else if ($row['etat'] ==(int)$etat*-1) {
+                                    echo "NON";
+                                }
+                                ?>
 
                             </td>
-                            <td>
-                            <?php echo $row['motif'] ?>
 
-                            </td>
-                         
                         </tr>
                         <?php
                     } ?>
                     </tbody>
 
                 </table>
-
+                <!-- <button class="btn btn-success btn-custom" type="submit">
+    <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
+  </button> -->
             </div>
+
         </div>
+
     </div>
 </section>
 <hr/>
@@ -140,35 +206,18 @@ $result = mysqli_query($db, $query);
 </footer>
 </body>
 <script src="assets/js/main.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    function getIfYesOrNon(val, id) {
-        row = document.querySelector('#row_' + id.toString())
-        motif = row.childNodes[13]
-        if (parseInt(val) === 2) {
-
-
-            motif.childNodes[1].style.display = "block";
-
-        } else {
-
-            motif.childNodes[1].style.display = "none";
-        }
-    }
-
-    function enregister(row_id) {
+    function enregister(row_id, etat) {
         row = document.getElementsByName('radio_' + row_id.toString());
         value = null;
         for (let i = 0; i < row.length; i++) {
@@ -183,6 +232,7 @@ $result = mysqli_query($db, $query);
         }
         const data = {
             "soutenance_id": row_id,
+            "etat": etat,
             "accord": value,
             "motif": motif
 
@@ -190,7 +240,7 @@ $result = mysqli_query($db, $query);
         console.log(data)
         $.ajax({
             type: "POST",
-            url: "administration-process.php",
+            url: "prof-process.php",
             data: data,
             success: function (id) {
                 $("#row_" + id).remove();
@@ -201,9 +251,19 @@ $result = mysqli_query($db, $query);
 
     }
 
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    function getIfYesOrNon(val, id) {
+        row = document.querySelector('#row_' + id.toString())
+        motif = row.childNodes[13]
+        if (parseInt(val) === 2) {
+
+
+            motif.childNodes[1].style.display = "block";
+
+        } else {
+
+            motif.childNodes[1].style.display = "none";
+        }
+    }
 </script>
 
 </html>

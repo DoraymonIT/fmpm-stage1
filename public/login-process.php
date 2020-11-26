@@ -90,3 +90,32 @@ if (isset($_POST['submit_admin'])) {
 } else {
     echo "Veuillez Ressayer";
 }
+// Login Commite
+if (isset($_POST['submit_comite'])) {
+
+    $email = $_POST['email_comite'];
+    $pass = $_POST['pass_comite'];
+    // $hashed_password = md5($password);
+
+    $query = "SELECT * FROM commite WHERE email='$email' AND num='$pass'";
+
+    $result = mysqli_query($db, $query);
+    if (!$result || mysqli_num_rows($result) === 1) {
+
+        while ($row = $result->fetch_assoc()) {
+            // echo $row['nom'] ;
+            $_SESSION['nom'] = $row['nom'];
+            $_SESSION['prenom'] = $row['prenom'];
+            $_SESSION['comite'] = $row['id'];
+
+        }
+        header('location: comite_these.php');
+    } else {
+        echo "Non";
+        $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";
+
+        header('location: index.php');
+    }
+} else {
+    echo "Veuillez Ressayer";
+}

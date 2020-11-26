@@ -4,6 +4,12 @@ ob_start();
 session_start();
 if (!empty($_SESSION['username'])) {
   header('location: acceuilEtudiant.php');
+}elseif (!empty($_SESSION['noProf'])) {
+    header('location: prof.php');
+}elseif (!empty($_SESSION['comite'])) {
+    header('location: comite_these.php');
+}elseif (!empty($_SESSION['num'])) {
+    header('location: administration.php');
 }
 ?>
 <!DOCTYPE html>
@@ -85,6 +91,10 @@ if (!empty($_SESSION['username'])) {
                href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false">
                 <i class="fa fa-user-secret" aria-hidden="true"></i> Adminstration</a>
             </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="pills-comite-tab" data-toggle="pill" href="#pills-comite" role="tab" aria-controls="pills-comite" aria-selected="true"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                      Commite these</a>
+              </li>
           </ul>
         </div>
         <div class="col-md-2"></div>
@@ -169,6 +179,31 @@ if (!empty($_SESSION['username'])) {
                   <input type="password" name="pass_admin" class="form-control" placeholder="***********" required />
                   <br />
                   <button type="submit" name="submit_admin" class="btn btn-success btn-custom">Se Connecter</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+
+
+
+      </div>
+        <div class="tab-pane fade" id="pills-comite" role="tabpanel" aria-labelledby="pills-comite-tab">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <hr />
+              <div class="shadow">
+                <form action="login-process.php" method="post">
+                  <label>Votre Email <span>*</span></label>
+                  <input type="text" name="email_comite" class="form-control" placeholder="Ex : ahmed@gmail.com" required />
+                  <br />
+                  <label>Votre Numéro Administratif <span>*</span></label>
+                  <input type="password" name="pass_comite" class="form-control" placeholder="***********" required />
+                  <br />
+                  <button type="submit" name="submit_comite" class="btn btn-success btn-custom">Se Connecter</button>
                 </form>
               </div>
             </div>

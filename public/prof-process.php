@@ -6,6 +6,7 @@ $motif=$_POST['motif'];
 $etat=$_POST['etat']+1;
 $response=array();
 $response['id']=$id;
+$response['etat']=$etat;
 $response['erreur']='';
 if ($val==1){
     $query=$db->query("UPDATE soutenance SET etat = '$etat' WHERE soutenance_id = '$id'");
@@ -15,9 +16,10 @@ if ($val==1){
         $neg=(int)$etat*-1;
         $db->query("UPDATE soutenance SET etat = '$neg' WHERE soutenance_id = $id");
         $creneau_bloc = $db->query("UPDATE soutenance SET motif = '$motif' WHERE soutenance_id = $id");
+        $response['etat']=$neg;
         echo json_encode($response);
     }else{
-        $response['erreur']="morif can't be empty";
+        $response['erreur']="motif can't be empty";
         echo json_encode($response);
     }
 

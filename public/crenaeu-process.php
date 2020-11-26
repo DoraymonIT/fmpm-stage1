@@ -3,9 +3,10 @@ require_once("database_connect.php");
 if (!empty($_POST["date_ex"])) {
 
     $date_selected = $_POST["date_ex"];
+    var_dump($date_selected);
     // echo  date_format (new DateTime($countryId), 'Y-m-d');
     $date_formatted = date_format(new DateTime($date_selected), 'Y-m-d');
-
+    var_dump($date_formatted);
     $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1";
     $result = mysqli_query($db, $query);
 ?>

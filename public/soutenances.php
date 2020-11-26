@@ -2,7 +2,7 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-$query = "SELECT * FROM creneau ";
+$query = "SELECT * FROM soutenance where etat>=4 ";
 $result = mysqli_query($db, $query);
 ?>
 <!DOCTYPE html>
@@ -57,18 +57,25 @@ $result = mysqli_query($db, $query);
                             ?>
 
                                 <tr>
-                                    <td><?php echo $row['jour']; ?></td>
-                                    <td><?php echo $row['jour']; ?></td>
+                                    <td><?php echo $row['intitule_these']; ?></td>
+                                    <td><?php
+                                        $creneau_id=$row['creneau'];
+                                        $query1="select * from creneau where id=$creneau_id";
+                                        $result1 = mysqli_query($db, $query1);
+                                        $creneau=$result1->fetch_assoc();
+                                        echo $creneau['jour']." ".$creneau['heure']." ".$creneau['lieu'];
+
+                                        ?></td>
                                     <td></td>
-                                    <td><?php echo $row['jour']; ?></td>
-                                    <td> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample<?php echo $row['id']; ?>" aria-expanded="false" aria-controls="collapseExample">
+                                    <td><?php echo "gg"; ?></td>
+                                    <td> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample<?php echo $row['soutenance_id']; ?>" aria-expanded="false" aria-controls="collapseExample">
                                             Show / Hide
                                         </button></td>
                                 </tr>
                                 <td>
-                                    <div class="collapse" id="collapseExample<?php echo $row['id']; ?>">
+                                    <div class="collapse" id="collapseExample<?php echo $row['soutenance_id']; ?>">
                                         <h5>
-                                            <?php echo $row['heure'];
+                                            <?php echo $row['soutenance_id'];
                                             ?> </h5>
                                     </div>
                                 </td>

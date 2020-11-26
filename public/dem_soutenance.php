@@ -76,7 +76,7 @@ if (mysqli_num_rows($result) != 0) {
                     <label>Date de dépôt du sujet <span>*</span></label>
                     <input class="datepicker1 form-control form-control-sm" type="date"
                            placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;'
-                           style="text-align: center;" name="date_depot_sujet" required/>
+                           style="text-align: center;" name="date_depot_sujet" value="" required/>
                     <br/>
                     <label>Directeur de la thèse <span>*</span></label>
                     <select class="form-control form-control-sm" name="directeur_these" onclick="profSelect(this)" required>
@@ -271,18 +271,15 @@ if (mysqli_num_rows($result) != 0) {
     }
     $(document).ready(
         function () {
-            var min_d = new Date().addDays(15)
-            var max_d = new Date().addDays(45)
+            var min_d = new Date().addDays(30)
             var min = min_d.getFullYear() + "-" + (+min_d.getMonth() + 1) + "-" + min_d.getDate();
-            var max = max_d.getFullYear() + "-" + (+max_d.getMonth() + 1) + "-" + max_d.getDate();
 
 
             $.ajax({
                 type: "POST",
                 url: "test.php",
                 data: {
-                    'min-date': min,
-                    'max-date': max
+                    'min-date': min
                 },
                 success: function (data) {
                     let dates = [true]

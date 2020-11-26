@@ -55,7 +55,7 @@ $result = mysqli_query($db, $query);
                     Confirmation d'accord de l'éligibilité de passer le soutenance .
                 </h5>
                 <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique_administration.php" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
+                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique.php?who=4" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
                         <div class="col-md-8"></div>
                     </div>
                 <br/>
@@ -77,7 +77,7 @@ $result = mysqli_query($db, $query);
                     <tbody role="tablist" id="accordion-1">
                     <?php
                     if (mysqli_num_rows($result) == 0) {
-                        echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
+                        echo '<tr><td colspan="9" class="text-center">Aucune soutenance trouve</td></tr>';
                     }
                     while ($row = $result->fetch_assoc()) {
 
@@ -138,7 +138,7 @@ $result = mysqli_query($db, $query);
                             </td>
                             <td>
                                 <button class="btn btn-success btn-sm"
-                                        onclick="enregister(<?php echo $row['soutenance_id'] ?>)">
+                                        onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
                                     <i class="fa fa-check-square" aria-hidden="true"></i>
                                     Enregistrer
                                 </button>
@@ -202,7 +202,7 @@ $result = mysqli_query($db, $query);
         }
     }
 
-    function enregister(row_id) {
+    function enregister(row_id,etat) {
         row = document.getElementsByName('radio_' + row_id.toString());
         value = null;
         for (let i = 0; i < row.length; i++) {
@@ -218,13 +218,14 @@ $result = mysqli_query($db, $query);
         const data = {
             "soutenance_id": row_id,
             "accord": value,
+            "etat": etat,
             "motif": motif
 
         };
         console.log(data)
         $.ajax({
             type: "POST",
-            url: "administration-process.php",
+            url: "prof-process.php",
             data: data,
             success: function (data) {
                 if (data.erreur === ''){
