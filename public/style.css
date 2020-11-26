@@ -69,3 +69,12 @@ span {
 #myTable{
   text-align: center;
 }
+.fa-spinner{
+  color: rgb(167, 111, 28);
+}
+.fa-check-square{
+  color: rgb(13, 70, 13);
+}
+.fa-times{
+  color: rgb(160, 31, 31);
+}
