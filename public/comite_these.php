@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <title>
-        Accueil du comite du these | Voir le progresse de demande de thèse .
+        Accueil du comite du thèse | Voir le progresse de demande de thèse .
     </title>
 </head>
 
@@ -52,7 +52,8 @@
 
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="#" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
+                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique_comite.php" role="button">
+                             <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
                         <div class="col-md-8"></div>
                     </div>
                     <br />
