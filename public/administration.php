@@ -70,7 +70,7 @@ $result = mysqli_query($db, $query);
                                 <th>Date de dépôt de sujet</th>
                                 <th>L'Accord</th>
                                 <th>Motif</th>
-                                <th>info</th>
+                                <!-- <th>info</th> -->
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -83,11 +83,11 @@ $result = mysqli_query($db, $query);
 
                             ?>
                                 <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
-                                    <td>
-                                        <?php echo $row['soutenance_id']; ?>
-                                        <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
-                                        <!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
-                                        <!--                    </button>-->
+                                <td>
+                                        <a data-toggle="collapse" aria-expanded="true"
+                                         aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>"
+                                          class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
+                                            <i class="fa menu-item" ></i></a>  
                                     </td>
                                     <td>
                                         <?php
@@ -125,10 +125,12 @@ $result = mysqli_query($db, $query);
                                         </div>
 
                                     </td>
-                                    <td>
-                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>" class="btn btn-info btn-sm" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
+                                    <!-- <td>
+                                        <a data-toggle="collapse" aria-expanded="true"
+                                         aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>"
+                                          class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
                                             <i class="fa fa-caret-down"></i></a>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <button class="btn btn-success btn-sm" onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
                                             <i class="fa fa-check-square" aria-hidden="true"></i>
@@ -141,15 +143,20 @@ $result = mysqli_query($db, $query);
                                         <div class="container-fluid">
                                             <h6 class="crenau"><i class="fa fa-info-circle" aria-hidden="true"></i> Info sur le soutenance : <?php echo $row['soutenance_id'] ?></h6>
                                             <div class="row" style="    text-align: left;">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <ul>
                                                         <li>
                                                             <h6> Date de depot du sujet : <?php echo $row['date_depot_sujet'] ?></h6>
                                                         </li>
                                                         <li>
                                                             <h6>
-                                                                Directeur : <?php echo $row['date_depot_sujet'] ?></h6>
-                                                            <h6>
+                                                                Directeur : <?php
+                                                                            $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['directeur'] . " ";
+                                                                            $result1 = mysqli_query($db, $prof_detailes);
+                                                                            while ($row1 = $result1->fetch_assoc()) {
+                                                                                echo $row1['nom'] . " " . $row1['prenom'];
+                                                                            } ?>
+                                                            </h6>
                                                         </li>
                                                         <li>
                                                             <h6>Intitule du these : <?php echo $row['intitule_these'] ?></h6>
@@ -177,9 +184,9 @@ $result = mysqli_query($db, $query);
                                                                 $array = explode(',', $row['mots_cles']);
                                                                 foreach ($array as $res) {
                                                                 ?> <span class="badge badge-info"> <?php
-                                                                    echo $res; ?></span> <?php
-                                                                            }
-                                                                                ?>
+                                                                                                    echo $res; ?></span> <?php
+                                                                                                                        }
+                                                                                                                            ?>
 
                                                             </h6>
                                                         </li>
@@ -189,36 +196,77 @@ $result = mysqli_query($db, $query);
 
 
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <ul>
                                                         <li>
-                                                            <h6><i class="fa fa-user-md" aria-hidden="true"></i> President de Jury : <?php echo $row['date_depot_sujet'] ?></h6>
+                                                            <h6> President de Jury : <?php
+                                                                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['president'] . " ";
+                                                                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                                                                        } ?></h6>
                                                         </li>
                                                     </ul>
                                                     <ul>
                                                         <ol>
                                                             <li>
-                                                                <h6><i class="fa fa-user" aria-hidden="true"></i> Membre de jury 1 :  <?php echo $row['date_depot_sujet'] ?></h6>
+                                                                <h6> Membre de jury 1 : <?php
+                                                                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury1'] . " ";
+                                                                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                                                                        } ?></h6>
                                                             </li>
                                                             <li>
-                                                                <h6> Membre de jury 2 : <?php echo $row['date_depot_sujet'] ?></h6>
+                                                                <h6> Membre de jury 2 : <?php
+                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury2'] . " ";
+                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                        } ?></h6>
                                                             </li>
                                                             <li>
-                                                                <h6> Membre de jury 3 : <?php echo $row['date_depot_sujet'] ?></h6>
+                                                                <h6> Membre de jury 3 : <?php
+                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury3'] . " ";
+                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                        } ?></h6>
                                                             </li>
                                                             <li>
-                                                                <h6> Membre de jury 4 : <?php echo $row['date_depot_sujet'] ?></h6>
+                                                                <h6> Membre de jury 4 : <?php
+                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury4'] . " ";
+                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                        } ?></h6>
                                                             </li>
                                                         </ol>
 
                                                     </ul>
                                                     <ul>
                                                         <li>
-                                                            <h6> <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Creneau Choisi : <?php echo $row['date_depot_sujet'] ?></h6>
+                                                            <h6> <?php
+
+                                                                    $id = $row['creneau'];
+                                                                    $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
+                                                                    $result1 = mysqli_query($db, $creneau);
+                                                                    while ($row1 = $result1->fetch_assoc()) {
+                                                                    ?>
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i> <u> Date choisie</u> :
+                                                                    <b> <?php
+                                                                        echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
+
+                                                                        ?> ; </b>
+                                                                    <u><i class="fa fa-location-arrow" aria-hidden="true"></i> Lieu</u> :
+                                                                    <b>
+                                                                    <?php
+                                                                        echo $row1['lieu'];
+                                                                    } ?></h6>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-md-4"></div>
+                                                <!-- <div class="col-md-4"></div> -->
                                             </div>
                                         </div>
                                     </td>
@@ -308,5 +356,19 @@ $result = mysqli_query($db, $query);
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-
+<script> 
+  var m = $(".menu-item");
+  m.addClass('fa-caret-down');
+  m.on('click', function() {
+    if (m.hasClass('fa-caret-down')) {
+      m
+        .removeClass('fa-caret-down')
+        .addClass('fa-caret-up');
+    } else {
+      m
+        .removeClass('fa-caret-up')
+        .addClass('fa-caret-down');
+    }
+  });
+</script>
 </html>

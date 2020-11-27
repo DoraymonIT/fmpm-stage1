@@ -69,12 +69,12 @@ span {
 #myTable{
   text-align: center;
 }
-.fa-spinner{
-  color: rgb(167, 111, 28);
-}
-.fa-check-square{
+.valide{
   color: rgb(13, 70, 13);
 }
-.fa-times{
+.rejete{
   color: rgb(160, 31, 31);
+}
+.en_cours{
+  color: rgb(167, 111, 28);
 }

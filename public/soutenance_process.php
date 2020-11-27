@@ -88,7 +88,9 @@ if (isset($_POST['submit_edit_soutenance'])) {
             $db->query("UPDATE creneau SET etat = 1 WHERE id = $last_creneau ");
             $creneau_bloc = $db->query("UPDATE creneau SET etat = 2 WHERE id = $creneau_id ");
         }
+
         header('location: etudiant.php');
+        $_SESSION['edite_soutenenace']="Votre demande a ete éditer avec succès !";
     } else {
         // echo $mots_cles;
         echo "NO";

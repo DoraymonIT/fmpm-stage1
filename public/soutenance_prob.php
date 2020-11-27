@@ -23,7 +23,6 @@ if (mysqli_num_rows($result) == 0) {
         }
     } elseif ($soutenance['etat'] < -1) {
 ?>
-        <!DOCTYPE html>
         <html lang="en">
 
         <head>
@@ -217,15 +216,16 @@ if (mysqli_num_rows($result) == 0) {
                                 $result = mysqli_query($db, $q_creneau);
                                 $creneau = $result->fetch_assoc()
                                 ?>
-                                <div class="custom-control custom-switch">
+                                <!-- <div class="custom-control custom-switch">
                                     <input type="checkbox" name="creneau_change" class="custom-control-input" id="customSwitches">
                                     <label class="custom-control-label" for="customSwitches">Changer votre creneau choisi ?</label>
-                                </div>
-                                <div id="changement_creneau" style="display: none">
+                                </div> -->
+                                <!-- <div id="changement_creneau" style="display: none"> -->
                                     <br>
                                     <label>Choisir un jour pour voir les horaires disponibles
                                         <span>*</span></label>
-                                    <input class="datepicker form-control form-control-sm" type="date" name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" required />
+                                    <input class="datepicker form-control form-control-sm" type="date" name="" onChange="getCreneaux(this.value);" placeholder='&#128197;
+                                     Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" required />
 
                                     <br />
                                     <div class="row horaires" id="creneux">
@@ -235,7 +235,7 @@ if (mysqli_num_rows($result) == 0) {
                                             <select name="creneau_heure" id="cre-list" class="form-control form-control-sm" required>
                                             </select></div>
                                     </div>
-                                </div>
+                                <!-- </div> -->
 
                                 <br>
                                 <hr>

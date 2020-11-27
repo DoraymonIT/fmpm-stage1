@@ -52,7 +52,7 @@ if (mysqli_num_rows($result) != 0) {
                         <?php endif ?>
                     </div>
                      <div class="col-md-9"></div>
-                </div>
+            w    </div>
             </div>
     <section>
         <div class="container">
@@ -199,7 +199,9 @@ if (mysqli_num_rows($result) != 0) {
                         <label>Choisir un jour pour voir les horaires disponibles
                             <span>*</span></label>
 
-                        <input class="datepicker form-control form-control-sm" type="date" name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" onChange="getCreneaux(this.value);" required />
+                        <input class="datepicker form-control form-control-sm" type="date" 
+                        name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;"
+                         onChange="getCreneaux(this.value);" required />
 
                         <br />
                         <div class="row horaires" id="creneux">
