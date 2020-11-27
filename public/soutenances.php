@@ -15,7 +15,7 @@ $result = mysqli_query($db, $query);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>
-    Listes des soutenances valides
+        Listes des soutenances valides
     </title>
 
 </head>
@@ -59,11 +59,11 @@ $result = mysqli_query($db, $query);
                                 <tr>
                                     <td><?php echo $row['intitule_these']; ?></td>
                                     <td><?php
-                                        $creneau_id=$row['creneau'];
-                                        $query1="select * from creneau where id=$creneau_id";
+                                        $creneau_id = $row['creneau'];
+                                        $query1 = "select * from creneau where id=$creneau_id";
                                         $result1 = mysqli_query($db, $query1);
-                                        $creneau=$result1->fetch_assoc();
-                                        echo $creneau['jour']." ".$creneau['heure']." ".$creneau['lieu'];
+                                        $creneau = $result1->fetch_assoc();
+                                        echo $creneau['jour'] . " " . $creneau['heure'] . " " . $creneau['lieu'];
 
                                         ?></td>
                                     <td></td>

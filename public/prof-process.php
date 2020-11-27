@@ -19,11 +19,11 @@ if ($val==1){
         $response['etat']=$neg;
         echo json_encode($response);
     }else{
-        $response['erreur']="motif can't be empty";
+        $response['erreur']="Veuillez Remplir le champ Motif pour continuer.";
         echo json_encode($response);
     }
 
 }else{
-    $response['erreur']='veuiller choisir votre choix';
+    $response['erreur']='Veuillez choisir votre choix';
     echo json_encode($response);
 }

@@ -7,9 +7,7 @@ if (empty($_SESSION['comite'])) {
 }
 $query = "SELECT * FROM soutenance WHERE etat = 1 ";
 $result = mysqli_query($db, $query);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +19,7 @@ $result = mysqli_query($db, $query);
     <link rel="stylesheet" href="style.css" />
 
     <title>
-        Accueil du comite du these | Voir le progresse de demande de thèse .
+        Accueil du comite du thèse | Voir le progresse de demande de thèse .
     </title>
 </head>
 
@@ -45,7 +43,7 @@ $result = mysqli_query($db, $query);
                     <h3><u>Espace Comité du thèse </u></h3>
                     <?php if (isset($_SESSION['comite'])) : ?>
                         <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                            Vous êtes Connecte : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
+                            Vous êtes Connecté : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
                         <p><a href="logout.php" class="btn btn-primary" role="button">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
                     <?php endif ?>
@@ -84,87 +82,78 @@ $result = mysqli_query($db, $query);
                             </tr>
                         </thead>
                         <tbody role="tablist" id="accordion-1">
-                        <?php
-                        if (mysqli_num_rows($result) == 0) {
-                            echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
-                        }
-                        while ($row = $result->fetch_assoc()) {
+                            <?php
+                            if (mysqli_num_rows($result) == 0) {
+                                echo '<tr><td colspan="8" class="text-center">Aucune soutenance trouve</td></tr>';
+                            }
+                            while ($row = $result->fetch_assoc()) {
 
                             ?>
-                            <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
-                                <td>
-                                    <?php echo $row['soutenance_id']; ?>
-                                    <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
-                                    <!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
-                                    <!--                    </button>-->
-                                </td>
-                                <td>
-                                    <?php
-                                    $cne = $row['etudiant'];
-                                    $etu = "SELECT * FROM etudiant WHERE CNE = '$cne' ";
-                                    $res = mysqli_query($db, $etu);
-                                    while ($row1 = $res->fetch_assoc()) {
-                                        echo $row1['nom'] . " " . $row1['prenom'];
-                                    } ?>
+                                <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
+                                    <td>
+                                        <?php echo $row['soutenance_id']; ?>
+                                        <!--                    <button data-toggle="tooltip" data-placement="left" data-html="true" title="Cliquez Ici pour <b> les relevés de notes</b> et <b>les stages</b> et<b> les cliniques</b> de cet étudiant avant de confirmer <b>la validation .</b>" class="btn btn-sm btn-info">-->
+                                        <!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+                                        <!--                    </button>-->
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $cne = $row['etudiant'];
+                                        $etu = "SELECT * FROM etudiant WHERE CNE = '$cne' ";
+                                        $res = mysqli_query($db, $etu);
+                                        while ($row1 = $res->fetch_assoc()) {
+                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                        } ?>
 
-                                </td>
-                                <td> <?php echo $row['etudiant']; ?>
-                                </td>
-                                <td> <?php echo $row['intitule_these']; ?></td>
-                                <td> <?php echo $row['date_depot_sujet']; ?></td>
-                                <td>
-                                    <fieldset class="px-2 ml-1 d-flex flex-column"
-                                              id="radio_<?php echo $row['soutenance_id'] ?>">
-                                        <div>
-                                            <input class="form-check-input" type="radio"
-                                                   name="radio_<?php echo $row['soutenance_id'] ?>" value="1"
-                                                   onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                                            <label class="form-check-label"> Oui </label>
-                                        </div>
-                                        <span id="bla">
-                        <!-- When the button is "NON" a Popup opens say the admin to put in
+                                    </td>
+                                    <td> <?php echo $row['etudiant']; ?>
+                                    </td>
+                                    <td> <?php echo $row['intitule_these']; ?></td>
+                                    <td> <?php echo $row['date_depot_sujet']; ?></td>
+                                    <td>
+                                        <fieldset class="px-2 ml-1 d-flex flex-column" id="radio_<?php echo $row['soutenance_id'] ?>">
+                                            <div>
+                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
+                                                <label class="form-check-label"> Oui </label>
+                                            </div>
+                                            <span id="bla">
+                                                <!-- When the button is "NON" a Popup opens say the admin to put in
                          the form why he or she choose No "Description of the problem"  -->
-                        <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>"
-                               value="2"
-                               onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)"/>
-                        <label class="form-check-label"> Non </label></span>
-                                    </fieldset>
+                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="2" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
+                                                <label class="form-check-label"> Non </label></span>
+                                        </fieldset>
 
-                                </td>
-                                <td>
-                                    <div class="row" style="display: none">
-                                        <div class="mx-2">
-                                        <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name=""
-                                                  class="form-control form-control-sm"
-                                                  placeholder=" Merci de nous dire le motif ou problème de dire NON"
-                                                  required ></textarea>
+                                    </td>
+                                    <td>
+                                        <div class="row" style="display: none">
+                                            <div class="mx-2">
+                                                <textarea id="motif_<?php echo $row['soutenance_id'] ?>" name="" class="form-control form-control-sm" placeholder="le motif ou problème" required></textarea>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </td>
-                                <td>
-                                    <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id']?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id']?>"><i class="fa fa-caret-down"></i></a>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm"
-                                            onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
-                                        <i class="fa fa-check-square" aria-hidden="true"></i>
-                                        Enregistrer
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="collapse item-<?php echo $row['soutenance_id']?>" role="tabpanel" data-parent="#accordion-1">
-                                <td colspan="9">
-                                    <div  >
-                                        <div class="card-body">
-                                            info de soutenance id : <?php echo $row['soutenance_id'] ?>
+                                    </td>
+                                    <td>
+                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>"><i class="fa fa-caret-down"></i></a>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm" onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
+                                            <i class="fa fa-check-square" aria-hidden="true"></i>
+                                            Enregistrer
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="collapse item-<?php echo $row['soutenance_id'] ?>" role="tabpanel" data-parent="#accordion-1">
+                                    <td colspan="9">
+                                        <div>
+                                            <div class="card-body">
+                                                info de soutenance id : <?php echo $row['soutenance_id'] ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                            </tr>
+                                </tr>
                             <?php
-                        } ?>
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -187,7 +176,7 @@ $result = mysqli_query($db, $query);
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    function enregister(row_id,etat) {
+    function enregister(row_id, etat) {
         row = document.getElementsByName('radio_' + row_id.toString());
         value = null;
         for (let i = 0; i < row.length; i++) {
@@ -202,7 +191,7 @@ $result = mysqli_query($db, $query);
         }
         const data = {
             "soutenance_id": row_id,
-            "etat":etat,
+            "etat": etat,
             "accord": value,
             "motif": motif
 
@@ -211,11 +200,11 @@ $result = mysqli_query($db, $query);
             type: "POST",
             url: "prof-process.php",
             data: data,
-            success: function (data) {
-                if (data.erreur === ''){
+            success: function(data) {
+                if (data.erreur === '') {
                     $("#row_" + data.id).remove();
 
-                }else {
+                } else {
                     alert(data.erreur)
 
                 }
@@ -225,6 +214,7 @@ $result = mysqli_query($db, $query);
         });
 
     }
+
     function getIfYesOrNon(val, id) {
         row = document.querySelector('#row_' + id.toString())
         motif = row.childNodes[13]
@@ -239,4 +229,5 @@ $result = mysqli_query($db, $query);
         }
     }
 </script>
+
 </html>

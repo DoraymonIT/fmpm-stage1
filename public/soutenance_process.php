@@ -74,7 +74,10 @@ if (isset($_POST['submit_edit_soutenance'])) {
         $etat = 2;
     }
 
-    $stmt = $db->prepare("UPDATE soutenance SET intitule_these=? , nature_these=? , materiel_d_etude_et_echantillioannage=? , duree_d_etude=? , lieu_d_etude=? , objectif_d_etude=? , mots_cles=? , jury1=? , jury2=? , jury3=? , jury4=?  " . $directeur_id  . $president_id  . $creneau_id . " , etat = ? where soutenance_id=?");
+    $stmt = $db->prepare("UPDATE soutenance SET intitule_these=? ,
+     nature_these=? , materiel_d_etude_et_echantillioannage=? , duree_d_etude=? , 
+     lieu_d_etude=? , objectif_d_etude=? , mots_cles=? , jury1=? , jury2=? , jury3=? , jury4=?
+       " . $directeur_id  . $president_id  . $creneau_id . " , etat = ? where soutenance_id=?");
 
     $stmt->bind_param("sssssssiiiiii", $intitule,$nature,$materiel_echan,$duree,$lieu,$objectifs,$mots_cles,$jury1_id,$jury2_id,$jury3_id,$jury4_id,$etat,$soutenance_id);
     $sql=$stmt->execute();
@@ -92,5 +95,5 @@ if (isset($_POST['submit_edit_soutenance'])) {
     }
     //  submit_soutenence
 } else {
-    echo "Erreur Veuillez ressayer";
+    echo "Erreur Veuillez ressayer plus tard";
 }

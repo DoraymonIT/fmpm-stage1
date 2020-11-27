@@ -88,6 +88,12 @@ if (mysqli_num_rows($result) == 0) {
                     <?php echo $_SESSION['CNE'] ?>
                 <?php endif ?>
                 <hr>
+                <?php if (isset($_SESSION['succes_activation'])) : ?>
+
+                <h5 class="alert alert-info" role="alert" style="text-align: center;">
+                        <?php echo "<b>" . $_SESSION['succes_activation']. "</b>" ?>
+                    </h5>
+                    <?php endif ?>
                 <br/>
                 <table style="width:100%">
                     <tr>
@@ -109,7 +115,7 @@ if (mysqli_num_rows($result) == 0) {
 
                     </tr>
                     <?php
-                    echo '<tr><td>commite these</td>';
+                    echo '<tr><td>Comité du thèse</td>';
                     if ($soutenance['etat'] >= 2 || $soutenance['etat'] < -2) {
                         echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
                     } elseif ($soutenance['etat'] == -2) {
@@ -119,7 +125,7 @@ if (mysqli_num_rows($result) == 0) {
                     }
                     echo '</tr>';
 
-                    echo '<tr><td>directeur</td>';
+                    echo '<tr><td>Directeur</td>';
                     if ($soutenance['etat'] >= 3 || $soutenance['etat'] < -3) {
                         echo '<td><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
                     } elseif ($soutenance['etat'] == -3) {
@@ -165,12 +171,12 @@ if (mysqli_num_rows($result) == 0) {
                     </a>';
                     }else{
                         echo '<small id="mot" class="form-text text-muted">
-                        Pour editer nouveau votre demande , veuillez contacter le service concerné pour trouver la
+                        Pour éditer nouveau votre demande , veuillez contacter le service concerné pour trouver la
                         solution de votre problème ci-dessus puis cliquez ici : </small>
                     <br>
                     <a href="soutenance_prob.php">
                         <button class="btn  btn-success btn-custom btn-sm">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> editer
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Éditer
                         </button>
                     </a>';
                     }

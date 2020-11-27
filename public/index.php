@@ -89,11 +89,12 @@ if (!empty($_SESSION['username'])) {
             <li class="nav-item">
               <a class="nav-link" id="pills-admin-tab" data-toggle="pill"
                href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false">
-                <i class="fa fa-user-secret" aria-hidden="true"></i> Adminstration</a>
+                <i class="fa fa-user-secret" aria-hidden="true"></i> Administration</a>
             </li>
+            <span style="padding-left: 2px;"></span>
               <li class="nav-item">
                   <a class="nav-link" id="pills-comite-tab" data-toggle="pill" href="#pills-comite" role="tab" aria-controls="pills-comite" aria-selected="true"> <i class="fa fa-user-circle" aria-hidden="true"></i>
-                      Commite these</a>
+                      Comité du thèse</a>
               </li>
           </ul>
         </div>

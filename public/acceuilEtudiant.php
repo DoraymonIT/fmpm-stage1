@@ -38,7 +38,7 @@ $result = mysqli_query($db, $query);
     <section>
         <div class="container">
             <div class="col-md-12 title">
-                <h3><u>Espace Etudiant</u></h3>
+                <h3><u>Espace Étudiant</u></h3>
                 <?php if (isset($_SESSION['CNE'])) : ?>
                     <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                         Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
@@ -58,9 +58,9 @@ $result = mysqli_query($db, $query);
                     <?php
 
                 if  (mysqli_num_rows($result) == 0) {
-                    echo "<a class='btn btn-outline-dark'  role='button' href='dem_soutenance.php'>Créer une demande de choisir une date de soutenu</a>";
+                    echo "<a  href='dem_soutenance.php'>Créer une demande de choisir une date de soutenu</a>";
                 }else{
-                    echo "<a class='btn btn-outline-dark'  role='button' href='etudiant.php'>Voir le progresse de demande de thèse</a>";
+                    echo "<a  href='etudiant.php'>Voir le progresse de demande de thèse</a>";
                 }
 
                     ?>

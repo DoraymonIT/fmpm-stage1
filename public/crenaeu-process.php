@@ -10,8 +10,6 @@ if (!empty($_POST["date_ex"])) {
     $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1";
     $result = mysqli_query($db, $query);
 ?>
-
-
     <?php
     if (mysqli_num_rows($result) === 0) {
     ?>
@@ -28,27 +26,27 @@ if (!empty($_POST["date_ex"])) {
                                                             }
     ?> }
 <?php
-   
-} 
+
+}
 if (isset($_POST['submit-creneau'])) {
 
-        $date_depot = $_POST['jour'];
-        $date_field  = date('Y-m-d', strtotime($date_depot));
-        $time = $_POST['time_heure'];
-        $lieu = $_POST['lieu'];
-        $etat = 1;
+    $date_depot = $_POST['jour'];
+    $date_field  = date('Y-m-d', strtotime($date_depot));
+    $time = $_POST['time_heure'];
+    $lieu = $_POST['lieu'];
+    $etat = 1;
 
-        $sql = $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$date_field' , '$lieu' ,'$etat','$time')");
+    $sql = $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$date_field' , '$lieu' ,'$etat','$time')");
 
-        if ($sql) {
-            echo "Yes";
-            header('location: create_creneau.php');
-        } else {
-            // echo $mots_cles;
-            echo "NO";
-        }
-        //  submit_soutenence
+    if ($sql) {
+        echo "Yes";
+        header('location: create_creneau.php');
     } else {
-        echo "Erreur Veuillez ressayer";
+        // echo $mots_cles;
+        echo "NO";
     }
+    //  submit_soutenence
+} else {
+    echo "Erreur Veuillez ressayer";
+}
 ?>
