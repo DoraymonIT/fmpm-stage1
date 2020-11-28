@@ -84,7 +84,7 @@ $result = mysqli_query($db, $query);
                         if ($row1['creneau'] == $row['id']) {
                           echo 'Réservée par ' . "<b>" . $row1['etudiant'] . "</b>";
                         } else {
-                          echo "-----R-----";
+                          // echo "-----R-----";
                         }
                       }
                     } ?>

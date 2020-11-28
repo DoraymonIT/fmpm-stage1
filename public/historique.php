@@ -8,9 +8,11 @@ if (!empty($_SESSION['noProf'])) {
     if ($who == 1) {
         $titre = "Directeur";
         $query = "SELECT * FROM soutenance WHERE  directeur = $id AND etat >=3 or etat <= -3";
+        $_SESSION['motif_show'] = "blaaah";
     } elseif ($who == 2) {
         $titre = "Président";
         $query = "SELECT * FROM soutenance WHERE president = $id AND etat >=4 or etat <= -4";
+        $_SESSION['motif_show'] = "blaaah";
     } else header('location: index.php');
 } elseif (!empty($_SESSION['comite']) && $who == 3) {
    

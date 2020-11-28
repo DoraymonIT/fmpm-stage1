@@ -110,9 +110,9 @@ if (mysqli_num_rows($result) == 0) {
                             if ($soutenance['etat'] >= 1 || $soutenance['etat'] < -1) {
                                 echo '<td class="valide"><i class="fa fa-check-square" aria-hidden="true"></i> Validé . </td>';
                             } elseif ($soutenance['etat'] == 0) {
-                                echo '<td class="rejete"> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
+                                echo '<td class="en_cours"> <i class="fa fa-spinner" aria-hidden="true"></i> état en cours .</td>';
                             } elseif ($soutenance['etat'] == -1) {
-                                echo '<td class="en_cours"><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
+                                echo '<td class="rejete"><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
                             }
                             ?>
 

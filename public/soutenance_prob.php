@@ -16,6 +16,7 @@ if (mysqli_num_rows($result) == 0) {
         $id = $soutenance['soutenance_id'];
         $sql = $db->query("UPDATE soutenance SET etat = 0 WHERE soutenance_id = $id");
         if ($sql) {
+            $sql = $db->query("UPDATE soutenance SET motif = NULL WHERE soutenance_id = $id");
             header('location: etudiant.php');
             $_SESSION['succes_activation'] = "Votre demande a été réactiver avec succès";
         } else {
@@ -54,22 +55,23 @@ if (mysqli_num_rows($result) == 0) {
             </header>
             <div class="container-fluid">
                 <div class="row">
-                    
-                    <div class="col-md-3" style="text-align: center;" >
-                        <h3 ><u>Espace Étudiant</u></h3>
+
+                    <div class="col-md-3" style="text-align: center;">
+                        <h3><u>Espace Étudiant</u></h3>
                         <?php if (isset($_SESSION['CNE'])) : ?>
                             <p><a href="logout.php" class="btn btn-primary" role="button">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
                         <?php endif ?>
                     </div>
-                     <div class="col-md-9"></div>
+                    <div class="col-md-9"></div>
                 </div>
             </div>
             <section>
                 <div class="container">
                     <div class="row">
-                  
-                        <div class="col-md-12 title">  <hr>
+
+                        <div class="col-md-12 title">
+                            <hr>
                             <h3><u>Demande de soutenance de thèse</u></h3>
                             <p>
                                 Remplissez soigneusement ce formulaire, toute information
@@ -101,7 +103,10 @@ if (mysqli_num_rows($result) == 0) {
                                 <!--                            <span class="form-control form-control-sm">--><?php //echo $soutenance['date_depot_sujet']
                                                                                                                 ?>
                                 <!--</span>--><input type="hidden" name="soutenance_id" value="<?php echo $soutenance['soutenance_id'] ?>" />
-                                <input class="datepicker1 form-control form-control-sm" type="date" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" name="date_depot_sujet" value="<?php echo $soutenance['date_depot_sujet'] ?>" disabled required />
+                                <input class="datepicker1 form-control form-control-sm" type="date"
+                                 placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;'
+                                  style="text-align: center;" name="date_depot_sujet" value="<?php echo
+                                   $soutenance['date_depot_sujet'] ?>" disabled required />
                                 <br />
                                 <label>Directeur de la thèse <span>*</span></label>
                                 <select class="form-control form-control-sm" name="directeur_these" onclick="profSelect(this)" <?php if ($soutenance['etat'] < -2) echo "disabled"; ?> required>
@@ -118,7 +123,8 @@ if (mysqli_num_rows($result) == 0) {
 
                                 <br />
                                 <label>Intitulé de la thèse <span>*</span></label>
-                                <input type="text" name="intitule" class="form-control form-control-sm" placeholder="Intitulé de la thèse" value="<?php echo $soutenance['intitule_these'] ?>" required />
+                                <input type="text" name="intitule" class="form-control form-control-sm"
+                                 placeholder="Intitulé de la thèse" value="<?php echo $soutenance['intitule_these'] ?>" required />
                                 <br />
                                 <label>Nature de la thèse <span>*</span></label>
                                 <input type="text" name="nature" class="form-control form-control-sm" placeholder="Nature de la thèse" value="<?php echo $soutenance['nature_these'] ?>" required />
@@ -204,37 +210,34 @@ if (mysqli_num_rows($result) == 0) {
                                     while ($row = $result->fetch_assoc()) {
 
                                     ?>
-                                        <option <?php if ($soutenance['jury4'] == $row['id']) echo "selected"; ?> value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                        <option <?php if ($soutenance['jury4'] == $row['id']) echo "selected"; ?> 
+                                        value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                                     <?php } ?>
                                 </select>
                                 <br />
                                 <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
                                 <br>
+                        
+                                <label>Choisir un jour pour voir les horaires disponibles
+                                    <span>*</span></label>
                                 <?php
-                                $creneau_id = $soutenance['creneau'];
-                                $q_creneau = "SELECT * FROM creneau where id=$creneau_id";
-                                $result = mysqli_query($db, $q_creneau);
-                                $creneau = $result->fetch_assoc()
-                                ?>
-                                <!-- <div class="custom-control custom-switch">
-                                    <input type="checkbox" name="creneau_change" class="custom-control-input" id="customSwitches">
-                                    <label class="custom-control-label" for="customSwitches">Changer votre creneau choisi ?</label>
-                                </div> -->
-                                <!-- <div id="changement_creneau" style="display: none"> -->
-                                    <br>
-                                    <label>Choisir un jour pour voir les horaires disponibles
-                                        <span>*</span></label>
-                                    <input class="datepicker form-control form-control-sm" type="date" name="" onChange="getCreneaux(this.value);" placeholder='&#128197;
-                                     Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" required />
 
-                                    <br />
-                                    <div class="row horaires" id="creneux">
-                                        <div class="col-md-12">
-                                            <label>Les créneaux disponibles :
-                                                <span>*</span></label>
-                                            <select name="creneau_heure" id="cre-list" class="form-control form-control-sm" required>
-                                            </select></div>
-                                    </div>
+                                $id = $soutenance['creneau'];
+                                $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
+                                $result1 = mysqli_query($db, $creneau);
+                                while ($row1 = $result1->fetch_assoc()) {
+                                ?>
+
+                                    <input class="datepicker form-control form-control-sm" type="date" name=""
+                                     onChange="getCreneaux(this.value);"
+                                      style="text-align: center;" required value="<?php echo $row1['jour']; } ?>"/>
+                                <div class="row horaires" id="creneux">
+                                    <div class="col-md-12">
+                                        <label>Les créneaux disponibles :
+                                            <span>*</span></label>
+                                        <select name="creneau_heure" id="cre-list" class="form-control form-control-sm">
+                                        </select></div>
+                                </div>
                                 <!-- </div> -->
 
                                 <br>
