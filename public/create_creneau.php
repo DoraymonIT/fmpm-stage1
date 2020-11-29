@@ -13,6 +13,8 @@ $result = mysqli_query($db, $query);
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="pickadate.js-3.6.2/daterangepicker.css" />
   <link rel="stylesheet" href="style.css" />
   <title>Admin | Créer les créneaux .</title>
 </head>
@@ -42,13 +44,7 @@ $result = mysqli_query($db, $query);
           <br />
           <form method="post" action="crenaeu-process.php">
 
-            <label for="">Jour</label>
-            <input type="date" name="jour" id="" class="form-control form-control-sm" value="today"> <br />
-            <label for="">Heure de début</label>
-            <input type="time" name="time_heure" class="form-control form-control-sm" id="  " placeholder="Par exemple: 09h00">
-            <br />
-            <label for="">Lieu</label>
-            <input type="text" name="lieu" class="form-control form-control-sm" id="  " placeholder="Par exemple: Amphi 4">
+              <input type="text" class="form-control form-control-sm" name="daterange" required />
             <br />
             <button type="submit" class="btn btn-success" name="submit-creneau">Ajouter</button>
           </form> <br>
@@ -114,6 +110,8 @@ $result = mysqli_query($db, $query);
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="pickadate.js-3.6.2/daterangepicker.js"></script>
 <script>
   $('#myTable').DataTable({
     language: {
@@ -138,6 +136,21 @@ $result = mysqli_query($db, $query);
         sortDescending: ": activer pour trier la colonne par ordre décroissant"
       }
     }
+  });
+  $(function() {
+      $('input[name="daterange"]').daterangepicker({
+          opens: 'left',
+          isInvalidDate: function(date) {
+              return (date.day() == 0 || date.day() == 6);
+          },
+          locale: { cancelLabel: 'Clear' }
+      }, function(start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+  });
+  $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+      //do something, like clearing an input
+      $('input[name="daterange"]').val('');
   });
 </script>
 <script type="text/javascript">

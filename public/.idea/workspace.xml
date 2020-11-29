@@ -20,25 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/soutenance_prob.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration-process.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comite_these.php" beforeDir="false" afterPath="$PROJECT_DIR$/comite_these.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_creneau.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_creneau.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crenaeu-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/crenaeu-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/database_connect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dem_soutenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/dem_soutenance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historique_administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/historique.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historique_prof.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_soutenenaces_valides.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenances.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historique.php" beforeDir="false" afterPath="$PROJECT_DIR$/historique.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historique_comite.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prof-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof-process.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/showMe.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/soutenance_process.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_process.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soutenance_prob.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_prob.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,12 +66,25 @@
       <workItem from="1605891367826" duration="2723000" />
       <workItem from="1606311155497" duration="1157000" />
       <workItem from="1606313057753" duration="3724000" />
-      <workItem from="1606387699549" duration="23580000" />
+      <workItem from="1606387699549" duration="24976000" />
+      <workItem from="1606602363062" duration="629000" />
+      <workItem from="1606610323374" duration="1859000" />
+      <workItem from="1606663818502" duration="2691000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -105,10 +107,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606394725664" />
+    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog" timestamp="1606666391009">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606666391009" />
     <state x="184" y="86" key="MergeDialog" timestamp="1605636146907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636146907" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1606424328625">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606424328625" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605736411572">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -117,13 +127,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="775" y="240" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636294618" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1606428911613">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606428911613" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605636559479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636559479" />
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605636626321">
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606424352015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605636626321" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606424352015" />
   </component>
 </project>

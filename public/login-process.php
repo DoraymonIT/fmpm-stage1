@@ -97,7 +97,7 @@ if (isset($_POST['submit_comite'])) {
     $pass = $_POST['pass_comite'];
     // $hashed_password = md5($password);
 
-    $query = "SELECT * FROM comite WHERE email='$email' AND num='$pass'";
+    $query = "SELECT * FROM commite WHERE email='$email' AND num='$pass'";
     // $query = "SELECT * FROM commite WHERE email='$email' AND num='$pass'";
 
     $result = mysqli_query($db, $query);
