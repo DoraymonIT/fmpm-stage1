@@ -21,12 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_creneau.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_creneau.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crenaeu-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/crenaeu-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/database_connect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historique.php" beforeDir="false" afterPath="$PROJECT_DIR$/historique.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/historique_comite.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dem_soutenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/dem_soutenance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/soutenance_prob.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_prob.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +67,7 @@
       <workItem from="1606387699549" duration="24976000" />
       <workItem from="1606602363062" duration="629000" />
       <workItem from="1606610323374" duration="1859000" />
-      <workItem from="1606663818502" duration="2691000" />
+      <workItem from="1606663818502" duration="8669000" />
     </task>
     <servers />
   </component>

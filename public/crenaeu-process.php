@@ -3,29 +3,26 @@ require_once("database_connect.php");
 if (!empty($_POST["date_ex"])) {
 
     $date_selected = $_POST["date_ex"];
-    var_dump($date_selected);
     // echo  date_format (new DateTime($countryId), 'Y-m-d');
     $date_formatted = date_format(new DateTime($date_selected), 'Y-m-d');
-    var_dump($date_formatted);
     $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1";
     $result = mysqli_query($db, $query);
     ?>
     <?php
     if (mysqli_num_rows($result) === 0) {
         ?>
-        <option value="">Oups !! Aucun Créneau Disponible !!</option>
+        <div>Oups !! Aucun Créneau Disponible !!</div>
         <?php
     } else {
-        ?>
-        <option value="">Choisir un créneau disponible</option><?php
+
         foreach ($result as $op) {
             ?>
+            <input type="radio" class="mr-1" value="<?php echo $op["id"]; ?>" id="<?php echo "creneau".$op["id"]; ?>" name="creneau_heure"><label for="<?php echo "creneau".$op["id"]; ?>"><?php echo $op["heure"] . " , Lieu : " . $op["lieu"] ?></label><br>
 
-            <option value="<?php echo $op["id"]; ?>"><?php echo $op["heure"] . " , Lieu : " . $op["lieu"] ?></option>
             <?php
         }
     }
-    ?> }
+    ?>
     <?php
 
 }
@@ -64,7 +61,5 @@ if (isset($_POST['submit-creneau'])) {
 //        echo "NO";
 //    }
 //    //  submit_soutenence
-} else {
-    echo "Erreur Veuillez ressayer";
 }
 ?>

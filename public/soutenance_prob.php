@@ -264,8 +264,9 @@ if (mysqli_num_rows($result) == 0) {
                                     <div class="col-md-12">
                                         <label>Les créneaux disponibles :
                                             <span>*</span></label>
-                                        <select name="creneau_heure" id="cre-list" class="form-control form-control-sm">
-                                        </select></div>
+                                        <fieldset name="creneau_heure" id="cre-list">
+
+                                        </fieldset></div>
                                 </div>
                             </div>
 
@@ -369,11 +370,13 @@ if (mysqli_num_rows($result) == 0) {
             )
 
             function getCreneaux(val) {
+                var d=new Date(val)
+                var dateF = d.getFullYear() + "-" + (+d.getMonth() + 1) + "-" + d.getDate();
                 $.ajax({
                     type: "POST",
                     url: "crenaeu-process.php",
-                    data: 'date_ex=' + val,
-                    success: function (data) {
+                    data: 'date_ex=' + dateF,
+                    success: function(data) {
                         $("#cre-list").html(data);
                     }
                 });
