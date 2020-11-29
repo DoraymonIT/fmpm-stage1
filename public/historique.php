@@ -8,21 +8,17 @@ if (!empty($_SESSION['noProf'])) {
     if ($who == 1) {
         $titre = "Directeur";
         $query = "SELECT * FROM soutenance WHERE  directeur = $id AND etat >=3 or etat <= -3";
-        $_SESSION['motif_show'] = "blaaah";
     } elseif ($who == 2) {
         $titre = "Président";
         $query = "SELECT * FROM soutenance WHERE president = $id AND etat >=4 or etat <= -4";
-        $_SESSION['motif_show'] = "blaaah";
     } else header('location: index.php');
 } elseif (!empty($_SESSION['comite']) && $who == 3) {
    
     $titre = "Comité du thèse";
     $query = "SELECT * FROM soutenance WHERE etat >=2 or etat <= -2";
-     $_SESSION['motif_show'] = "blaaah";
 } elseif (!empty($_SESSION['num']) && $who == 4) {
     $titre = "Administration";
     $query = "SELECT * FROM soutenance WHERE etat >=1 or etat <= -1";
-    $_SESSION['motif_show'] = "blaaah";
 } else header('location: index.php');
 
 
@@ -111,10 +107,7 @@ if (!empty($_SESSION['noProf'])) {
                                 <th>Sujet</th>
                                 <th>Date choisi</th>
                                 <th>L'Accord</th>
-                                <?php if(isset($_SESSION['motif_show'])){
-                                
-                                    echo "<th>Motif</th>";
-                                } ?>
+
                             </tr>
                         </thead>
                         <tbody role="tablist" id="accordion-1">
@@ -179,13 +172,10 @@ if (!empty($_SESSION['noProf'])) {
                                         ?>
 
                                     </td>
-                                    <?php if(isset($_SESSION['motif_show'])){
-                                
-                                echo "<td>".$row['motif']."</td>";
-                            } ?>
+
 
                                 </tr><tr class="collapse item-<?php echo $row['soutenance_id'] ?>" role="tabpanel" data-parent="#accordion-1">
-                                    <td colspan="7">
+                                    <td colspan="6">
                                         <div class="container-fluid">
                                             <h6 class="crenau"><i class="fa fa-info-circle" aria-hidden="true"></i> Info sur le soutenance : <?php echo $row['soutenance_id'] ?></h6>
                                             <div class="row" style="    text-align: left;">
