@@ -46,35 +46,34 @@ span {
 .show > .btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgb(0, 72, 72);
 }
-.shadow{
-    
-        padding: 30px 30px 10px 30px;
-        /* background-color: teal; */
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.25);
-
+.shadow {
+  padding: 30px 30px 10px 30px;
+  /* background-color: teal; */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
 }
-.myTable{
+.myTable {
   text-align: center;
 }
 
-#creneux{
+#creneux {
   display: none;
 }
 /* Tabs */
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: teal;
 }
-#myTable{
+#myTable {
   text-align: center;
 }
-.valide{
+.valide {
   color: rgb(13, 70, 13);
 }
-.rejete{
+.rejete {
   color: rgb(160, 31, 31);
 }
-.en_cours{
+.en_cours {
   color: rgb(167, 111, 28);
 }

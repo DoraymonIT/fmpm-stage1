@@ -57,11 +57,11 @@ $result = mysqli_query($db, $query);
                 <a href="#">bla bla bla bla bla bla bla bla</a> -->
                     <?php
 
-                if  (mysqli_num_rows($result) == 0) {
-                    echo "<a  href='dem_soutenance.php'>Créer une demande de choisir une date de soutenu</a>";
-                }else{
-                    echo "<a  href='etudiant.php'>Voir le progresse de demande de thèse</a>";
-                }
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "<a  href='dem_soutenance.php'>Créer une demande de soutenance .</a>";
+                    } else {
+                        echo "<a  href='etudiant.php'> Voir le progresse de demande de soutenance .</a>";
+                    }
 
                     ?>
                 </div>

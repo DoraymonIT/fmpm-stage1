@@ -42,18 +42,19 @@ if (mysqli_num_rows($result) != 0) {
         </div>
     </header>
     <div class="container-fluid">
-                <div class="row">
-                    
-                    <div class="col-md-3" style="text-align: center;" >
-                        <h3 ><u>Espace Étudiant</u></h3>
-                        <?php if (isset($_SESSION['CNE'])) : ?>
-                            <p><a href="logout.php" class="btn btn-primary" role="button">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-                        <?php endif ?>
-                    </div>
-                     <div class="col-md-9"></div>
-            w    </div>
+        <div class="row">
+
+            <div class="col-md-3" style="text-align: center;">
+                <h3><u>Espace Étudiant</u></h3>
+                <?php if (isset($_SESSION['CNE'])) : ?>
+                    <p><a href="logout.php" class="btn btn-primary" role="button">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                <?php endif ?>
             </div>
+            <div class="col-md-9"></div>
+            
+        </div>
+    </div>
     <section>
         <div class="container">
             <div class="row">
@@ -194,14 +195,12 @@ if (mysqli_num_rows($result) != 0) {
                             <?php } ?>
                         </select>
                         <br />
-                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
+                        <!-- <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
                         <br>
                         <label>Choisir un jour pour voir les horaires disponibles
                             <span>*</span></label>
 
-                        <input class="datepicker form-control form-control-sm" type="date" 
-                        name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;"
-                         onChange="getCreneaux(this.value);" required />
+                        <input class="datepicker form-control form-control-sm" type="date" name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" onChange="getCreneaux(this.value);" required />
 
                         <br />
                         <div class="row horaires" id="creneux">
@@ -210,8 +209,9 @@ if (mysqli_num_rows($result) != 0) {
                                     <span>*</span></label>
                                 <fieldset name="creneau_heure" id="cre-list">
 
-                                </fieldset></div>
-                        </div>
+                                </fieldset>
+                            </div>
+                        </div> -->
                         <br>
                         <hr>
                         <br />
@@ -299,7 +299,7 @@ if (mysqli_num_rows($result) != 0) {
     )
 
     function getCreneaux(val) {
-        var d=new Date(val)
+        var d = new Date(val)
         var dateF = d.getFullYear() + "-" + (+d.getMonth() + 1) + "-" + d.getDate();
         $.ajax({
             type: "POST",

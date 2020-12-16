@@ -4,12 +4,12 @@ ob_start();
 session_start();
 if (!empty($_SESSION['username'])) {
   header('location: acceuilEtudiant.php');
-}elseif (!empty($_SESSION['noProf'])) {
-    header('location: prof.php');
-}elseif (!empty($_SESSION['comite'])) {
-    header('location: comite_these.php');
-}elseif (!empty($_SESSION['num'])) {
-    header('location: administration.php');
+} elseif (!empty($_SESSION['noProf'])) {
+  header('location: prof.php');
+} elseif (!empty($_SESSION['comite'])) {
+  header('location: comite_these.php');
+} elseif (!empty($_SESSION['num'])) {
+  header('location: administration.php');
 }
 ?>
 <!DOCTYPE html>
@@ -87,15 +87,14 @@ if (!empty($_SESSION['username'])) {
             </li>
             <span style="padding-left: 2px;"></span>
             <li class="nav-item">
-              <a class="nav-link" id="pills-admin-tab" data-toggle="pill"
-               href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false">
+              <a class="nav-link" id="pills-admin-tab" data-toggle="pill" href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false">
                 <i class="fa fa-user-secret" aria-hidden="true"></i> Administration</a>
             </li>
             <span style="padding-left: 2px;"></span>
-              <li class="nav-item">
-                  <a class="nav-link" id="pills-comite-tab" data-toggle="pill" href="#pills-comite" role="tab" aria-controls="pills-comite" aria-selected="true"> <i class="fa fa-user-circle" aria-hidden="true"></i>
-                      Comité du thèse</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-comite-tab" data-toggle="pill" href="#pills-comite" role="tab" aria-controls="pills-comite" aria-selected="true"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                Comité du thèse</a>
+            </li>
           </ul>
         </div>
         <div class="col-md-2"></div>
@@ -127,7 +126,7 @@ if (!empty($_SESSION['username'])) {
                       <div class="input-group-prepend">
                         <div class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </div>
                       </div>
-                      <input type="password" name="password" class="form-control" placeholder="***********" required >
+                      <input type="password" name="password" class="form-control" placeholder="***********" required>
                     </div>
                   </div>
                   <br />
@@ -190,7 +189,7 @@ if (!empty($_SESSION['username'])) {
 
 
       </div>
-        <div class="tab-pane fade" id="pills-comite" role="tabpanel" aria-labelledby="pills-comite-tab">
+      <div class="tab-pane fade" id="pills-comite" role="tabpanel" aria-labelledby="pills-comite-tab">
         <div class="container">
           <div class="row">
             <div class="col-md-4"></div>

@@ -88,7 +88,7 @@ require_once('../database_connect.php');
             </thead>
             <tbody>
               <?php
-              $theses = "SELECT * FROM these";
+              $theses = "SELECT * FROM these WHERE etat = 0";
               $result = mysqli_query($db, $theses);
               while ($row = $result->fetch_assoc()) {
 
@@ -119,10 +119,10 @@ require_once('../database_connect.php');
                                                                               ?>
                   </td>
                   <td>
-              
-                      <input type="radio" name="etat" value="1" />
-                      <label class="form-check-label"> Je choisis </label>
-                  
+
+                    <input type="radio" name="etat" value="1" />
+                    <label class="form-check-label"> Je choisis </label>
+
                   </td>
                 </tr>
               <?php } ?>
@@ -136,75 +136,6 @@ require_once('../database_connect.php');
     </div>
   </section>
 
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <hr />
-          <h5 class="crenau">
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Avis et remarques
-            de Comité des thèses .
-          </h5>
-          <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
-            <thead>
-              <tr>
-                <th>Membres du comité</th>
-                <th>Remarques</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pr. H. AMMAR</td>
-                <td>
-                  me debitis, adipisci in, id magni explicabo? Nisi neque
-                  aliquam ducimus temporibus beatae placeat esse vitae!
-                </td>
-              </tr>
-              <tr>
-                <td>Pr. H. AMMAR</td>
-                <td>
-                  me debitis, adipisci in, id magni explicabo? Nisi neque
-                  aliquam ducimus temporibus beatae placeat esse vitae!
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h5 class="crenau">
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Avis et remarques
-            de Commission Pédagogique .
-          </h5>
-
-          <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
-            <thead>
-              <tr>
-                <th>Avis</th>
-                <th>Membres du comité</th>
-                <th>Remarques</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td scope="row">
-                  <i class="fa fa-check-circle" aria-hidden="true"></i>
-                  Favorable ou
-                  <i class="fa fa-times-circle" aria-hidden="true"></i>
-                  Défavorable
-                </td>
-                <td>Pr. H. AMMAR , Pr. H. RAIS , ...</td>
-                <td>
-                  me debitis, adipisci in, id magni explicabo? Nisi neque
-                  aliquam ducimus temporibus beatae placeat esse vitae!
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-    </div>
-  </section>
   <hr />
   <footer>
     <p>
