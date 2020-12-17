@@ -2,6 +2,8 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
+$query = "SELECT * FROM soutenance WHERE etat >= 4";
+$result = mysqli_query($db, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +55,7 @@ session_start();
                         Confirmation du date de soutenance .
                     </h5>
                     <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique.php?who=4" role="button">
+                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="#" role="button">
                                 <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-3"> </div>
@@ -62,8 +64,9 @@ session_start();
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                         <thead>
                             <tr>
-                                <th>#</th>
+                             
                                 <th>Étudiant(e)</th>
+                                <th>CNE</th>
                                 <th>Sujet</th>
                                 <th>Date de soutenance</th>
                                 <th>L'Accord</th>
@@ -80,10 +83,7 @@ session_start();
 
                             ?>
                                 <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
-                                    <td>
-                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
-                                            <i class="fa menu-item"></i></a>
-                                    </td>
+                                 
                                     <td>
                                         <?php
                                         $cne = $row['etudiant'];
@@ -120,9 +120,9 @@ session_start();
                                             echo $row1['lieu'];
                                         } ?>
                                     </td>
-                                    <td> <?php echo $row['date_depot_sujet']; ?></td>
+
                                     <td>
-                                      
+
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)">
                                             <label class="form-check-label" for="inlineRadio1">Accordé</label>
@@ -141,12 +141,6 @@ session_start();
                                         </div>
 
                                     </td>
-                                    <!-- <td>
-                                        <a data-toggle="collapse" aria-expanded="true"
-                                         aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>"
-                                          class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
-                                            <i class="fa fa-caret-down"></i></a>
-                                    </td> -->
                                     <td>
                                         <button class="btn btn-success btn-sm" onclick="enregister(<?php echo $row['soutenance_id'] ?>,<?php echo $row['etat'] ?>)">
                                             <i class="fa fa-check-square" aria-hidden="true"></i>
@@ -154,166 +148,7 @@ session_start();
                                         </button>
                                     </td>
                                 </tr>
-                                <tr class="collapse item-<?php echo $row['soutenance_id'] ?>" role="tabpanel" data-parent="#accordion-1">
-                                    <td colspan="9">
-                                        <div class="container-fluid">
-                                            <h6 class="crenau"><i class="fa fa-info-circle" aria-hidden="true"></i> Info sur le soutenance : <?php echo $row['soutenance_id'] ?></h6>
-                                            <div class="row" style="    text-align: left;">
-                                                <div class="col-md-6">
-                                                    <ul>
-                                                        <li>
-                                                            <h6> Date de depot du sujet : <?php echo $row['date_depot_sujet'] ?></h6>
-                                                        </li>
-                                                        <li>
-                                                            <h6>
-                                                                Directeur : <?php
-                                                                            $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['directeur'] . " ";
-                                                                            $result1 = mysqli_query($db, $prof_detailes);
-                                                                            while ($row1 = $result1->fetch_assoc()) {
-                                                                                echo $row1['nom'] . " " . $row1['prenom'];
-                                                                            } ?>
-                                                            </h6>
-                                                        </li>
-                                                        <li>
-                                                            <h6>Intitule du these : <?php
-                                                                                    $id = $row['id_these'];
-                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                                    $res = mysqli_query($db, $these);
-                                                                                    while ($row1 = $res->fetch_assoc()) {
-                                                                                        echo $row1['intitule'];
-                                                                                    } ?></h6>
-
-                                                        </li>
-                                                        <li>
-                                                            <h6>Nature du these :
-                                                                <?php
-                                                                $id = $row['id_these'];
-                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                $res = mysqli_query($db, $these);
-                                                                while ($row1 = $res->fetch_assoc()) {
-                                                                    echo $row1['nature_etude'];
-                                                                } ?>
-                                                            </h6>
-
-                                                        </li>
-                                                        <li>
-                                                            <h6> Materiel d etude et Echantillage :
-                                                                <?php
-                                                                $id = $row['id_these'];
-                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                $res = mysqli_query($db, $these);
-                                                                while ($row1 = $res->fetch_assoc()) {
-                                                                    echo $row1['materiel_etude_echan'];
-                                                                } ?></h6>
-                                                        </li>
-                                                        <li>
-                                                            <h6> Duree de l etude : <?php
-                                                                                    $id = $row['id_these'];
-                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                                    $res = mysqli_query($db, $these);
-                                                                                    while ($row1 = $res->fetch_assoc()) {
-                                                                                        echo $row1['duree_etude'];
-                                                                                    } ?></h6>
-                                                        </li>
-                                                        <li>
-                                                            <h6> Lieu de l etude : <?php
-                                                                                    $id = $row['id_these'];
-                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                                    $res = mysqli_query($db, $these);
-                                                                                    while ($row1 = $res->fetch_assoc()) {
-                                                                                        echo $row1['lieu_etude'];
-                                                                                    } ?></h6>
-                                                        </li>
-                                                        <li>
-                                                            <h6>
-                                                                Mots Cles :
-                                                                <?php
-                                                                $id = $row['id_these'];
-                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
-                                                                $res = mysqli_query($db, $these);
-                                                                while ($row1 = $res->fetch_assoc()) {
-                                                                    echo $row1['mots_cles'];
-                                                                } ?>
-
-
-                                                            </h6>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <ul>
-                                                        <li>
-                                                            <h6> President de Jury : <?php
-                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['president'] . " ";
-                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                        } ?></h6>
-                                                        </li>
-                                                    </ul>
-                                                    <ul>
-                                                        <ol>
-                                                            <li>
-                                                                <h6> Membre de jury 1 : <?php
-                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury1'] . " ";
-                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                        } ?></h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6> Membre de jury 2 : <?php
-                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury2'] . " ";
-                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                        } ?></h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6> Membre de jury 3 : <?php
-                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury3'] . " ";
-                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                        } ?></h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6> Membre de jury 4 : <?php
-                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury4'] . " ";
-                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                        } ?></h6>
-                                                            </li>
-                                                        </ol>
-
-                                                    </ul>
-                                                    <!-- <ul>
-                                                        <li>
-                                                            <h6> <?php
-
-                                                                    $id = $row['creneau'];
-                                                                    $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
-                                                                    $result1 = mysqli_query($db, $creneau);
-                                                                    while ($row1 = $result1->fetch_assoc()) {
-                                                                    ?>
-                                                                   <?php
-                                                                        echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
-
-                                                                    ?> 
-                                                                  
-                                                                    <?php
-                                                                        echo $row1['lieu'];
-                                                                    } ?>
-                                                        </li>
-                                                    </ul> -->
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                             
                             <?php
                             } ?>
                         </tbody>
@@ -327,10 +162,74 @@ session_start();
 
     </section>
 
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function enregister(row_id, etat) {
+            row = document.getElementsByName('radio_' + row_id.toString());
+            value = null;
+            for (let i = 0; i < row.length; i++) {
+                radio = row[i]
+                if (radio.checked) {
+                    value = radio.value
+                }
+            }
+            motif = null
+            if (parseInt(value) === 2) {
+                motif = document.getElementById("motif_" + row_id).value
+            }
+            const data = {
+                "soutenance_id": row_id,
+                "etat": etat,
+                "accord": value,
+                "motif": motif
+
+            };
+            $.ajax({
+                type: "POST",
+                url: "prof-process.php",
+                data: data,
+                success: function(data) {
+                    if (data.erreur === '') {
+                        $("#row_" + data.id).remove();
+                        if (data.etat === -3 || data.etat === 3) {
+                            let badge = $("#bagde_directeur")
+                            let n = parseInt(badge.text())
+                            badge.text(+n - 1)
+                        } else if (data.etat === -4 || data.etat === 4) {
+                            let badge = $("#bagde_president")
+                            let n = parseInt(badge.text())
+                            badge.text(+n - 1)
+                        }
+                    } else {
+                        alert(data.erreur)
+
+                    }
+
+                },
+                dataType: 'json'
+            });
+
+        }
+
+        function getIfYesOrNon(val, id) {
+            row = document.querySelector('#row_' + id.toString())
+            motif = row.childNodes[13]
+            if (parseInt(val) === 2) {
 
 
+                motif.childNodes[1].style.display = "block";
 
+            } else {
+
+                motif.childNodes[1].style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
