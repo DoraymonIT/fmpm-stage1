@@ -5,6 +5,7 @@ session_start();
 if (empty($_SESSION['CNE'])) {
     header('location: index.php');
 }
+
 $cne = $_SESSION['CNE'];
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
 $result = mysqli_query($db, $query);

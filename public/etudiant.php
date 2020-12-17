@@ -266,33 +266,16 @@ if (mysqli_num_rows($result) == 0) {
                     ?>
                     <hr />
                     <?php
-                                    if ($soutenance['etat'] >= 4) {
-                                    ?>
-                    <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
-                    <br>
-                    <label>Choisir un jour pour voir les horaires disponibles
-                        <span>*</span></label>
+                    // + ziid plus ou egal a 6mois du date_de_depot .
+                    if ($soutenance['etat'] >= 4) {
+                    ?>
+                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
+                        <br>
+                        <a href="choix_du_date.php" class="btn btn-success btn-custom"><i class="fa fa-clock-o" aria-hidden="true"></i> Choisir</a>
 
-                    <input class="datepicker form-control form-control-sm" type="date" name="" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" onChange="getCreneaux(this.value);" required />
-
-                    <br />
-                    <div class="row horaires" id="creneux">
-                        <div class="col-md-12">
-                            <label>Les créneaux disponibles :
-                                <span>*</span></label>
-                            <fieldset name="creneau_heure" id="cre-list">
-
-                            </fieldset>
-                        </div>
-                    </div>
-                    <br>
-                    <hr>
-                    <br />
-                    <button type="submit" name="submit_creneau_date" class="btn btn-success btn-custom"><i class="fa fa-check-square" aria-hidden="true"></i> Confirmer
-                    </button>
                     <?php
-                                    }
-                                    ?>
+                    }
+                    ?>
                 </div>
                 <div class="col-md-3"></div>
             </div>
