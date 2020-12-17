@@ -113,7 +113,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-exclamation"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Administration | Validation des relevés de notes et cliniques</span>
+                                    <span class="label">Administration | Validation des relevés de notes <br> et cliniques</span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -1) {
@@ -215,7 +215,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">President</span>
+                                    <span class="label">President | Accord de l impression </span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -4) {
@@ -299,6 +299,39 @@ if (mysqli_num_rows($result) == 0) {
                                     }
                                     ?>
                         </li>
+                          <!-- Congrats hh -->
+                          <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
+                            <a href="#!">
+                                <span class="circle"><i class="fa fa-heart"></i></span><?php
+                                                                                    } elseif ($soutenance['etat'] == -7) {
+                                                                                        ?>
+
+                                class="warning">
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                                                                    } else { ?>
+                                    >
+                                    <a href="#">
+                                        <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! </span>
+                                    </a>
+                                    <?php
+                                    if ($soutenance['etat'] == -7) {
+                                    ?>
+                                        <div class="step-content orange rounded lighten-3">
+                                            <?php
+                                            echo $soutenance['motif'];
+                                            ?>
+
+                                        </div>
+
+                                    <?php
+                                    }
+                                    ?>
+                        </li>
                     </ul>
                     <br>
                     <?php
@@ -334,7 +367,7 @@ if (mysqli_num_rows($result) == 0) {
                     <hr />
                     <?php
                     // + ziid plus ou egal a 6mois du date_de_depot .
-                    if ($soutenance['etat'] >= 4) {
+                    if ($soutenance['etat'] == 4) {
                     ?>
                         <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
                         <br>
