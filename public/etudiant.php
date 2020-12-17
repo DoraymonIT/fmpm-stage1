@@ -328,10 +328,10 @@ if (mysqli_num_rows($result) == 0) {
                                     ?>
                         </li>
                         <!-- Congrats hh -->
-                        <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
+                        <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
                             <a href="#!">
                                 <span class="circle"><i class="fa fa-heart"></i></span><?php
-                                                                                    } elseif ($soutenance['etat'] == -7) {
+                                                                                    } elseif ($soutenance['etat'] == -6) {
                                                                                         ?>
 
                                 class="warning">
@@ -347,7 +347,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! <span class="circle"><i class="fa fa-heart"></i></span> </span>
                                     </a>
                                     <?php
-                                    if ($soutenance['etat'] == -7) {
+                                    if ($soutenance['etat'] == -6) {
                                     ?>
                                         <div class="step-content orange rounded lighten-3">
                                             <?php
