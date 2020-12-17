@@ -147,7 +147,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Commite These</span>
+                                    <span class="label">Commite Thèse | Accorde des membres de jury</span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -2) {
@@ -181,7 +181,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Directeur</span>
+                                    <span class="label">Directeur | Accord de l impression</span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -3) {

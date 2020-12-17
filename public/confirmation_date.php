@@ -64,7 +64,7 @@ $result = mysqli_query($db, $query);
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                         <thead>
                             <tr>
-                             
+
                                 <th>Étudiant(e)</th>
                                 <th>CNE</th>
                                 <th>Sujet</th>
@@ -83,7 +83,7 @@ $result = mysqli_query($db, $query);
 
                             ?>
                                 <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
-                                 
+
                                     <td>
                                         <?php
                                         $cne = $row['etudiant'];
@@ -106,6 +106,7 @@ $result = mysqli_query($db, $query);
                                         } ?>
                                     </td>
                                     <td>
+                                        <b>
                                         <?php
 
                                         $id = $row['creneau'];
@@ -118,7 +119,7 @@ $result = mysqli_query($db, $query);
                                             ?>
                                         <?php
                                             echo $row1['lieu'];
-                                        } ?>
+                                        } ?></b>
                                     </td>
 
                                     <td>
@@ -148,7 +149,7 @@ $result = mysqli_query($db, $query);
                                         </button>
                                     </td>
                                 </tr>
-                             
+
                             <?php
                             } ?>
                         </tbody>
