@@ -94,9 +94,37 @@ if (mysqli_num_rows($result) == 0) {
                             <?php echo "<b>" . $_SESSION['edite_soutenenace'] . "</b>" ?>
                         </h5>
                     <?php endif ?>
-                    <br />
-                    <ul class="stepper stepper-vertical">
 
+                    <ul class="stepper stepper-vertical">
+                        <!-- Bla Bla 1 Step -->
+                        <!-- <li class="completed">
+                            <a href="#!">
+                                <span class="circle"><i class="fa fa-check"></i></span>
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <a href="#">
+                                        <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                        <span class="label">Directeur | Validation choix du thèse</span>
+                                    </a>
+                                    <div class="step-content orange rounded lighten-3">
+                                        Motif
+                                    </div>
+                        </li> -->
+                        <!-- Bla Bla 2 Step -->
+                        <!-- <li class="completed">
+                            <a href="#!">
+                                <span class="circle"><i class="fa fa-check"></i></span>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <a href="#">
+                                        <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                        <span class="label">Comite du these | Validation du sujet de thèse .</span>
+                                    </a>
+                                    <div class="step-content orange rounded lighten-3">
+                                        Motif
+                                    </div>
+                        </li> -->
                         <!-- First Step -->
                         <li <?php if ($soutenance['etat'] >= 1 || $soutenance['etat'] < -1) { ?>class="completed">
                             <a href="#!">
@@ -232,8 +260,8 @@ if (mysqli_num_rows($result) == 0) {
                                     ?>
                         </li>
 
-                         <!-- Fiveth Step hh -->
-                         <li <?php if ($soutenance['etat'] >= 5 || $soutenance['etat'] < -5) { ?>class="completed">
+                        <!-- Fiveth Step hh -->
+                        <li <?php if ($soutenance['etat'] >= 5 || $soutenance['etat'] < -5) { ?>class="completed">
                             <a href="#!">
                                 <span class="circle"><i class="fa fa-check"></i></span><?php
                                                                                     } elseif ($soutenance['etat'] == -5) {
@@ -266,8 +294,8 @@ if (mysqli_num_rows($result) == 0) {
                                     ?>
                         </li>
 
-                          <!-- Sixsth Step hh -->
-                          <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
+                        <!-- Sixsth Step hh -->
+                        <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
                             <a href="#!">
                                 <span class="circle"><i class="fa fa-check"></i></span><?php
                                                                                     } elseif ($soutenance['etat'] == -6) {
@@ -299,8 +327,8 @@ if (mysqli_num_rows($result) == 0) {
                                     }
                                     ?>
                         </li>
-                          <!-- Congrats hh -->
-                          <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
+                        <!-- Congrats hh -->
+                        <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
                             <a href="#!">
                                 <span class="circle"><i class="fa fa-heart"></i></span><?php
                                                                                     } elseif ($soutenance['etat'] == -7) {
@@ -316,7 +344,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! </span>
+                                    <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! <span class="circle"><i class="fa fa-heart"></i></span> </span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -7) {
