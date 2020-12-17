@@ -113,7 +113,7 @@ if (mysqli_num_rows($result) == 0) {
                                         <span class="circle"><i class="fa fa-exclamation"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Administration</span>
+                                    <span class="label">Administration | Validation des relevés de notes et cliniques</span>
                                     </a>
                                     <?php
                                     if ($soutenance['etat'] == -1) {
@@ -232,6 +232,73 @@ if (mysqli_num_rows($result) == 0) {
                                     ?>
                         </li>
 
+                         <!-- Fiveth Step hh -->
+                         <li <?php if ($soutenance['etat'] >= 5 || $soutenance['etat'] < -5) { ?>class="completed">
+                            <a href="#!">
+                                <span class="circle"><i class="fa fa-check"></i></span><?php
+                                                                                    } elseif ($soutenance['etat'] == -5) {
+                                                                                        ?>
+
+                                class="warning">
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                                                                    } else { ?>
+                                    >
+                                    <a href="#">
+                                        <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">Directeur | Validation de la date</span>
+                                    </a>
+                                    <?php
+                                    if ($soutenance['etat'] == -5) {
+                                    ?>
+                                        <div class="step-content orange rounded lighten-3">
+                                            <?php
+                                            echo $soutenance['motif'];
+                                            ?>
+
+                                        </div>
+
+                                    <?php
+                                    }
+                                    ?>
+                        </li>
+
+                          <!-- Sixsth Step hh -->
+                          <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
+                            <a href="#!">
+                                <span class="circle"><i class="fa fa-check"></i></span><?php
+                                                                                    } elseif ($soutenance['etat'] == -6) {
+                                                                                        ?>
+
+                                class="warning">
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                                                                    } else { ?>
+                                    >
+                                    <a href="#">
+                                        <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">President | Validation de la date</span>
+                                    </a>
+                                    <?php
+                                    if ($soutenance['etat'] == -6) {
+                                    ?>
+                                        <div class="step-content orange rounded lighten-3">
+                                            <?php
+                                            echo $soutenance['motif'];
+                                            ?>
+
+                                        </div>
+
+                                    <?php
+                                    }
+                                    ?>
+                        </li>
                     </ul>
                     <br>
                     <?php
