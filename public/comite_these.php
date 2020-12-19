@@ -105,28 +105,22 @@ $result = mysqli_query($db, $query);
                                     </td>
                                     <td> <?php echo $row['etudiant']; ?>
                                     </td>
-                                    <td> <?php
-                                            $id = $row['id_these'];
-                                            $these = "SELECT * FROM these WHERE id = '$id' ";
-                                            $res = mysqli_query($db, $these);
-                                            while ($row1 = $res->fetch_assoc()) {
-                                                echo $row1['intitule'];
-                                            } ?></td>
-                                    <!-- <td> <?php
-
-                                                $id = $row['creneau'];
-                                                $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
-                                                $result1 = mysqli_query($db, $creneau);
-                                                while ($row1 = $result1->fetch_assoc()) {
-                                                ?>
-                                            <b> <?php
-                                                    echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
-
-                                                ?> ; </b>
-                                            <b>
-                                            <?php
-                                                    echo $row1['lieu'];
-                                                } ?></td> -->
+                                    <td> <?php echo $row['intitule_these']; ?></td>
+<!--                                     <td> --><?php
+//
+//                                                $id = $row['creneau'];
+//                                                $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
+//                                                $result1 = mysqli_query($db, $creneau);
+//                                                while ($row1 = $result1->fetch_assoc()) {
+//                                                ?>
+<!--                                            <b> --><?php
+//                                                    echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
+//
+//                                                ?><!-- ; </b>-->
+<!--                                            <b>-->
+<!--                                            --><?php
+//                                                    echo $row1['lieu'];
+//                                                } ?><!--</td>-->
                                     <td>
                                         <fieldset class="px-2 ml-1 d-flex flex-column" id="radio_<?php echo $row['soutenance_id'] ?>">
                                             <div>

@@ -1,29 +1,33 @@
 <?php
 require_once("database_connect.php");
+session_start();
 if (!empty($_POST["date_ex"])) {
 
     $date_selected = $_POST["date_ex"];
     // echo  date_format (new DateTime($countryId), 'Y-m-d');
     $date_formatted = date_format(new DateTime($date_selected), 'Y-m-d');
-    $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1";
+    $query = "SELECT * FROM creneau WHERE jour= '$date_formatted' AND etat = 1 ";
     $result = mysqli_query($db, $query);
-?>
+    ?>
     <?php
     if (mysqli_num_rows($result) === 0) {
-    ?>
+        ?>
         <div>Oups !! Aucun Créneau Disponible !!</div>
         <?php
     } else {
 
         foreach ($result as $op) {
-        ?>
-            <input type="radio" class="mr-1" value="<?php echo $op["id"]; ?>" id="<?php echo "creneau" . $op["id"]; ?>" name="creneau_heure"><label for="<?php echo "creneau" . $op["id"]; ?>"><?php echo $op["heure"] . " , Lieu : " . $op["lieu"] ?></label><br>
+            ?>
+            <input type="radio" class="mr-1" value="<?php echo $op["id"]; ?>" id="<?php echo "creneau" . $op["id"]; ?>"
+                   name="creneau_heure"><label
+                    for="<?php echo "creneau" . $op["id"]; ?>"><?php echo $op["heure"] . " , Lieu : " . $op["lieu"] ?></label>
+            <br>
 
-    <?php
+            <?php
         }
     }
     ?>
-<?php
+    <?php
 
 }
 if (isset($_POST['submit-creneau'])) {
@@ -31,6 +35,7 @@ if (isset($_POST['submit-creneau'])) {
     {
         return (date('N', strtotime($date)) >= 6);
     }
+
     $date_depot = $_POST['daterange'];
     $startDate = new DateTime(explode("-", $date_depot)[0]);
     $endDate = new DateTime(explode("-", $date_depot)[1]);
@@ -61,5 +66,23 @@ if (isset($_POST['submit-creneau'])) {
     //        echo "NO";
     //    }
     //    //  submit_soutenence
+}
+if (isset($_POST['submit_creneau_date'])) {
+    $today = date("Y-m-d H:i:s");
+    var_dump($today);
+    $date = $_POST['creneau_heure'];
+    var_dump($date);
+    $cne = $_SESSION['CNE'];
+    var_dump($cne);
+    $sql = $db->query("UPDATE soutenance SET creneau='$date',etat=5 WHERE etudiant='$cne'");
+    var_dump($db->error_list);
+    if ($sql) {
+        $sql = $db->query("UPDATE creneau SET etat=2,date_reservation='$today' WHERE id='$date' ");
+        if ($sql) {
+            header('location: etudiant.php');
+        }
+    }
+
+
 }
 ?>

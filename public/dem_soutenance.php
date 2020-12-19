@@ -90,15 +90,15 @@ if (mysqli_num_rows($result) != 0) {
                         <input class="datepicker1 form-control form-control-sm" type="date" placeholder='&#128197; Cliquez Ici pour Choisir un jour . &#x1f4c5;' style="text-align: center;" name="date_depot_sujet" value="" required />
                         <br />
                         <label>Directeur de la thèse <span>*</span></label>
-                        <select class="form-control form-control-sm" name="directeur_these" onclick="profSelect(this)" required>
-                            <option value="">Directeur de la thèse</option>
+                        <select class="form-control form-control-sm" name="directeur_these"   required>
+                            <option value="" selected disabled>Directeur de la thèse</option>
                             <?php
                             $directeur_these = "SELECT * FROM prof";
                             $result = mysqli_query($db, $directeur_these);
                             while ($row = $result->fetch_assoc()) {
 
                             ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                             <?php } ?>
                         </select>
 
@@ -130,7 +130,7 @@ if (mysqli_num_rows($result) != 0) {
                         <span></span>
                         <br />
                         <label>Président du Jury<span>*</span></label>
-                        <select class="form-control form-control-sm" name="president_these" onclick="profSelect(this)""
+                        <select class="form-control form-control-sm" name="president_these"
                             required>
                         <option value="" selected disabled>Président du Jury</option>
                         <?php
@@ -139,12 +139,12 @@ if (mysqli_num_rows($result) != 0) {
                         while ($row = $result->fetch_assoc()) {
 
                         ?>
-                            <option value=" <?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                            <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                         <?php } ?>
                         </select>
                         <br />
                         <label>Membre 1 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury1" onclick="profSelect(this)" required>
+                        <select class="form-control form-control-sm" name="jury1"   required>
                             <option value="" selected disabled>Membre 1 du Jury</option>
                             <?php
                             $jury1 = "SELECT * FROM prof";
@@ -152,12 +152,12 @@ if (mysqli_num_rows($result) != 0) {
                             while ($row = $result->fetch_assoc()) {
 
                             ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                             <?php } ?>
                         </select>
                         <br />
                         <label>Membre 2 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury2" onclick="profSelect(this)" required>
+                        <select class="form-control form-control-sm" name="jury2"   required>
                             <option value="" selected disabled>Membre 2 du Jury</option>
                             <?php
                             $jury2 = "SELECT * FROM prof";
@@ -165,12 +165,12 @@ if (mysqli_num_rows($result) != 0) {
                             while ($row = $result->fetch_assoc()) {
 
                             ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                             <?php } ?>
                         </select>
                         <br />
                         <label>Membre 3 du Jury<span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury3" onclick="profSelect(this)" required>
+                        <select class="form-control form-control-sm" name="jury3"   required>
                             <option value="" selected disabled>Membre 3 du Jury</option>
                             <?php
                             $jury3 = "SELECT * FROM prof";
@@ -178,12 +178,12 @@ if (mysqli_num_rows($result) != 0) {
                             while ($row = $result->fetch_assoc()) {
 
                             ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                             <?php } ?>
                         </select>
                         <br />
                         <label>Membre 4 du Jury <span>*</span></label>
-                        <select class="form-control form-control-sm" name="jury4" onclick="profSelect(this)" required>
+                        <select class="form-control form-control-sm" name="jury4"  required>
                             <option value="" selected disabled>Membre 4 du Jury</option>
                             <?php
                             $jury4 = "SELECT * FROM prof";
@@ -191,7 +191,7 @@ if (mysqli_num_rows($result) != 0) {
                             while ($row = $result->fetch_assoc()) {
 
                             ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
+                                <option value="prof_<?php echo $row['id'] ?>"><?php echo $row['nom'] . " " . $row['prenom']; ?></option>
                             <?php } ?>
                         </select>
                         <br />
@@ -237,23 +237,19 @@ if (mysqli_num_rows($result) != 0) {
 <script src="pickadate.js-3.6.2/lib/picker.date.js"></script>
 <script src="pickadate.js-3.6.2/lib/picker.time.js"></script>
 <script>
-    function profSelect(val) {
-        const selects = document.querySelectorAll("select");
-        const values = [];
-        for (let i = 0; i < 6; i++) {
-            if (selects[i].value !== '') {
-                values.push(parseInt(selects[i].value))
-            }
-        }
 
-        for (let i = 1; i < val.options.length; i++) {
+    const select=$('select');
+    select.on('change', function(event ) {
+        var prevValue = $(this).data('previous');
+        select.not(this).find('option[value="'+prevValue+'"]').show();
 
-            if (values.includes(parseInt(val.options[i].value))) {
-                val.options[i].hidden = true;
-            } else val.options[i].hidden = false;
-        }
 
-    }
+        var value = $(this).val();
+
+        $(this).data('previous',value);
+        select.not(this).find('option[value="'+value+'"]').hide();
+    });
+
 
     Date.prototype.addDays = function(days) {
         var date = new Date(this.valueOf());
@@ -313,7 +309,7 @@ if (mysqli_num_rows($result) != 0) {
 
     // $('.datepicker').pickadate();
     $('.datepicker1').pickadate({
-        max: new Date().subDays(180)
+        max: new Date().subDays(150)
     })
 </script>
 

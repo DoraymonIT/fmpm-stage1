@@ -104,13 +104,7 @@ $result = mysqli_query($db, $query);
                                     <td> <?php echo $row['etudiant']; ?>
                                     </td>
                                     <td>
-                                        <?php
-                                        $id = $row['id_these'];
-                                        $these = "SELECT * FROM these WHERE id = '$id' ";
-                                        $res = mysqli_query($db, $these);
-                                        while ($row1 = $res->fetch_assoc()) {
-                                            echo $row1['intitule'];
-                                        } ?>
+                                        <?php echo $row['intitule_these']; ?>
                                     </td>
                                     <td> <?php echo $row['date_depot_sujet']; ?></td>
                                     <td>

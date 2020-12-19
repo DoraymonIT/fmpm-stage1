@@ -135,23 +135,17 @@ if (!empty($_SESSION['noProf'])) {
                                     </td>
                                     <td> <?php echo $row['etudiant']; ?>
                                     </td>
-                                    <td> <?php
-                                            $id = $row['id_these'];
-                                            $these = "SELECT * FROM these WHERE id = '$id' ";
-                                            $res = mysqli_query($db, $these);
-                                            while ($row1 = $res->fetch_assoc()) {
-                                                echo $row1['intitule'];
-                                            } ?></td>
-                                    <!-- <td> <?php
-                                            $creneau_id = $row['creneau'];
-                                            $query1 = "SELECT * FROM creneau WHERE id ='$creneau_id' LIMIT 1 ";
-
-                                            $result1 = $db->query($query1);
-
-                                            $creneau = $result1->fetch_assoc();
-                                            echo $creneau['jour'] . " : " . date('H:i', strtotime($creneau['heure'])) . " " . $creneau['lieu'];
-
-                                            ?></td> -->
+                                    <td> <?php echo $row['intitule_these']; ?></td>
+<!--                                    <td> --><?php
+//                                            $creneau_id = $row['creneau'];
+//                                            $query1 = "SELECT * FROM creneau WHERE id ='$creneau_id' LIMIT 1 ";
+//
+//                                            $result1 = $db->query($query1);
+//
+//                                            $creneau = $result1->fetch_assoc();
+//                                            echo $creneau['jour'] . " : " . date('H:i', strtotime($creneau['heure'])) . " " . $creneau['lieu'];
+//
+//                                            ?><!--</td>-->
 
                                     <td>
                                         <?php
