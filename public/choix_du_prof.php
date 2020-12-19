@@ -38,7 +38,7 @@ session_start();
             <div class="row">
                 <div class="col-md-12 title">
                     <h3><u>Espace Prof</u></h3>
-                    <?php if (isset($_SESSION['num'])) : ?>
+                    <?php if (isset($_SESSION['noProf'])) : ?>
                         <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                             Vous êtes Connecté : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
                         <p><a href="logout.php" class="btn btn-primary" role="button">
