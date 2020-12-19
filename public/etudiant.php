@@ -264,6 +264,70 @@ if (mysqli_num_rows($result) == 0) {
                     </li>
 
                     <!-- Fiveth Step hh -->
+                    <li <?php if ($soutenance['etat'] >= 5 || $soutenance['etat'] < -5) { ?>class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span><?php
+                            } elseif ($soutenance['etat'] == -5) {
+                            ?>
+
+                            class="warning">
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                } else { ?>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">Etudiant | Choix de la date</span>
+                                </a>
+                                <?php if ($soutenance['etat'] == 4) {
+                                    $date = $soutenance['date_depot_sujet'];
+                                    $date = date('Y-m-d', strtotime("+6 months", strtotime($date)));
+                                    $today = date("Y-m-d");
+
+                                    if ($today <= $date) {
+                                        ?>
+                                        <div class="step-content  rounded lighten-3">
+                                            <form action="choix_du_date.php">
+                                                <button disabled class="btn btn-grey btn-custom"><i
+                                                            class="fa fa-clock-o"
+                                                            aria-hidden="true"></i>
+                                                    Choisir
+                                                </button>
+                                            </form>
+
+                                            <p>vous devez avoir min 6 mois apres avoir deposer votre sujet </p>
+                                        </div>
+                                        <?php
+
+                                    } else {
+                                        ?>
+                                        <div class="step-content  rounded lighten-3">
+                                            <a href="choix_du_date.php" class="btn btn-success btn-custom"><i
+                                                        class="fa fa-clock-o"
+                                                        aria-hidden="true"></i>
+                                                Choisir</a>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                <?php
+                                if ($soutenance['etat'] == -5) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                    </li>
                     <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
                         <a href="#!">
                             <span class="circle"><i class="fa fa-check"></i></span><?php
@@ -343,39 +407,7 @@ if (mysqli_num_rows($result) == 0) {
                                 ?>
                     </li>
                     <!-- Congrats hh -->
-                    <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
-                        <a href="#!">
-                            <span class="circle"><i class="fa fa-heart"></i></span><?php
-                            } elseif ($soutenance['etat'] == -7) {
-                            ?>
 
-                            class="warning">
-                            <a href="#">
-                                <span class="circle"><i class="fa fa-exclamation"></i></span>
-                                <?php
-                                } else { ?>
-                                >
-                                <a href="#">
-                                    <span class="circle"><i class="fa fa-spinner"></i></span>
-                                    <?php } ?>
-
-                                    <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! <span class="circle"><i
-                                                    class="fa fa-heart"></i></span> </span>
-                                </a>
-                                <?php
-                                if ($soutenance['etat'] == -7) {
-                                    ?>
-                                    <div class="step-content orange rounded lighten-3">
-                                        <?php
-                                        echo $soutenance['motif'];
-                                        ?>
-
-                                    </div>
-
-                                    <?php
-                                }
-                                ?>
-                    </li>
                 </ul>
                 <br>
                 <?php
@@ -411,37 +443,7 @@ if (mysqli_num_rows($result) == 0) {
                 <hr/>
                 <?php
                 // + ziid plus ou egal a 6mois du date_de_depot .
-                if ($soutenance['etat'] == 4) {
-                    $date = $soutenance['date_depot_sujet'];
-                    $date = date('Y-m-d', strtotime("+6 months", strtotime($date)));
-                    $today = date("Y-m-d");
 
-                    if ($today <= $date) {
-                        ?>
-                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
-                        <br>
-                        <form action="choix_du_date.php">
-                            <button disabled class="btn btn-grey btn-custom"><i class="fa fa-clock-o"
-                                                                                aria-hidden="true"></i>
-                                Choisir
-                            </button>
-                        </form>
-
-                        <p>vous devez avoir min 6 mois apres avoir deposer votre sujet </p>
-
-                        <?php
-
-                    } else {
-                        ?>
-                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
-                        <br>
-                        <a href="choix_du_date.php" class="btn btn-success btn-custom"><i class="fa fa-clock-o"
-                                                                                          aria-hidden="true"></i>
-                            Choisir</a>
-
-                        <?php
-                    }
-                }
                 ?>
             </div>
             <div class="col-md-3"></div>
