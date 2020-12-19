@@ -17,6 +17,7 @@ $result = mysqli_query($db, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- <link rel="stylesheet" href="assets/css/mdb.min.css"> -->
     <link rel="stylesheet" href="style.css" />
     <title>Interface de l'administration | Voir le progrès de demande de thèse .</title>
 </head>
@@ -55,8 +56,11 @@ $result = mysqli_query($db, $query);
                         Confirmation d'accord de l'éligibilité de passer le soutenance .
                     </h5>
                     <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique.php?who=4" role="button"> <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
-                        <div class="col-md-8"></div>
+                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="historique.php?who=4" role="button">
+                                <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="soutenances.php" role="button">
+                                <i class="fa fa-file" aria-hidden="true"></i> Thèses Accordées</a> </div>
                     </div>
                     <br />
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
@@ -83,11 +87,9 @@ $result = mysqli_query($db, $query);
 
                             ?>
                                 <tr id="row_<?php echo $row['soutenance_id'] ?>" role="tab">
-                                <td>
-                                        <a data-toggle="collapse" aria-expanded="true"
-                                         aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>"
-                                          class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
-                                            <i class="fa menu-item" ></i></a>  
+                                    <td>
+                                        <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-<?php echo $row['soutenance_id'] ?>" class="btn btn-info rounded-circle" href="#accordion-1 .item-<?php echo $row['soutenance_id'] ?>">
+                                            <i class="fa menu-item"></i></a>
                                     </td>
                                     <td>
                                         <?php
@@ -101,21 +103,34 @@ $result = mysqli_query($db, $query);
                                     </td>
                                     <td> <?php echo $row['etudiant']; ?>
                                     </td>
-                                    <td> <?php echo $row['intitule_these']; ?></td>
+                                    <td>
+                                        <?php echo $row['intitule_these']; ?>
+                                    </td>
                                     <td> <?php echo $row['date_depot_sujet']; ?></td>
                                     <td>
-                                        <fieldset class="px-2 ml-1 d-flex flex-column" id="radio_<?php echo $row['soutenance_id'] ?>">
+                                        <!-- <fieldset class="px-2 ml-1 d-flex flex-column" id="radio_<?php echo $row['soutenance_id'] ?>">
                                             <div>
-                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
+                                                <input class="form-check-input" type="radio" 
+                                                name="radio_<?php echo $row['soutenance_id'] ?>"
+                                                 value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
                                                 <label class="form-check-label"> Oui </label>
                                             </div>
                                             <span id="bla">
-                                                <!-- When the button is "NON" a Popup opens say the admin to put in
-                         the form why he or she choose No "Description of the problem"  -->
-                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="2" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
+                                              
+                                                <input class="form-check-input" type="radio" 
+                                                name="radio_<?php echo $row['soutenance_id'] ?>" value="2"
+                                                 onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)" />
                                                 <label class="form-check-label"> Non </label></span>
-                                        </fieldset>
-
+                                        </fieldset> -->
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="1" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)">
+                                            <label class="form-check-label" for="inlineRadio1">Accordé</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <span id="bla">
+                                                <input class="form-check-input" type="radio" name="radio_<?php echo $row['soutenance_id'] ?>" value="2" onChange="getIfYesOrNon(this.value,<?php echo $row['soutenance_id'] ?>)">
+                                                <label class="form-check-label" for="inlineRadio2">Désaccordé</label></span>
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="row" style="display: none">
@@ -159,63 +174,92 @@ $result = mysqli_query($db, $query);
                                                             </h6>
                                                         </li>
                                                         <li>
-                                                            <h6>Intitule du these : <?php echo $row['intitule_these'] ?></h6>
+                                                            <h6>Intitule du these : <?php
+                                                                                    $id = $row['id_these'];
+                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                                    $res = mysqli_query($db, $these);
+                                                                                    while ($row1 = $res->fetch_assoc()) {
+                                                                                        echo $row1['intitule'];
+                                                                                    } ?></h6>
 
                                                         </li>
                                                         <li>
-                                                            <h6>Nature du these : <?php echo $row['nature_these'] ?></h6>
+                                                            <h6>Nature du these :
+                                                                <?php
+                                                                $id = $row['id_these'];
+                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                $res = mysqli_query($db, $these);
+                                                                while ($row1 = $res->fetch_assoc()) {
+                                                                    echo $row1['nature_etude'];
+                                                                } ?>
+                                                            </h6>
 
                                                         </li>
                                                         <li>
                                                             <h6> Materiel d etude et Echantillage :
-                                                                <?php echo $row['materiel_d_etude_et_echantillioannage'] ?></h6>
+                                                                <?php
+                                                                $id = $row['id_these'];
+                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                $res = mysqli_query($db, $these);
+                                                                while ($row1 = $res->fetch_assoc()) {
+                                                                    echo $row1['materiel_etude_echan'];
+                                                                } ?></h6>
                                                         </li>
                                                         <li>
-                                                            <h6> Duree de l etude : <?php echo $row['duree_d_etude'] ?></h6>
+                                                            <h6> Duree de l etude : <?php
+                                                                                    $id = $row['id_these'];
+                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                                    $res = mysqli_query($db, $these);
+                                                                                    while ($row1 = $res->fetch_assoc()) {
+                                                                                        echo $row1['duree_etude'];
+                                                                                    } ?></h6>
                                                         </li>
                                                         <li>
-                                                            <h6> Lieu de l etude : <?php echo $row['lieu_d_etude'] ?></h6>
+                                                            <h6> Lieu de l etude : <?php
+                                                                                    $id = $row['id_these'];
+                                                                                    $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                                    $res = mysqli_query($db, $these);
+                                                                                    while ($row1 = $res->fetch_assoc()) {
+                                                                                        echo $row1['lieu_etude'];
+                                                                                    } ?></h6>
                                                         </li>
                                                         <li>
                                                             <h6>
                                                                 Mots Cles :
-
                                                                 <?php
-                                                                $array = explode(',', $row['mots_cles']);
-                                                                foreach ($array as $res) {
-                                                                ?> <span class="badge badge-info"> <?php
-                                                                                                    echo $res; ?></span> <?php
-                                                                                                                        }
-                                                                                                                            ?>
+                                                                $id = $row['id_these'];
+                                                                $these = "SELECT * FROM these WHERE id = '$id' ";
+                                                                $res = mysqli_query($db, $these);
+                                                                while ($row1 = $res->fetch_assoc()) {
+                                                                    echo $row1['mots_cles'];
+                                                                } ?>
+
 
                                                             </h6>
                                                         </li>
                                                     </ul>
-
-
-
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <ul>
                                                         <li>
                                                             <h6> President de Jury : <?php
-                                                                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['president'] . " ";
-                                                                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                                                                        } ?></h6>
+                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['president'] . " ";
+                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                        } ?></h6>
                                                         </li>
                                                     </ul>
                                                     <ul>
                                                         <ol>
                                                             <li>
                                                                 <h6> Membre de jury 1 : <?php
-                                                                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury1'] . " ";
-                                                                                                                                        $result1 = mysqli_query($db, $prof_detailes);
-                                                                                                                                        while ($row1 = $result1->fetch_assoc()) {
-                                                                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
-                                                                                                                                        } ?></h6>
+                                                                                        $prof_detailes = "SELECT * FROM prof WHERE id = " . $row['jury1'] . " ";
+                                                                                        $result1 = mysqli_query($db, $prof_detailes);
+                                                                                        while ($row1 = $result1->fetch_assoc()) {
+                                                                                            echo $row1['nom'] . " " . $row1['prenom'];
+                                                                                        } ?></h6>
                                                             </li>
                                                             <li>
                                                                 <h6> Membre de jury 2 : <?php
@@ -244,7 +288,7 @@ $result = mysqli_query($db, $query);
                                                         </ol>
 
                                                     </ul>
-                                                    <ul>
+                                                    <!-- <ul>
                                                         <li>
                                                             <h6> <?php
 
@@ -264,7 +308,7 @@ $result = mysqli_query($db, $query);
                                                                         echo $row1['lieu'];
                                                                     } ?></h6>
                                                         </li>
-                                                    </ul>
+                                                    </ul> -->
                                                 </div>
                                                 <!-- <div class="col-md-4"></div> -->
                                             </div>
@@ -356,19 +400,20 @@ $result = mysqli_query($db, $query);
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-<script> 
-  var m = $(".menu-item");
-  m.addClass('fa-caret-down');
-  m.on('click', function() {
-    if (m.hasClass('fa-caret-down')) {
-      m
-        .removeClass('fa-caret-down')
-        .addClass('fa-caret-up');
-    } else {
-      m
-        .removeClass('fa-caret-up')
-        .addClass('fa-caret-down');
-    }
-  });
+<script>
+    var m = $(".menu-item");
+    m.addClass('fa-caret-down');
+    m.on('click', function() {
+        if (m.hasClass('fa-caret-down')) {
+            m
+                .removeClass('fa-caret-down')
+                .addClass('fa-caret-up');
+        } else {
+            m
+                .removeClass('fa-caret-up')
+                .addClass('fa-caret-down');
+        }
+    });
 </script>
+
 </html>

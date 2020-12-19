@@ -2,7 +2,7 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-$query = "SELECT * FROM soutenance where etat>=4 ";
+$query = "SELECT * FROM soutenance where etat >=4 ";
 $result = mysqli_query($db, $query);
 ?>
 <!DOCTYPE html>
@@ -42,13 +42,21 @@ $result = mysqli_query($db, $query);
                     <h5 class="crenau">
                         <i class="fa fa-list" aria-hidden="true"></i> Listes des soutenances valides
                     </h5>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a class="btn btn-success btn-sm" href="administration.php" role="button">
+                                <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a></div>
+                        <div class="col-md-8"></div>
+                    </div>
+                    <br />
                     <table style="width:100%" class="table table-hover table-striped table-bordered myTable">
                         <thead>
+                            <th></th>
                             <th><i class="fa fa-user" aria-hidden="true"></i> Thésard</th>
                             <th>Sujet</th>
                             <th>Date ,Heure et Lieu</th>
                             <th>Président de jury</th>
-                            <th> <i class="fa fa-info-circle" aria-hidden="true"></i> Plus d info</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             <?php
@@ -57,7 +65,10 @@ $result = mysqli_query($db, $query);
                             ?>
 
                                 <tr>
-                                    <td><?php echo $row['intitule_these']; ?></td>
+                                    <td> <button class="btn btn-sm btn-info "><i class="fa fa-caret-down" aria-hidden="true"></i></button></td>
+                                    <td>
+                                        <!-- <?php echo $row['intitule_these']; ?> -->
+                                    </td>
                                     <td><?php
                                         $creneau_id = $row['creneau'];
                                         $query1 = "select * from creneau where id=$creneau_id";
@@ -67,18 +78,10 @@ $result = mysqli_query($db, $query);
 
                                         ?></td>
                                     <td></td>
-                                    <td><?php echo "gg"; ?></td>
-                                    <td> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample<?php echo $row['soutenance_id']; ?>" aria-expanded="false" aria-controls="collapseExample">
-                                            Show / Hide
-                                        </button></td>
+                                    <td></td>
+                                    <td> <button class="btn btn-sm btn-success "><i class="fa fa-print" aria-hidden="true"></i></button> </td>
                                 </tr>
-                                <td>
-                                    <div class="collapse" id="collapseExample<?php echo $row['soutenance_id']; ?>">
-                                        <h5>
-                                            <?php echo $row['soutenance_id'];
-                                            ?> </h5>
-                                    </div>
-                                </td>
+
                             <?php
                             } ?>
                         </tbody>

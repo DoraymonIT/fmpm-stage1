@@ -72,13 +72,12 @@ if (isset($_POST['submit_admin'])) {
     $result = mysqli_query($db, $query);
     var_dump(json_encode($result));
     if (!$result || mysqli_num_rows($result) === 1) {
-        
+
         while ($row = $result->fetch_assoc()) {
             // echo $row['nom'] ;
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['num'] = $row['num'];
-
         }
         header('location: administration.php');
     } else {
@@ -108,7 +107,6 @@ if (isset($_POST['submit_comite'])) {
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['comite'] = $row['id'];
-
         }
         header('location: comite_these.php');
     } else {

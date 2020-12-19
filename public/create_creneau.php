@@ -14,7 +14,7 @@ $result = mysqli_query($db, $query);
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link rel="stylesheet" type="text/css" href="pickadate.js-3.6.2/daterangepicker.css" />
+  <link rel="stylesheet" type="text/css" href="pickadate.js-3.6.2/daterangepicker.css" />
   <link rel="stylesheet" href="style.css" />
   <title>Admin | Créer les créneaux .</title>
 </head>
@@ -44,7 +44,7 @@ $result = mysqli_query($db, $query);
           <br />
           <form method="post" action="crenaeu-process.php">
 
-              <input type="text" class="form-control form-control-sm" name="daterange" required />
+            <input type="text" class="form-control form-control-sm" name="daterange" required />
             <br />
             <button type="submit" class="btn btn-success" name="submit-creneau">Ajouter</button>
           </form> <br>
@@ -138,19 +138,21 @@ $result = mysqli_query($db, $query);
     }
   });
   $(function() {
-      $('input[name="daterange"]').daterangepicker({
-          opens: 'left',
-          isInvalidDate: function(date) {
-              return (date.day() == 0 || date.day() == 6);
-          },
-          locale: { cancelLabel: 'Clear' }
-      }, function(start, end, label) {
-          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-      });
+    $('input[name="daterange"]').daterangepicker({
+      opens: 'left',
+      isInvalidDate: function(date) {
+        return (date.day() == 0 || date.day() == 6);
+      },
+      locale: {
+        cancelLabel: 'Clear'
+      }
+    }, function(start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
   });
   $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-      //do something, like clearing an input
-      $('input[name="daterange"]').val('');
+    //do something, like clearing an input
+    $('input[name="daterange"]').val('');
   });
 </script>
 <script type="text/javascript">

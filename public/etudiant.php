@@ -2,9 +2,11 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
+$resr = $db->query("UPDATE creneau a,soutenance b SET a.etat=1,a.date_reservation=NULL,b.creneau=NULL,b.etat=4 WHERE TIMESTAMPDIFF(hour,a.date_reservation,NOW())>=72 AND a.id=b.creneau");
 if (empty($_SESSION['CNE'])) {
     header('location: index.php');
 }
+
 $cne = $_SESSION['CNE'];
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' LIMIT 1 ";
 $result = $db->query($query);
@@ -21,6 +23,10 @@ if (mysqli_num_rows($result) == 0) {
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.css">
+    <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.date.css">
+    <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.time.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -29,20 +35,6 @@ if (mysqli_num_rows($result) == 0) {
     <title>
         Accueil de l'étudiant | Voir le progresse de demande de thèse .
     </title>
-    <style>
-        table,
-        th,
-        td {
-            border: 2px solid teal;
-            text-align: center;
-            padding: 5px;
-            border-collapse: collapse;
-        }
-
-        ul.stepper li.active a .circle, ul.stepper li.completed a .circle {
-            background-color: #37941c !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -105,36 +97,64 @@ if (mysqli_num_rows($result) == 0) {
                         <?php echo "<b>" . $_SESSION['edite_soutenenace'] . "</b>" ?>
                     </h5>
                 <?php endif ?>
-                <br/>
-                <ul class="stepper stepper-vertical">
 
+                <ul class="stepper stepper-vertical">
+                    <!-- Bla Bla 1 Step -->
+                    <!-- <li class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span>
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-spinner"></i></span>
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                    <span class="label">Directeur | Validation choix du thèse</span>
+                                </a>
+                                <div class="step-content orange rounded lighten-3">
+                                    Motif
+                                </div>
+                    </li> -->
+                    <!-- Bla Bla 2 Step -->
+                    <!-- <li class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span>
+                            >
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-spinner"></i></span>
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                    <span class="label">Comite du these | Validation du sujet de thèse .</span>
+                                </a>
+                                <div class="step-content orange rounded lighten-3">
+                                    Motif
+                                </div>
+                    </li> -->
                     <!-- First Step -->
-                    <li <?php if ($soutenance['etat'] >= 1 || $soutenance['etat'] < -1){ ?>class="completed">
+                    <li <?php if ($soutenance['etat'] >= 1 || $soutenance['etat'] < -1) { ?>class="completed">
                         <a href="#!">
                             <span class="circle"><i class="fa fa-check"></i></span><?php
-                            }elseif ($soutenance['etat'] == 0) {
+                            } elseif ($soutenance['etat'] == 0) {
                             ?>
                             >
                             <a href="#">
                                 <span class="circle"><i class="fa fa-spinner"></i></span>
                                 <?php
-                                }elseif ($soutenance['etat'] == -1) { ?>
+                                } elseif ($soutenance['etat'] == -1) { ?>
                                 class="warning">
                                 <a href="#">
                                     <span class="circle"><i class="fa fa-exclamation"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Administration</span>
+                                    <span class="label">Administration | Validation des relevés de notes <br> et cliniques</span>
                                 </a>
                                 <?php
-                                if ($soutenance['etat'] == -1){
-                                ?>
-                            <div class="step-content orange rounded lighten-3">
-                                <?php
-                                echo $soutenance['motif'];
-                                ?>
+                                if ($soutenance['etat'] == -1) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
 
-                            </div>
+                                    </div>
 
                                     <?php
                                 }
@@ -142,60 +162,60 @@ if (mysqli_num_rows($result) == 0) {
                     </li>
 
                     <!-- Second Step -->
-                    <li <?php if ($soutenance['etat'] >= 2 || $soutenance['etat'] < -2){ ?>class="completed">
+                    <li <?php if ($soutenance['etat'] >= 2 || $soutenance['etat'] < -2) { ?>class="completed">
                         <a href="#!">
                             <span class="circle"><i class="fa fa-check"></i></span><?php
-                            }elseif ($soutenance['etat'] == -2) {
-                                ?>
-
-                            class="warning">
-                            <a href="#">
-                                <span class="circle"><i class="fa fa-exclamation"></i></span>
-                                <?php
-                            }else  { ?>
-                                    >
-                                    <a href="#">
-                                    <span class="circle"><i class="fa fa-spinner"></i></span>
-                                <?php } ?>
-
-                                <span class="label">Commite These</span>
-                            </a>
-                            <?php
-                            if ($soutenance['etat'] == -2){
-                                ?>
-                                <div class="step-content orange rounded lighten-3">
-                                    <?php
-                                    echo $soutenance['motif'];
-                                    ?>
-
-                                </div>
-
-                                <?php
-                            }
-                            ?>
-                    </li>
-
-                    <!-- Third Step -->
-                    <li <?php if ($soutenance['etat'] >= 3 || $soutenance['etat'] < -3){ ?>class="completed">
-                        <a href="#!">
-                            <span class="circle"><i class="fa fa-check"></i></span><?php
-                            }elseif ($soutenance['etat'] == -3) {
+                            } elseif ($soutenance['etat'] == -2) {
                             ?>
 
                             class="warning">
                             <a href="#">
                                 <span class="circle"><i class="fa fa-exclamation"></i></span>
                                 <?php
-                                }else  { ?>
+                                } else { ?>
                                 >
                                 <a href="#">
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Directeur</span>
+                                    <span class="label">Commite Thèse | Accorde des membres de jury</span>
                                 </a>
                                 <?php
-                                if ($soutenance['etat'] == -3){
+                                if ($soutenance['etat'] == -2) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                    </li>
+
+                    <!-- Third Step -->
+                    <li <?php if ($soutenance['etat'] >= 3 || $soutenance['etat'] < -3) { ?>class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span><?php
+                            } elseif ($soutenance['etat'] == -3) {
+                            ?>
+
+                            class="warning">
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                } else { ?>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">Directeur | Accord de l impression</span>
+                                </a>
+                                <?php
+                                if ($soutenance['etat'] == -3) {
                                     ?>
                                     <div class="step-content orange rounded lighten-3">
                                         <?php
@@ -210,26 +230,26 @@ if (mysqli_num_rows($result) == 0) {
                     </li>
 
                     <!-- Fourth Step -->
-                    <li <?php if ($soutenance['etat'] >= 4 || $soutenance['etat'] < -4){ ?>class="completed">
+                    <li <?php if ($soutenance['etat'] >= 4 || $soutenance['etat'] < -4) { ?>class="completed">
                         <a href="#!">
                             <span class="circle"><i class="fa fa-check"></i></span><?php
-                            }elseif ($soutenance['etat'] == -4) {
+                            } elseif ($soutenance['etat'] == -4) {
                             ?>
 
                             class="warning">
                             <a href="#">
                                 <span class="circle"><i class="fa fa-exclamation"></i></span>
                                 <?php
-                                }else  { ?>
+                                } else { ?>
                                 >
                                 <a href="#">
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">President</span>
+                                    <span class="label">President | Accord de l impression </span>
                                 </a>
                                 <?php
-                                if ($soutenance['etat'] == -4){
+                                if ($soutenance['etat'] == -4) {
                                     ?>
                                     <div class="step-content orange rounded lighten-3">
                                         <?php
@@ -243,6 +263,119 @@ if (mysqli_num_rows($result) == 0) {
                                 ?>
                     </li>
 
+                    <!-- Fiveth Step hh -->
+                    <li <?php if ($soutenance['etat'] >= 6 || $soutenance['etat'] < -6) { ?>class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span><?php
+                            } elseif ($soutenance['etat'] == -5) {
+                            ?>
+
+                            class="warning">
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                } else { ?>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">Etudiant | Validation de la date</span>
+                                </a>
+                                <?php if ($soutenance['etat'] == 5) { ?>
+                                    <div class="step-content  rounded lighten-3">
+                                        <form action="soutenance_process.php" method="POST">
+                                            <input hidden name="cne" value="<?php echo $cne ?>">
+                                            <button name="valider_date_etudiant" class="btn btn-success btn-custom"><i
+                                                        class="fa fa-check mr-2"
+                                                        aria-hidden="true"></i>
+                                                Valider
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php } ?>
+                                <?php
+                                if ($soutenance['etat'] == -5) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                    </li>
+
+                    <!-- Sixsth Step hh -->
+                    <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-check"></i></span><?php
+                            } elseif ($soutenance['etat'] == -7) {
+                            ?>
+
+                            class="warning">
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                } else { ?>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label">Directeur | Validation de la date</span>
+                                </a>
+                                <?php
+                                if ($soutenance['etat'] == -7) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                    </li>
+                    <!-- Congrats hh -->
+                    <li <?php if ($soutenance['etat'] >= 7 || $soutenance['etat'] < -7) { ?>class="completed">
+                        <a href="#!">
+                            <span class="circle"><i class="fa fa-heart"></i></span><?php
+                            } elseif ($soutenance['etat'] == -7) {
+                            ?>
+
+                            class="warning">
+                            <a href="#">
+                                <span class="circle"><i class="fa fa-exclamation"></i></span>
+                                <?php
+                                } else { ?>
+                                >
+                                <a href="#">
+                                    <span class="circle"><i class="fa fa-spinner"></i></span>
+                                    <?php } ?>
+
+                                    <span class="label"> #La slaaamrk akhaaay wlla akhtyy !! <span class="circle"><i
+                                                    class="fa fa-heart"></i></span> </span>
+                                </a>
+                                <?php
+                                if ($soutenance['etat'] == -7) {
+                                    ?>
+                                    <div class="step-content orange rounded lighten-3">
+                                        <?php
+                                        echo $soutenance['motif'];
+                                        ?>
+
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                    </li>
                 </ul>
                 <br>
                 <?php
@@ -276,32 +409,40 @@ if (mysqli_num_rows($result) == 0) {
 
                 ?>
                 <hr/>
-                <h5 class="crenau">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau
-                </h5>
-                <br/>
                 <?php
+                // + ziid plus ou egal a 6mois du date_de_depot .
+                if ($soutenance['etat'] == 4) {
+                    $date = $soutenance['date_depot_sujet'];
+                    $date = date('Y-m-d', strtotime("+6 months", strtotime($date)));
+                    $today = date("Y-m-d");
 
-                $id = $soutenance['creneau'];
-                $creneau = "SELECT * FROM creneau WHERE id ='$id' ";
-                $result1 = mysqli_query($db, $creneau);
-                while ($row1 = $result1->fetch_assoc()) {
+                    if ($today <= $date) {
+                        ?>
+                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
+                        <br>
+                        <form action="choix_du_date.php">
+                            <button disabled class="btn btn-grey btn-custom"><i class="fa fa-clock-o"
+                                                                                aria-hidden="true"></i>
+                                Choisir
+                            </button>
+                        </form>
+
+                        <p>vous devez avoir min 6 mois apres avoir deposer votre sujet </p>
+
+                        <?php
+
+                    } else {
+                        ?>
+                        <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
+                        <br>
+                        <a href="choix_du_date.php" class="btn btn-success btn-custom"><i class="fa fa-clock-o"
+                                                                                          aria-hidden="true"></i>
+                            Choisir</a>
+
+                        <?php
+                    }
+                }
                 ?>
-                <i class="fa fa-calendar" aria-hidden="true"></i> <u> Votre date choisie</u> :
-                <b> <?php
-                    echo $row1['jour'] . " : " . date('H:i', strtotime($row1['heure']));;
-
-                    ?> </b>
-                <br> <u><i class="fa fa-location-arrow" aria-hidden="true"></i> Lieu</u> :
-                <b>
-                    <?php
-                    echo $row1['lieu'];
-                    } ?>
-                </b>
-                <br>
-                <br>
-
-
             </div>
             <div class="col-md-3"></div>
         </div>
@@ -323,7 +464,8 @@ if (mysqli_num_rows($result) == 0) {
 //                            } elseif ($soutenance['etat'] == -1) {
 //                                echo '<td class="rejete"><i class="fa fa-times" aria-hidden="true"></i> Rejeté . </td>';
 //                            }
-//                            ?>
+//
+?>
 <!---->
 <!--                        </tr>-->
 <!--                        --><?php
@@ -358,15 +500,18 @@ if (mysqli_num_rows($result) == 0) {
 //                        }
 //                        echo '</tr>';
 //
-//                        ?>
+//
+?>
 <!---->
 <!---->
 <!--                    </table>-->
 <!--                    <br>-->
 <!--                    --><?php
-//                    if ($soutenance['etat'] <= -1) { ?>
+//                    if ($soutenance['etat'] <= -1) {
+?>
 <!--                        <h5 class="alert alert-warning" role="alert" style="text-align: center;">-->
-<!--                            --><?php //echo "Motif : " . "<b>" . $soutenance['motif'] . "</b>" ?>
+<!--                            --><?php //echo "Motif : " . "<b>" . $soutenance['motif'] . "</b>"
+?>
 <!--                        </h5>-->
 <!--                        <hr>-->
 <!---->
@@ -404,6 +549,91 @@ if (mysqli_num_rows($result) == 0) {
         b1.style.display = 'none';
         b2.style.display = 'block';
     }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="pickadate.js-3.6.2/lib/picker.js"></script>
+<script src="pickadate.js-3.6.2/lib/picker.date.js"></script>
+<script src="pickadate.js-3.6.2/lib/picker.time.js"></script>
+<script>
+    function profSelect(val) {
+        const selects = document.querySelectorAll("select");
+        const values = [];
+        for (let i = 0; i < 6; i++) {
+            if (selects[i].value !== '') {
+                values.push(parseInt(selects[i].value))
+            }
+        }
+
+        for (let i = 1; i < val.options.length; i++) {
+
+            if (values.includes(parseInt(val.options[i].value))) {
+                val.options[i].hidden = true;
+            } else val.options[i].hidden = false;
+        }
+
+    }
+
+    Date.prototype.addDays = function (days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+    Date.prototype.subDays = function (days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() - days);
+        return date;
+    }
+    $(document).ready(
+        function () {
+            var min_d = new Date().addDays(30)
+            var min = min_d.getFullYear() + "-" + (+min_d.getMonth() + 1) + "-" + min_d.getDate();
+
+
+            $.ajax({
+                type: "POST",
+                url: "test.php",
+                data: {
+                    'min-date': min
+                },
+                success: function (data) {
+                    let dates = [true]
+                    for (let i = 0; i < data.length; i++) {
+                        dates.push(new Date(data[i]));
+                    }
+                    $('.datepicker').pickadate({
+                        onClose: function () {
+                            $("#creneux").fadeIn(2000);
+                        },
+                        disable: dates
+                    });
+
+                },
+                error: function () {
+
+                },
+                dataType: 'json'
+            });
+        }
+    )
+
+    function getCreneaux(val) {
+        var d = new Date(val)
+        var dateF = d.getFullYear() + "-" + (+d.getMonth() + 1) + "-" + d.getDate();
+        $.ajax({
+            type: "POST",
+            url: "crenaeu-process.php",
+            data: 'date_ex=' + dateF,
+            success: function (data) {
+                $("#cre-list").html(data);
+            }
+        });
+    }
+
+    // $('.datepicker').pickadate();
+    $('.datepicker1').pickadate({
+        max: new Date().subDays(180)
+    })
 </script>
 
 </html>
