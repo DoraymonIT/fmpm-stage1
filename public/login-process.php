@@ -49,7 +49,7 @@ if (isset($_POST['submit_prof'])) {
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['noProf'] = $row['id'];
         }
-        header('location: prof.php');
+        header('location: choix_du_prof.php');
     } else {
         echo "Non";
         $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";

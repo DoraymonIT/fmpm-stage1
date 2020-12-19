@@ -71,7 +71,7 @@ $result_president = mysqli_query($db, $query);
                 <div class="col-md-12">
                     <h5 class="crenau">
                         <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
-                        Confirmation d accord pour les dates
+                        Confirmation de l impression des thèses.
                     </h5>
                 </div>
             </div>
