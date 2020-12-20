@@ -199,6 +199,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <?php } ?>
                                 </select>
                                 <br />
+                                <!-- Here , 5ssna ndiiru chi condition d affichage , cad machi a chaque fois tbaan liih had la rubrique ... -->
                                 <h5 class="crenau"><i class="fa fa-clock-o" aria-hidden="true"></i> Choix du Créneau</h5>
                                 <br>
                                 <?php
@@ -244,6 +245,13 @@ if (mysqli_num_rows($result) == 0) {
                 </div>
 
             </section>
+            <hr/>
+<footer>
+    <p>
+        Service de scolarité de FMPM
+        <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+    </p>
+</footer>
         </body>
         <script src="assets/js/main.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

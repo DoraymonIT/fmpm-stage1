@@ -1,5 +1,5 @@
 <?php
-// ob_start();
+ob_start();
 require_once("database_connect.php");
 session_start();
 // Login Etudiant

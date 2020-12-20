@@ -102,7 +102,7 @@ if (isset($_POST['submit_edit_soutenance'])) {
         }
         $sql = $db->query("UPDATE soutenance SET motif = NULL WHERE soutenance_id = $soutenance_id");
         header('location: etudiant.php');
-        $_SESSION['edite_soutenenace'] = "Votre demande a ete éditer avec succès !";
+        $_SESSION['edite_soutenenace'] = "Votre demande a été éditer avec succès !";
     } else {
         // echo $mots_cles;
         echo "NO";

@@ -48,9 +48,9 @@ if (isset($_POST['submit-creneau'])) {
             $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Amphi 1' ,'$etat','09:00:00')");
             $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Amphi 1' ,'$etat','11:00:00')");
             $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Amphi 1' ,'$etat','15:00:00')");
-            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Theses' ,'$etat','09:00:00')");
-            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Theses' ,'$etat','11:00:00')");
-            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Theses' ,'$etat','15:00:00')");
+            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Thèses' ,'$etat','09:00:00')");
+            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Thèses' ,'$etat','11:00:00')");
+            $db->query("INSERT INTO creneau(jour,lieu,etat,heure) VALUES ( '$formatted_date' , 'Salle des Thèses' ,'$etat','15:00:00')");
         }
     }
     header('location: create_creneau.php');

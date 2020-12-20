@@ -51,7 +51,6 @@ $result = mysqli_query($db, $query);
                     <br />
                     <table style="width:100%" class="table table-hover table-striped table-bordered myTable">
                         <thead>
-                            <th></th>
                             <th><i class="fa fa-user" aria-hidden="true"></i> Thésard</th>
                             <th>Sujet</th>
                             <th>Date ,Heure et Lieu</th>
@@ -61,9 +60,7 @@ $result = mysqli_query($db, $query);
                         <tbody>
                             <?php
                             while ($row = $result->fetch_assoc()) {
-
                             ?>
-
                                 <tr>
                                     <td> <button class="btn btn-sm btn-info "><i class="fa fa-caret-down" aria-hidden="true"></i></button></td>
                                     <td>
@@ -78,15 +75,13 @@ $result = mysqli_query($db, $query);
 
                                         ?></td>
                                     <td></td>
-                                    <td></td>
-                                    <td> <button class="btn btn-sm btn-success "><i class="fa fa-print" aria-hidden="true"></i></button> </td>
+                                    <td> <button class="btn btn-sm btn-success ">
+                                            <i class="fa fa-print" aria-hidden="true"></i></button> </td>
                                 </tr>
-
                             <?php
                             } ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

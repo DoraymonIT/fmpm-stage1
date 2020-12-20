@@ -59,9 +59,9 @@ $result = mysqli_query($db, $query);
                     <?php
 
                     if (mysqli_num_rows($result) == 0) {
-                        echo "<a  href='dem_soutenance.php'>Créer une demande de soutenance .</a>";
+                        echo "<a  href='dem_soutenance.php'> Créer une demande de soutenance . </a>";
                     } else {
-                        echo "<a  href='etudiant.php'> Voir le progresse de demande de soutenance .</a>";
+                        echo "<a  href='etudiant.php'> Voir le progresse de demande de soutenance . </a>";
                     }
 
                     ?>
