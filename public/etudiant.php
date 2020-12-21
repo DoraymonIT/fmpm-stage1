@@ -411,7 +411,13 @@ if (mysqli_num_rows($result) == 0) {
                 </ul>
                 <br>
                 <?php
-                if ($soutenance['etat'] == -1) {
+
+
+
+                ?>
+                <hr/>
+                <?php
+                if (in_array($soutenance['etat'], array(-1, -3, -4, -7))) {
                     echo '<small id="mot" class="form-text text-muted">
                         Pou réactiver a nouveau votre demande , veuillez contacter le service concerné pour trouver la
                         solution de votre problème ci-dessus puis cliquez ici : </small>
@@ -424,25 +430,20 @@ if (mysqli_num_rows($result) == 0) {
                         <i class="fa fa-spinner fa-spin"></i>
                       </button>
                     </a>';
-                } elseif ($soutenance['etat'] < -1) {
-                    echo '<small id="mot" class="form-text text-muted">
-                        Pour éditer nouveau votre demande , veuillez contacter le service concerné pour trouver la
-                        solution de votre problème ci-dessus puis cliquez ici : </small>
-                    <br>
-                    <a href="soutenance_prob.php">
-                        <button  id="button1" class="btn  btn-success btn-custom btn-sm" onclick="loadingEvent()">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Éditer
-                        </button>
-                        <button id="button2" class="btn  btn-success btn-custom btn-sm" disabled style="display: none;cursor: not-allowed;">
-                        <i class="fa fa-spinner fa-spin"></i>
-                      </button>
-                    </a>';
-                }
-
-                ?>
-                <hr/>
-                <?php
-                // + ziid plus ou egal a 6mois du date_de_depot .
+                                } elseif ($soutenance['etat'] == -2) {
+                                    echo '<small id="mot" class="form-text text-muted">
+                                        Pour éditer nouveau votre demande , veuillez contacter le service concerné pour trouver la
+                                        solution de votre problème ci-dessus puis cliquez ici : </small>
+                                    <br>
+                                    <a href="soutenance_prob.php">
+                                        <button  id="button1" class="btn  btn-success btn-custom btn-sm" onclick="loadingEvent()">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Éditer
+                                        </button>
+                                        <button id="button2" class="btn  btn-success btn-custom btn-sm" disabled style="display: none;cursor: not-allowed;">
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                      </button>
+                                    </a>';
+                                }
 
                 ?>
             </div>

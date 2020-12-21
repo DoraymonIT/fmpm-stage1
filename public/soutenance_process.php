@@ -64,42 +64,24 @@ if (isset($_POST['submit_edit_soutenance'])) {
     $jury2_id = $_POST['jury2'];
     $jury3_id = $_POST['jury3'];
     $jury4_id = $_POST['jury4'];
-    $creneau_id = empty($_POST['creneau_change']) ? "" : ",creneau =" . $_POST['creneau_heure'];
     $query = "SELECT * FROM soutenance WHERE soutenance_id =$soutenance_id LIMIT 1 ";
     $result = $db->query($query);
     $soutenance = $result->fetch_assoc();
-    if (!empty($_POST['creneau_change'])) {
-        $last_creneau = $soutenance['creneau'];
-    } else {
-        $last_creneau = null;
-    }
     $pre = empty($_POST['president_these']) ? $soutenance['president'] : $_POST['president_these'];
     $dir = empty($_POST['directeur_these']) ? $soutenance['directeur'] : $_POST['directeur_these'];
 
-    if (
-        $soutenance['jury1'] != $jury1_id ||
-        $soutenance['jury2'] != $jury2_id || $soutenance['jury3'] != $jury3_id ||
-        $soutenance['jury4'] != $jury4_id || $soutenance['president'] != $pre || $soutenance['directeur'] != $dir
-    ) {
-        $etat = 1;
-    } else {
-        $etat = 2;
-    }
+    $etat=2;
 
     $stmt = $db->prepare("UPDATE soutenance SET intitule_these=? ,
      nature_these=? , materiel_d_etude_et_echantillioannage=? , duree_d_etude=? , 
      lieu_d_etude=? , objectif_d_etude=? , mots_cles=? , jury1=? , jury2=? , jury3=? , jury4=?
-       " . $directeur_id . $president_id . $creneau_id . " , etat = ? where soutenance_id=?");
+       " . $directeur_id . $president_id  . " , etat = ? where soutenance_id=?");
 
     $stmt->bind_param("sssssssiiiiii", $intitule, $nature, $materiel_echan, $duree, $lieu, $objectifs, $mots_cles, $jury1_id, $jury2_id, $jury3_id, $jury4_id, $etat, $soutenance_id);
     $sql = $stmt->execute();
     if ($sql) {
 
-        if ($last_creneau != null) {
-            $creneau_id = $_POST['creneau_heure'];
-            $db->query("UPDATE creneau SET etat = 1 WHERE id = $last_creneau ");
-            $creneau_bloc = $db->query("UPDATE creneau SET etat = 2 WHERE id = $creneau_id ");
-        }
+
         $sql = $db->query("UPDATE soutenance SET motif = NULL WHERE soutenance_id = $soutenance_id");
         header('location: etudiant.php');
         $_SESSION['edite_soutenenace'] = "Votre demande a été éditer avec succès !";
