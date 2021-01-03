@@ -106,7 +106,7 @@ if (mysqli_num_rows($result) == 0) {
                     <hr>
 
                     <button type="submit" name="submit_creneau_date" class="btn btn-success btn-custom"><i
-                                class="fa fa-check-square" aria-hidden="true"></i> Confirmer
+                                class="fa fa-check-square" aria-hidden="true"></i> Réserver
                     </button>
                 </div>
                 <div class="col-md-4"></div>

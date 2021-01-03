@@ -2,7 +2,7 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
-$query = "SELECT * FROM soutenance where etat >=4 ";
+$query = "SELECT * FROM soutenance where etat >=7 ";
 $result = mysqli_query($db, $query);
 ?>
 <!DOCTYPE html>
@@ -62,9 +62,9 @@ $result = mysqli_query($db, $query);
                             while ($row = $result->fetch_assoc()) {
                             ?>
                                 <tr>
-                                    <td> <button class="btn btn-sm btn-info "><i class="fa fa-caret-down" aria-hidden="true"></i></button></td>
+                                    <td> <?php echo $row['etudiant']; ?></td>
                                     <td>
-                                        <!-- <?php echo $row['intitule_these']; ?> -->
+                                        <?php echo $row['intitule_these']; ?>
                                     </td>
                                     <td><?php
                                         $creneau_id = $row['creneau'];
