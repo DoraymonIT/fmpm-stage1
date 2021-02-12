@@ -79,7 +79,7 @@ if (isset($_POST['submit_admin'])) {
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['num'] = $row['num'];
         }
-        header('location: administration.php');
+        header('location: acceuilAdministration.php');
     } else {
         echo "Non";
         $_SESSION['wrong'] = " Oups !! <strong>Email</strong> ou <strong> Mot de passe </strong> Invalide !!";

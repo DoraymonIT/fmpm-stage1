@@ -77,3 +77,7 @@ span {
 .en_cours {
   color: rgb(167, 111, 28);
 }
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}

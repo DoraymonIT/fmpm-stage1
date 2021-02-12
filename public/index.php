@@ -1,16 +1,8 @@
 <?php
 require_once('database_connect.php');
+require_once('session_manager.php');
 ob_start();
-session_start();
-if (!empty($_SESSION['username'])) {
-  header('location: acceuilEtudiant.php');
-} elseif (!empty($_SESSION['noProf'])) {
-  header('location: prof.php');
-} elseif (!empty($_SESSION['comite'])) {
-  header('location: comite_these.php');
-} elseif (!empty($_SESSION['num'])) {
-  header('location: administration.php');
-}
+redirect();
 ?>
 <!DOCTYPE html>
 <html lang="en">

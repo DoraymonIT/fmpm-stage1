@@ -1,19 +1,15 @@
 <?php
-require_once('database_connect.php');
+require_once('session_manager.php');
+require_once('service.php');
 ob_start();
-session_start();
 
-$cne = $_SESSION['CNE'];
-if (empty($cne)) {
-    header('location: index.php');
-}
-$query = "SELECT * FROM soutenance WHERE etudiant='$cne' ";
-$result = mysqli_query($db, $query);
+$cne = etudiant_session();
+$result = get_soutenance_result(array('etudiant'=>$cne));
 if (mysqli_num_rows($result) == 0) {
     header('location: dem_soutenance.php');
 } else {
     $soutenance = $result->fetch_assoc();
-    if ($soutenance['etat'] != 4) {
+    if ($soutenance['etat'] != 4 && $soutenance['etat'] != 5) {
         header('location: etudiant.php');
     } else {
         $date = $soutenance['date_depot_sujet'];
@@ -62,12 +58,11 @@ if (mysqli_num_rows($result) == 0) {
     <div class="container">
         <div class="col-md-12 title">
             <h3><u>Espace Étudiant</u></h3>
-            <?php if (isset($_SESSION['CNE'])) : ?>
                 <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                     Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
                 <p><a href="logout.php" class="btn btn-primary" role="button">
                         <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-            <?php endif ?>
+
             <hr>
 
         </div>

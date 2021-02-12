@@ -20,12 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5135fd98-8c32-4449-9567-0c9076dfef38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/acceuilAdministration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asoutenu.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pdf.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/session_manager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_17_2020_7_00_PM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acceuilEtudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/acceuilEtudiant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/administration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choix_du_date.php" beforeDir="false" afterPath="$PROJECT_DIR$/choix_du_date.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choix_du_prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/choix_du_prof.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comite_these.php" beforeDir="false" afterPath="$PROJECT_DIR$/comite_these.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/confirmation_date.php" beforeDir="false" afterPath="$PROJECT_DIR$/confirmation_date.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crenaeu-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/crenaeu-process.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/database_connect.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dem_soutenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/dem_soutenance.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/etudiant.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudiant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-process.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-process.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/soutenance_prob.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenance_prob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soutenances.php" beforeDir="false" afterPath="$PROJECT_DIR$/soutenances.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +53,24 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="dyali" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="dyali" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1kJrSZunNgjzjFCAIe63Z3HlMQ4" />
@@ -47,8 +82,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\fmpm-stage1\public" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,6 +109,15 @@
       <workItem from="1606602363062" duration="629000" />
       <workItem from="1606610323374" duration="1859000" />
       <workItem from="1606663818502" duration="8669000" />
+      <workItem from="1608289754223" duration="2010000" />
+      <workItem from="1608326169696" duration="11965000" />
+      <workItem from="1608409360898" duration="2477000" />
+      <workItem from="1608549978466" duration="4398000" />
+      <workItem from="1609668973454" duration="9315000" />
+      <workItem from="1609843256856" duration="25129000" />
+      <workItem from="1610109528623" duration="5182000" />
+      <workItem from="1610197072056" duration="1735000" />
+      <workItem from="1610362118041" duration="6123000" />
     </task>
     <servers />
   </component>
@@ -97,6 +147,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="584" y="198" key="#Inspections" timestamp="1609850383537">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="584" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1609850383537" />
     <state x="714" y="344" key="#Notifications" timestamp="1605636474181">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -105,37 +159,45 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606394725664" />
-    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog" timestamp="1606666391009">
+    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog" timestamp="1609844720368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606666391009" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1605636146907">
+    <state x="100" y="100" width="1720" height="840" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609844720368" />
+    <state x="80" y="86" width="1654" height="868" key="MergeDialog" timestamp="1609843489751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636146907" />
+    <state x="80" y="86" width="1654" height="868" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609843489751" />
     <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1606424328625">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606424328625" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605736411572">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1609862716733">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605736411572" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609862716733" />
     <state x="775" y="240" key="RollbackChangesDialog" timestamp="1605636294618">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="775" y="240" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636294618" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1606428911613">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1608337522048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606428911613" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608337522048" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605636559479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605636559479" />
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606424352015">
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609843302304">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606424352015" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609843302304" />
+    <state x="740" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1608409398267">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="233" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608409398267" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1608336481823">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608336481823" />
   </component>
 </project>

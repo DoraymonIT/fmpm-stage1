@@ -1,11 +1,8 @@
 <?php
 require_once('database_connect.php');
+require_once('session_manager.php');
 ob_start();
-session_start();
-if (empty($_SESSION['CNE'])) {
-    header('location: index.php');
-}
-$cne = $_SESSION['CNE'];
+$cne = etudiant_session();
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' LIMIT 1 ";
 $result = $db->query($query);
 if (mysqli_num_rows($result) == 0) {
@@ -14,7 +11,7 @@ if (mysqli_num_rows($result) == 0) {
     $soutenance = $result->fetch_assoc();
     if (in_array($soutenance['etat'], array(-1, -3, -4, -7))) {
         $id = $soutenance['soutenance_id'];
-        $etat = $soutenance['etat']==-7? 4:((int)$soutenance['etat'] * -1) - 1;
+        $etat = $soutenance['etat'] == -7 ? 4 : ((int)$soutenance['etat'] * -1) - 1;
         $sql = $db->query("UPDATE soutenance SET etat = '$etat' WHERE soutenance_id = $id");
         if ($sql) {
             $sql = $db->query("UPDATE soutenance SET motif = NULL WHERE soutenance_id = $id");
@@ -23,7 +20,7 @@ if (mysqli_num_rows($result) == 0) {
         } else {
             echo "Erreur";
         }
-    } elseif ($soutenance['etat'] ==-2) {
+    } elseif ($soutenance['etat'] == -2) {
         ?>
         <!DOCTYPE html>
         <html lang="en">

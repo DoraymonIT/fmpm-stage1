@@ -1,11 +1,8 @@
 <?php
 require_once('database_connect.php');
+require_once('session_manager.php');
 ob_start();
-session_start();
-if (empty($_SESSION['CNE'])) {
-    header('location: index.php');
-}
-$cne = $_SESSION['CNE'];
+$cne = etudiant_session();
 $query = "SELECT * FROM soutenance WHERE etudiant ='$cne' ";
 $result = $db->query($query);
 if (mysqli_num_rows($result) != 0) {

@@ -1,7 +1,8 @@
 <?php
 require_once('database_connect.php');
+require_once('session_manager.php');
 ob_start();
-session_start();
+prof_session();
 $query = "SELECT * FROM soutenance WHERE etat = 6";
 $result = mysqli_query($db, $query);
 ?>
@@ -38,12 +39,10 @@ $result = mysqli_query($db, $query);
         <div class="container">
             <div class="col-md-12 title">
                 <h3><u>Espace Directeur | Validation de la date de soutenance .</u></h3>
-                <?php if (isset($_SESSION['noProf'])) : ?>
                     <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                         Vous êtes Connecte : <?php echo $_SESSION['nom'] ?> !</h6>
                     <p><a href="logout.php" class="btn btn-primary" role="button">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
-                <?php endif ?>
                 <hr>
             </div>
         </div>

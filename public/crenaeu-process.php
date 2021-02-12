@@ -1,5 +1,6 @@
 <?php
 require_once("database_connect.php");
+require_once("service.php");
 session_start();
 if (!empty($_POST["date_ex"])) {
 
@@ -68,18 +69,32 @@ if (isset($_POST['submit-creneau'])) {
     //    //  submit_soutenence
 }
 if (isset($_POST['submit_creneau_date'])) {
+
     $today = date("Y-m-d H:i:s");
     var_dump($today);
     $date = $_POST['creneau_heure'];
     var_dump($date);
     $cne = $_SESSION['CNE'];
     var_dump($cne);
-    $sql = $db->query("UPDATE soutenance SET creneau='$date',etat=5 WHERE etudiant='$cne'");
-    var_dump($db->error_list);
-    if ($sql) {
-        $sql = $db->query("UPDATE creneau SET etat=2,date_reservation='$today' WHERE id='$date' ");
+    $soutenance = get_soutenance_result(array('etudiant' => $cne))->fetch_assoc();
+    if ($soutenance['creneau'] == null) {
+        $sql = $db->query("UPDATE soutenance SET creneau='$date',etat=5 WHERE etudiant='$cne'");
+        var_dump($db->error_list);
         if ($sql) {
-            header('location: etudiant.php');
+            $sql = $db->query("UPDATE creneau SET etat=2,date_reservation='$today' WHERE id='$date' ");
+            if ($sql) {
+                header('location: etudiant.php');
+            }
+        }
+    } else {
+        $last = $soutenance['creneau'];
+        $db->query("UPDATE creneau SET etat=1,date_reservation=null WHERE id='$last' ");
+        $sql = $db->query("UPDATE soutenance SET creneau='$date',etat=5 WHERE etudiant='$cne'");
+        if ($sql) {
+            $sql = $db->query("UPDATE creneau SET etat=2,date_reservation='$today' WHERE id='$date' ");
+            if ($sql) {
+                header('location: etudiant.php');
+            }
         }
     }
 
