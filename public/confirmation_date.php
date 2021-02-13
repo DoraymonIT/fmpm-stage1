@@ -40,9 +40,9 @@ $result = mysqli_query($db, $query);
             <div class="col-md-12 title">
                 <h3><u>Espace Directeur | Validation de la date de soutenance .</u></h3>
                     <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Vous êtes Connecte : <?php echo $_SESSION['nom'] ?> !</h6>
+                        Vous êtes connecté : <?php echo $_SESSION['nom'] ?> !</h6>
                     <p><a href="logout.php" class="btn btn-primary" role="button">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
                 <hr>
             </div>
         </div>
@@ -53,12 +53,15 @@ $result = mysqli_query($db, $query);
                         <i class="fa fa-clock-o" aria-hidden="true"></i> Tableau de
                         Confirmation du date de soutenance .
                     </h5>
-                    <div class="row">
-                        <div class="col-md-3"> <a class="btn btn-success btn-block btn-sm" href="#" role="button">
-                                <i class="fa fa-history" aria-hidden="true"></i> Historique</a> </div>
-                        <div class="col-md-6"></div>
-                        <div class="col-md-3"> </div>
+                    <div class="row mt-3">
+                    <div class="col-md-1">
+                    <a class="btn btn-success btn-block btn-sm" href="choix_du_prof.php" role="button">
+                             <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                     </div>
+                    <div class="col-md-8"></div>
+                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=1" role="button">
+                             <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
+                </div>
                     <br />
                     <table class="table table-hover table-striped table-bordered myTable table-responsive-xl">
                         <thead>

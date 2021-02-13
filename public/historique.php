@@ -92,7 +92,8 @@ if (!empty($_SESSION['noProf'])) {
                     <div class="row">
                         <div class="col-md-3">
                             <a class="btn btn-success btn-sm" href="prof.php" role="button">
-                                <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a></div>
+                                <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
+                        </div>
                         <div class="col-md-8"></div>
                     </div>
                     <br />

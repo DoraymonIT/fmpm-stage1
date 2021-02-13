@@ -12,7 +12,11 @@ redirect();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
   <title>Login | Voir le progresse de demande de thèse .</title>
   <style>
     a {
@@ -139,13 +143,13 @@ redirect();
               <hr />
               <div class="shadow">
                 <form action="login-process.php" method="post">
-                  <label>Votre Email <span>*</span></label>
+                <label> <i class="fa fa-envelope-square" aria-hidden="true"></i> Votre Email <span>*</span></label>
                   <input type="text" name="email_prof" class="form-control" placeholder="Ex : ahmed@gmail.com" required />
                   <br />
-                  <label>Votre Numéro Administratif <span>*</span></label>
+                  <label><i class="fa fa-lock" aria-hidden="true"></i> Votre Numéro Administratif <span>*</span></label>
                   <input type="password" name="pass_prof" class="form-control" placeholder="***********" required />
                   <br />
-                  <button type="submit" name="submit_prof" class="btn btn-success btn-custom">Se Connecter</button>
+                  <button type="submit" name="submit_prof" class="btn btn-success btn-custom"> <i class="fa fa-check-circle" aria-hidden="true"></i>  Se Connecter</button>
                 </form>
               </div>
             </div>
@@ -164,13 +168,13 @@ redirect();
               <hr />
               <div class="shadow">
                 <form action="login-process.php" method="post">
-                  <label>Votre Email <span>*</span></label>
+                <label> <i class="fa fa-envelope-square" aria-hidden="true"></i> Votre Email <span>*</span></label>
                   <input type="text" name="email_admin" class="form-control" placeholder="Ex : ahmed@gmail.com" required />
                   <br />
-                  <label>Votre Numéro Administratif <span>*</span></label>
+                  <label><i class="fa fa-lock" aria-hidden="true"></i> Votre Numéro Administratif <span>*</span></label>
                   <input type="password" name="pass_admin" class="form-control" placeholder="***********" required />
                   <br />
-                  <button type="submit" name="submit_admin" class="btn btn-success btn-custom">Se Connecter</button>
+                  <button type="submit" name="submit_admin" class="btn btn-success btn-custom"> <i class="fa fa-check-circle" aria-hidden="true"></i> Se Connecter</button>
                 </form>
               </div>
             </div>
@@ -189,13 +193,13 @@ redirect();
               <hr />
               <div class="shadow">
                 <form action="login-process.php" method="post">
-                  <label>Votre Email <span>*</span></label>
+                <label> <i class="fa fa-envelope-square" aria-hidden="true"></i> Votre Email <span>*</span></label>
                   <input type="text" name="email_comite" class="form-control" placeholder="Ex : ahmed@gmail.com" required />
                   <br />
-                  <label>Votre Numéro Administratif <span>*</span></label>
+                  <label><i class="fa fa-lock" aria-hidden="true"></i> Votre Numéro Administratif <span>*</span></label>
                   <input type="password" name="pass_comite" class="form-control" placeholder="***********" required />
                   <br />
-                  <button type="submit" name="submit_comite" class="btn btn-success btn-custom">Se Connecter</button>
+                  <button type="submit" name="submit_comite" class="btn btn-success btn-custom"> <i class="fa fa-check-circle" aria-hidden="true"></i>  Se Connecter</button>
                 </form>
               </div>
             </div>
@@ -213,7 +217,7 @@ redirect();
   <footer>
     <p>
       Service de scolarité de FMPM
-      <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+      <i class="fa fa-copyright" aria-hidden="true"></i> 2021
     </p>
   </footer>
 </body>

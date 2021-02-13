@@ -40,9 +40,9 @@ $result = get_soutenance_result(array('etudiant'=>$cne));
         <div class="col-md-12 title">
             <h3><u>Espace Étudiant</u></h3>
             <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
+                Vous êtes connecté : <?php echo $_SESSION['username'] ?> !</h6>
             <p><a href="logout.php" class="btn btn-primary" role="button">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
 
             <hr>
 

@@ -26,12 +26,13 @@ if (mysqli_num_rows($result) == 0) {
     <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.date.css">
     <link rel="stylesheet" href="pickadate.js-3.6.2/lib/themes/default.time.css">
 
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
           integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="assets/css/mdb.min.css">
+    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css">
@@ -56,12 +57,12 @@ if (mysqli_num_rows($result) == 0) {
 <div class="container">
     <div class="row">
         <div class="col-md-12 title">
-            <h3><u>Espace Etudiant</u></h3>
+            <h3><u>Espace Étudiant</u></h3>
             <?php if (isset($_SESSION['CNE'])) : ?>
                 <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
-                    Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
+                    Vous êtes connecté : <?php echo $_SESSION['username'] ?> !</h6>
                 <p><a href="logout.php" class="btn btn-primary" role="button">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
             <?php endif ?>
             <hr>
 
@@ -181,7 +182,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Commite Thèse | Accorde des membres de jury</span>
+                                    <span class="label">Commite Thèse | Accord des membres de jury</span>
                                 </a>
                                 <?php
                                 if ($soutenance['etat'] == -2) {
@@ -215,7 +216,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Directeur | Accord de l impression</span>
+                                    <span class="label">Directeur | Accord de l'impression</span>
                                 </a>
                                 <?php
                                 if ($soutenance['etat'] == -3) {
@@ -249,7 +250,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">President | Accord de l impression </span>
+                                    <span class="label">Président | Accord de l'impression </span>
                                 </a>
                                 <?php
                                 if ($soutenance['etat'] == -4) {
@@ -283,7 +284,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Etudiant | Choix de la date</span>
+                                    <span class="label">Étudiant | Choix de la date</span>
                                 </a>
                                 <?php if ($soutenance['etat'] == 4) {
                                     $date = $soutenance['date_depot_sujet'];
@@ -300,7 +301,7 @@ if (mysqli_num_rows($result) == 0) {
                                                 </button>
                                             </form>
 
-                                            <p>vous devez avoir min 6 mois apres avoir deposer votre sujet </p>
+                                            <p>vous devez avoir min 6 mois après avoir déposer votre sujet </p>
                                         </div>
                                         <?php
 
@@ -345,7 +346,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Etudiant | Validation de la date</span>
+                                    <span class="label">Étudiant | Validation de la date</span>
                                 </a>
                                 <?php
                                 $creneau_id = $soutenance['creneau'];
@@ -451,7 +452,7 @@ if (mysqli_num_rows($result) == 0) {
                                 if ($soutenance['etat'] == 7) {
                                     ?>
                                     <div class="step-content green rounded hr-bold lighten-3">
-                                        Veuiller apporter bla bla bla
+                                        Veuillez apporter bla bla bla
 
                                     </div>
 
@@ -507,7 +508,7 @@ if (mysqli_num_rows($result) == 0) {
                                     <span class="circle"><i class="fa fa-spinner"></i></span>
                                     <?php } ?>
 
-                                    <span class="label">Felicitations! vous avez soutenu !</span>
+                                    <span class="label">Félicitations! vous avez soutenu !</span>
                                 </a>
                                 <?php
                                 if ($soutenance['etat'] == -9) {
