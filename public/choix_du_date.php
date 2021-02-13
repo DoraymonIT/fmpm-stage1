@@ -109,7 +109,13 @@ if (mysqli_num_rows($result) == 0) {
         </form>
 
 </section>
-
+<hr/>
+<footer>
+    <p>
+        Service de scolarité de FMPM
+        <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+    </p>
+</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="pickadate.js-3.6.2/lib/picker.js"></script>

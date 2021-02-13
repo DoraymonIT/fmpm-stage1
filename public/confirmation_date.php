@@ -59,7 +59,7 @@ $result = mysqli_query($db, $query);
                              <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                     </div>
                     <div class="col-md-8"></div>
-                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=1" role="button">
+                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=5" role="button">
                              <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
                 </div>
                     <br />
@@ -104,7 +104,7 @@ $result = mysqli_query($db, $query);
                                         ?>
                                     </td>
                                     <td>
-                                        <b>
+                                      
                                         <?php
 
                                         $id = $row['creneau'];
@@ -117,7 +117,7 @@ $result = mysqli_query($db, $query);
                                             ?>
                                         <?php
                                             echo $row1['lieu'];
-                                        } ?></b>
+                                        } ?>
                                     </td>
 
                                     <td>

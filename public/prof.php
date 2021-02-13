@@ -85,12 +85,18 @@ if (isset($who)) {
             <div class="tab-pane fade show active " id="directeur_tab" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row mt-3">
                     <div class="col-md-1">
-                    <a class="btn btn-success btn-block btn-sm" href="choix_du_prof.php" role="button">
-                             <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
+                        <a class="btn btn-success btn-block btn-sm" href="choix_du_prof.php" role="button">
+                            <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                     </div>
                     <div class="col-md-8"></div>
-                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=1" role="button">
-                             <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
+                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=<?php
+                                                                                                                if ($who == 'directeur') {
+                                                                                                                    echo "1";
+                                                                                                                } elseif ($who == 'president') {
+                                                                                                                    echo "2";
+                                                                                                                }
+                                                                                                                ?>" role="button">
+                            <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
                 </div>
                 <div class="row">
 

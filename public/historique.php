@@ -16,14 +16,22 @@ if (!empty($_SESSION['noProf'])) {
     } elseif ($who == 2) {
         $titre = "Président";
         $query = "SELECT * FROM soutenance WHERE president = $id AND etat >=4 or etat <= -4";
+    } elseif ($who == 5) {
+        $titre = "Président";
+        $query = "SELECT * FROM soutenance WHERE directeur = $id AND etat >=7 or etat <= -7";
     } else header('location: index.php');
 } elseif (!empty($_SESSION['comite']) && $who == 3) {
 
     $titre = "Comité du thèse | Validation du membres de jury .";
     $query = "SELECT * FROM soutenance WHERE etat >=2 or etat <= -2";
-} elseif (!empty($_SESSION['num']) && $who == 4) {
-    $titre = "Administration";
-    $query = "SELECT * FROM soutenance WHERE etat >=1 or etat <= -1";
+} elseif (!empty($_SESSION['num'])) {
+    if ($who == 4) {
+        $titre = "Administration | Validation des relevés de notes et les cliniques ";
+        $query = "SELECT * FROM soutenance WHERE etat >=1 or etat <= -1";
+    } elseif ($who == 6) {
+        $titre = "Administration | Validation finale";
+        $query = "SELECT * FROM soutenance WHERE etat >=8 or etat <= -8";
+    }
 } else header('location: index.php');
 
 
@@ -96,11 +104,13 @@ if (!empty($_SESSION['noProf'])) {
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <a class="btn btn-success btn-sm" href="<?php if(!empty($_SESSION['num']) && $who == 4)
-                             {echo "administration.php";}
-                             elseif (!empty($_SESSION['comite']) && $who == 3) 
-                             {echo "comite_these.php";} elseif (!empty($_SESSION['noProf']) && $who == 1) 
-                             {echo "prof.php";} ?>" role="button">
+                            <a class="btn btn-success btn-sm" href="<?php if (!empty($_SESSION['num']) && $who == 4 || $who == 6) {
+                                                                        echo "administration.php";
+                                                                    } elseif (!empty($_SESSION['comite']) && $who == 3) {
+                                                                        echo "comite_these.php";
+                                                                    } elseif (!empty($_SESSION['noProf']) && $who == 1 || $who == 5) {
+                                                                        echo "prof.php";
+                                                                    } ?>" role="button">
                                 <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                         </div>
                         <div class="col-md-8"></div>
@@ -173,6 +183,12 @@ if (!empty($_SESSION['noProf'])) {
                                                 break;
                                             case 4:
                                                 $etat = 1;
+                                                break;
+                                            case 5:
+                                                $etat = 7;
+                                                break;
+                                            case 6:
+                                                $etat = 8;
                                                 break;
                                         }
 

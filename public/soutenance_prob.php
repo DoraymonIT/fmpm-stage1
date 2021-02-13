@@ -79,7 +79,7 @@ if (mysqli_num_rows($result) == 0) {
                             </h5>
                             <label>Nom et Prénom du thésard (e) : </label>
                             <br>
-                            <h6 style="  font-weight: 800;">
+                            <h6 >
                                 <?php if (isset($_SESSION['nom'])) : ?>
 
                                     <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
