@@ -58,7 +58,7 @@ if (mysqli_num_rows($result) == 0) {
                 <?php if (isset($_SESSION['CNE'])) : ?>
                     <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                         Vous êtes connecté : <?php echo $_SESSION['username'] ?> !</h6>
-                    <p><a href="logout.php" class="btn btn-primary" role="button">
+                    <p><a href="logout.php" class="btn btn-primary" role="button" style="    text-transform: inherit;">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
                 <?php endif ?>
                 <hr>

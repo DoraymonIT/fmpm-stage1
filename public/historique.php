@@ -32,6 +32,10 @@ if (!empty($_SESSION['noProf'])) {
         $titre = "Administration | Validation finale";
         $query = "SELECT * FROM soutenance WHERE etat >=8 or etat <= -8";
     }
+    elseif ($who == 7) {
+        $titre = "Administration | A soutenu";
+        $query = "SELECT * FROM soutenance WHERE etat >=9 or etat <= -9";
+    }
 } else header('location: index.php');
 
 
@@ -104,8 +108,8 @@ if (!empty($_SESSION['noProf'])) {
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <a class="btn btn-success btn-sm" href="<?php if (!empty($_SESSION['num']) && $who == 4 || $who == 6) {
-                                                                        echo "administration.php";
+                            <a class="btn btn-success btn-sm" href="<?php if (!empty($_SESSION['num']) && $who == 4 || $who == 6 || $who == 7) {
+                                                                        echo "acceuilAdministration.php";
                                                                     } elseif (!empty($_SESSION['comite']) && $who == 3) {
                                                                         echo "comite_these.php";
                                                                     } elseif (!empty($_SESSION['noProf']) && $who == 1 || $who == 5) {
@@ -190,6 +194,9 @@ if (!empty($_SESSION['noProf'])) {
                                             case 6:
                                                 $etat = 8;
                                                 break;
+                                                case 7:
+                                                    $etat = 9;
+                                                    break;
                                         }
 
                                         if ($row['etat'] >= $etat || $row['etat'] < (int)$etat * -1) {

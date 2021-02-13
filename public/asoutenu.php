@@ -17,7 +17,7 @@ $result = get_soutenance_result(array('etat' => '8'))
           crossorigin="anonymous"/>    <!-- <link rel="stylesheet" href="assets/css/mdb.min.css"> -->
     <link rel="stylesheet" href="style.css"/>
     <title>
-        a soutenu
+        A soutenu
     </title>
 
 </head>
@@ -42,7 +42,7 @@ $result = get_soutenance_result(array('etat' => '8'))
 
             <div class="col-md-12">
                 <h5 class="crenau">
-                    <i class="fa fa-list" aria-hidden="true"></i> Listes des soutenances valides
+                    <i class="fa fa-list" aria-hidden="true"></i> Listes des soutenances valides | A soutenu
                 </h5>
                 <div class="row">
                     <div class="col-md-3">

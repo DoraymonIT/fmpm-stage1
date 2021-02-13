@@ -42,7 +42,7 @@ $result = get_soutenance_result(array('etat' => '7'))
 
             <div class="col-md-12">
                 <h5 class="crenau">
-                    <i class="fa fa-list" aria-hidden="true"></i> Listes des soutenances valides
+                    <i class="fa fa-list" aria-hidden="true"></i> Listes des soutenances | Validation finale
                 </h5>
                 <div class="row">
                     <div class="col-md-3">
