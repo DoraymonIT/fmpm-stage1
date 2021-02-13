@@ -269,7 +269,7 @@ function get_table($result, $last = false, $soutenu = false)
                 . ' ; </b>
 <u><i class="fa fa-location-arrow" aria-hidden="true"></i> Lieu</u> :
 </b>
-    ' . $creneau['lieu'] . '></h6>
+    ' . $creneau['lieu'] . '</h6>
     </li>
     </ul>';
         }

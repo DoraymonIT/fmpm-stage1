@@ -99,7 +99,8 @@ if (!empty($_SESSION['noProf'])) {
                             <a class="btn btn-success btn-sm" href="<?php if(!empty($_SESSION['num']) && $who == 4)
                              {echo "administration.php";}
                              elseif (!empty($_SESSION['comite']) && $who == 3) 
-                             {echo "comite_these.php";} ?>" role="button">
+                             {echo "comite_these.php";} elseif (!empty($_SESSION['noProf']) && $who == 1) 
+                             {echo "prof.php";} ?>" role="button">
                                 <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                         </div>
                         <div class="col-md-8"></div>

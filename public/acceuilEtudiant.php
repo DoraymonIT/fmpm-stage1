@@ -66,6 +66,13 @@ $result = get_soutenance_result(array('etudiant'=>$cne));
         </div>
     </div>
 </section>
+<hr>
+<footer>
+        <p>
+            Service de scolarité de FMPM
+            <i class="fa fa-copyright" aria-hidden="true"></i> 2020
+        </p>
+    </footer>
 </body>
 
 </html>

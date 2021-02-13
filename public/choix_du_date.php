@@ -61,7 +61,7 @@ if (mysqli_num_rows($result) == 0) {
                 <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                     Vous êtes Connecte : <?php echo $_SESSION['username'] ?> !</h6>
                 <p><a href="logout.php" class="btn btn-primary" role="button">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
 
             <hr>
 

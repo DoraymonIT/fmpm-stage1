@@ -451,10 +451,10 @@ if (mysqli_num_rows($result) == 0) {
                                 ?><?php
                                 if ($soutenance['etat'] == 7) {
                                     ?>
-                                    <div class="step-content green rounded hr-bold lighten-3">
+                                    <!-- <div class="step-content green rounded hr-bold lighten-3">
                                         Veuillez apporter bla bla bla
 
-                                    </div>
+                                    </div> -->
 
                                     <?php
                                 }

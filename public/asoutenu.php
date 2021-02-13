@@ -48,7 +48,9 @@ $result = get_soutenance_result(array('etat' => '8'))
                     <div class="col-md-3">
                         <a class="btn btn-success btn-sm" href="acceuilAdministration.php" role="button">
                             <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a></div>
-                    <div class="col-md-8"></div>
+                    <div class="col-md-6"></div>
+                    <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=7" role="button">
+                             <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
                 </div>
                 <br/>
                 <?php get_table($result,false,true); ?>
