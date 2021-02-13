@@ -2,6 +2,11 @@
 require_once('database_connect.php');
 ob_start();
 session_start();
+// administration 3 
+// Prof
+// directeur 2
+// president 1 
+// comite 1
 $who = $_GET['who'];
 if (!empty($_SESSION['noProf'])) {
     $id = $_SESSION['noProf'];
@@ -72,7 +77,7 @@ if (!empty($_SESSION['noProf'])) {
                         <h6><i class="fa fa-user-circle" aria-hidden="true"></i>
                             Vous êtes Connecte : <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?> !</h6>
                         <p><a href="logout.php" class="btn btn-primary" role="button">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
                     <?php endif ?>
                     <hr>
                 </div>
@@ -91,7 +96,10 @@ if (!empty($_SESSION['noProf'])) {
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <a class="btn btn-success btn-sm" href="prof.php" role="button">
+                            <a class="btn btn-success btn-sm" href="<?php if(!empty($_SESSION['num']) && $who == 4)
+                             {echo "administration.php";}
+                             elseif (!empty($_SESSION['comite']) && $who == 3) 
+                             {echo "comite_these.php";} ?>" role="button">
                                 <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
                         </div>
                         <div class="col-md-8"></div>

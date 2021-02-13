@@ -50,7 +50,7 @@ $result = get_soutenance_result(array('etat' => '1'));
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=4" role="button">
+                        <div class="col-md-3"><a class="btn btn-success btn-block btn-sm" href="historique.php?who=3" role="button">
                                 <i class="fa fa-history" aria-hidden="true"></i> Historique</a></div>
                         <div class="col-md-6"></div>
 
