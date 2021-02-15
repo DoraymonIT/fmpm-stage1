@@ -29,6 +29,12 @@ if ($val == 1) {
         echo json_encode($response);
     }
 } else {
+    $soutenu = $_POST['soutenu'];
+    if ($soutenu){
+        $query = $db->query("UPDATE soutenance SET etat = '$etat' WHERE soutenance_id = '$id'");
+        echo json_encode($response);
+    }else{
     $response['erreur'] = 'Veuillez choisir votre choix';
     echo json_encode($response);
+    }
 }
