@@ -112,7 +112,7 @@ if (!empty($_SESSION['noProf'])) {
                                                                         echo "acceuilAdministration.php";
                                                                     } elseif (!empty($_SESSION['comite']) && $who == 3) {
                                                                         echo "comite_these.php";
-                                                                    } elseif (!empty($_SESSION['noProf']) && $who == 1 || $who == 5) {
+                                                                    } elseif (!empty($_SESSION['noProf']) && $who == 1 || $who == 5 || $who == 2) {
                                                                         echo "prof.php";
                                                                     } ?>" role="button">
                                 <i class="fa fa-caret-left" aria-hidden="true"></i> Retour</a>
