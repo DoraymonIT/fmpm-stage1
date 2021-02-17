@@ -38,17 +38,17 @@ if (mysqli_num_rows($result) != 0) {
             </div>
         </div>
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-
-            <div class="col-md-3" style="text-align: center;">
+        <div class="col-md-4"></div>
+            <div class="col-md-4" style="text-align: center;">
                 <h3><u>Espace Étudiant</u></h3>
                 <?php if (isset($_SESSION['CNE'])) : ?>
                     <p><a href="logout.php" class="btn btn-primary" role="button">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></p>
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Se déconnecter</a></p>
                 <?php endif ?>
             </div>
-            <div class="col-md-9"></div>
+            <div class="col-md-4"></div>
             
         </div>
     </div>
@@ -75,7 +75,8 @@ if (mysqli_num_rows($result) != 0) {
                         </h5>
                         <label>Nom et Prénom du thésard (e) : </label>
                         <br>
-                        <h6 style="  font-weight: 800;">
+                        <h6 style="font-weight: bolder;color: teal;font-family: cursive;text-transform: uppercase;">
+                      
                             <?php if (isset($_SESSION['nom'])) : ?>
 
                                 <?php echo $_SESSION['nom'] . " " . $_SESSION['prenom'] ?>
