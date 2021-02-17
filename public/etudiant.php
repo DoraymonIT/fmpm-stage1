@@ -352,8 +352,10 @@ if (mysqli_num_rows($result) == 0) {
                                     ?>
                                             <div class="step-content orange rounded lighten-3">
                                                 <?php
-                                                echo $creneau['jour'] . " | " . $creneau['heure']
-                                                    . "<br> Lieu Choisie : " . $creneau['lieu'] . "<br> Ce creneau reserve jusqu'a le  : " . date('Y-m-d H:i', strtotime($creneau['date_reservation'] . ' + 2 days'));
+                                                echo  "<u> Date Choisie</u> : " . $creneau['jour'] . " | " . $creneau['heure']
+                                                    . "<br> <u> Lieu Choisie</u> : " . $creneau['lieu'] . "<br> Ce créneau réservé jusqu'a le  : <span class=' red rounded lighten-3' style='
+                                                    padding: 10px;
+                                                ''>" . date('Y-m-d H:i', strtotime($creneau['date_reservation'] . ' + 2 days')) . '</span>';
                                                 ?>
 
                                             </div>
@@ -362,22 +364,22 @@ if (mysqli_num_rows($result) == 0) {
                                         }
                                     }
                                             ?><?php
-                                    if ($soutenance['etat'] > 5 && $soutenance['etat'] != 9) {
+                                                if ($soutenance['etat'] > 5 && $soutenance['etat'] != 9) {
 
-                                        if ($creneau) {
-                                    ?>
+                                                    if ($creneau) {
+                                                ?>
                                             <div class="step-content green rounded lighten-3">
-                                             <u>  Date de soutenance </u>:<br>
+                                                <u> Date de soutenance </u>:<br>
                                                 <?php
-                                                echo $creneau['jour'] . " | " . $creneau['heure']
-                                                    . "<br> Lieu Choisie : " . $creneau['lieu'];
+                                                        echo $creneau['jour'] . " | " . $creneau['heure']
+                                                            . "<br> Lieu Choisie : " . $creneau['lieu'];
                                                 ?>
 
                                             </div>
 
                                     <?php
-                                        }
-                                    }
+                                                    }
+                                                }
                                     ?>
 
                                     <?php if ($soutenance['etat'] == 5) { ?>
@@ -442,15 +444,15 @@ if (mysqli_num_rows($result) == 0) {
                                         <?php
                                     }
                                         ?><?php
-                                    if ($soutenance['etat'] == 7) {
-                                    ?>
+                                            if ($soutenance['etat'] == 7) {
+                                            ?>
                                         <!-- <div class="step-content green rounded hr-bold lighten-3">
                                         Veuillez apporter bla bla bla
 
                                     </div> -->
 
                                     <?php
-                                    }
+                                            }
                                     ?>
                         </li>
                         <li <?php if ($soutenance['etat'] >= 8 || $soutenance['etat'] < -8) { ?>class="completed">
