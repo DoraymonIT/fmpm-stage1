@@ -519,7 +519,7 @@ if (mysqli_num_rows($result) == 0) {
                                     }
                                     ?>
 
-                                    <?php
+                                    <!-- <?php
                                     if ($soutenance['etat'] == 9) {
                                     ?>
                                         <div class="step-content green rounded lighten-3">
@@ -529,7 +529,7 @@ if (mysqli_num_rows($result) == 0) {
 
                                     <?php
                                     }
-                                    ?>
+                                    ?> -->
                         </li>
                         <!-- Congrats hh -->
 

@@ -32,7 +32,7 @@ require_once('../database_connect.php');
         <div class="col-md-12 title">
           <h3><u>Choix de sujet de thèse</u></h3>
           <p>
-            Lire attentivement tous les theses et choisis un et un seul sujet, toute information
+            Lire attentivement tous les thèses et choisi un et un seul sujet, toute information
             <b> erronée</b> <br />
             peut annuler votre demande .
 
@@ -119,18 +119,15 @@ require_once('../database_connect.php');
                                                                               ?>
                   </td>
                   <td>
-
-                    <input type="radio" name="etat" value="1" />
-                    <label class="form-check-label"> Je choisis </label>
-
+                    <button class="btn btn-success btn-custom" type="submit">
+                      <i class="fa fa-check-circle" aria-hidden="true"></i> Je choisis
+                    </button>
                   </td>
                 </tr>
               <?php } ?>
             </tbody>
           </table>
-          <button class="btn btn-success btn-custom" type="submit">
-            <i class="fa fa-check-circle" aria-hidden="true"></i> Valider
-          </button>
+
         </form>
       </div>
     </div>

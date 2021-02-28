@@ -1,13 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 15 fév. 2021 à 12:53
--- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.4
+-- Généré le : Dim 28 fév. 2021 à 15:35
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 8.0.0
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -87,18 +86,18 @@ CREATE TABLE `creneau` (
 INSERT INTO `creneau` (`id`, `jour`, `heure`, `lieu`, `etat`, `date_reservation`) VALUES
 (1, '2020-11-14', '09:00:00', 'Amphi 1', 1, NULL),
 (2, '2020-11-14', '11:00:00', 'Amphi 2', 1, NULL),
-(323, '2020-12-24', '09:00:00', 'Amphi 1', 1, NULL),
-(324, '2020-12-24', '11:00:00', 'Amphi 1', 1, NULL),
-(325, '2020-12-24', '15:00:00', 'Amphi 1', 1, NULL),
-(326, '2020-12-24', '09:00:00', 'Salle des Theses', 1, NULL),
-(327, '2020-12-24', '11:00:00', 'Salle des Theses', 1, NULL),
-(328, '2020-12-24', '15:00:00', 'Salle des Theses', 1, NULL),
-(329, '2020-12-25', '09:00:00', 'Amphi 1', 1, NULL),
-(330, '2020-12-25', '11:00:00', 'Amphi 1', 1, NULL),
-(331, '2020-12-25', '15:00:00', 'Amphi 1', 1, NULL),
-(332, '2020-12-25', '09:00:00', 'Salle des Theses', 1, NULL),
-(333, '2020-12-25', '11:00:00', 'Salle des Theses', 1, NULL),
-(334, '2020-12-25', '15:00:00', 'Salle des Theses', 1, NULL),
+(323, '2021-04-14', '09:00:00', 'Amphi 1', 3, NULL),
+(324, '2021-03-15', '11:00:00', 'Amphi 1', 1, NULL),
+(325, '2021-05-13', '15:00:00', 'Amphi 1', 3, NULL),
+(326, '2021-05-04', '09:00:00', 'Salle des Theses', 1, NULL),
+(327, '2021-05-03', '11:00:00', 'Salle des Theses', 1, NULL),
+(328, '2021-05-04', '15:00:00', 'Salle des Theses', 1, NULL),
+(329, '2021-05-04', '09:00:00', 'Amphi 1', 1, NULL),
+(330, '2021-05-04', '11:00:00', 'Amphi 1', 1, NULL),
+(331, '2021-03-03', '15:00:00', 'Amphi 1', 1, NULL),
+(332, '2021-03-03', '09:00:00', 'Salle des Theses', 1, NULL),
+(333, '2021-03-03', '11:00:00', 'Salle des Theses', 1, NULL),
+(334, '2021-03-03', '15:00:00', 'Salle des Theses', 1, NULL),
 (335, '2020-12-28', '09:00:00', 'Amphi 1', 1, NULL),
 (336, '2020-12-28', '11:00:00', 'Amphi 1', 1, NULL),
 (337, '2020-12-28', '15:00:00', 'Amphi 1', 1, NULL),
@@ -455,7 +454,7 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`CNE`, `nom`, `prenom`, `email`, `no_apoge`) VALUES
-('G1111', 'test', 'etudiant', 'etudiant@gmail.com', 101010),
+('G11112222', 'Bendrimou', 'Ayoub', 'ayoub@gmail.com', 101010),
 ('G145625311', 'aitdaoud', 'elhoussein', 'aitdaoudelhoussein@gmail.com', 1234567),
 ('R32656', 'test', 'example', 'email@gmail.com', 554666);
 
@@ -521,8 +520,9 @@ CREATE TABLE `soutenance` (
 --
 
 INSERT INTO `soutenance` (`soutenance_id`, `date_depot_sujet`, `directeur`, `intitule_these`, `nature_these`, `materiel_d_etude_et_echantillioannage`, `duree_d_etude`, `lieu_d_etude`, `objectif_d_etude`, `mots_cles`, `president`, `jury1`, `jury2`, `jury3`, `jury4`, `etudiant`, `creneau`, `etat`, `motif`) VALUES
-(21, '2020-07-09', 2, 'sddsda', 'adadada', 'sdasdasdasd', 'adasdasdasda', 'marrakech', 'ssds', 'asdasdadasdasdas', 1, 3, 4, 5, 8, 'R32656', 325, 7, NULL),
-(22, '2020-04-13', 2, 'aaa', 'ssss', 'dddd', 'fffff', 'wwww', 'qqqqq', 'eeeee', 1, 7, 4, 5, 3, 'G145625311', 367, 9, NULL);
+(21, '2020-07-09', 2, 'sddsda', 'adadada', 'sdasdasdasd', 'adasdasdasda', 'marrakech', 'ssds', 'asdasdadasdasdas', 1, 3, 4, 5, 8, 'R32656', NULL, 4, NULL),
+(22, '2020-04-13', 2, 'aaa', 'ssss', 'dddd', 'fffff', 'wwww', 'qqqqq', 'eeeee', 1, 7, 6, 5, 3, 'G145625311', NULL, 9, 'sdfvzdf'),
+(24, '2020-04-02', 4, 'igiosdfg gdsfhs dgb', 'uaggdsf kwjhf', 'fsdfsd', '45', 'gfgfd', 'ehrqwuhrew jehr', 'fg,ryj,ty', 3, 5, 1, 6, 2, 'G11112222', 325, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -539,15 +539,17 @@ CREATE TABLE `these` (
   `duree_etude` varchar(100) NOT NULL,
   `lieu_etude` varchar(100) NOT NULL,
   `objectifes_etude` text NOT NULL,
-  `mots_cles` varchar(100) NOT NULL
+  `mots_cles` varchar(100) NOT NULL,
+  `etat` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `these`
 --
 
-INSERT INTO `these` (`id`, `intitule`, `id_directeur_these`, `nature_etude`, `materiel_etude_echan`, `duree_etude`, `lieu_etude`, `objectifes_etude`, `mots_cles`) VALUES
-(1, 'These 1', 2, 'nkldsnfksndknsdz', 'ansmdknasdklncklsndacksdzn', 'aksdjkasd', 'kasndknaskdns', 'kasnfkansdfknaskfnaksfnaksnf', 'lakdksa,asdojas,asofj,aoskjf,asofj');
+INSERT INTO `these` (`id`, `intitule`, `id_directeur_these`, `nature_etude`, `materiel_etude_echan`, `duree_etude`, `lieu_etude`, `objectifes_etude`, `mots_cles`, `etat`) VALUES
+(1, 'These 1', 2, 'nkldsnfksndknsdz', 'ansmdknasdklncklsndacksdzn', 'aksdjkasd', 'kasndknaskdns', 'kasnfkansdfknaskfnaksfnaksnf', 'lakdksa,asdojas,asofj,aoskjf,asofj', 0),
+(2, 'These 2', 8, 'lalgjfs gkljg gkf', 'sdfljksdjglfkg', '2', 'afjdfm', 'asdgkjkfsjg', 'sjgk,wagij,irg,wrigjiegmgmf,erogj,eriog', 0);
 
 --
 -- Index pour les tables déchargées
@@ -638,13 +640,13 @@ ALTER TABLE `prof`
 -- AUTO_INCREMENT pour la table `soutenance`
 --
 ALTER TABLE `soutenance`
-  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `soutenance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `these`
 --
 ALTER TABLE `these`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
@@ -668,7 +670,6 @@ ALTER TABLE `soutenance`
 --
 ALTER TABLE `these`
   ADD CONSTRAINT `id_prof_these` FOREIGN KEY (`id_directeur_these`) REFERENCES `prof` (`id`);
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
