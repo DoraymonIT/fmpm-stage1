@@ -13,7 +13,30 @@ function get_soutenance_result(array $args = array())
     return mysqli_query($db, $query);
 
 }
-
+function get_these_by_etudiant($cne){
+    require('database_connect.php');
+    $query = "SELECT * FROM these WHERE etudiant = '$cne' LIMIT 1 ";
+    $res = mysqli_query($db, $query);
+    return $res->fetch_assoc();
+}
+function theseExistByEtudiant($cne){
+    require('database_connect.php');
+    $query = "SELECT * FROM these WHERE etudiant = '$cne' LIMIT 1 ";
+    $res = mysqli_query($db, $query);
+    return mysqli_num_rows($res)!=0;
+}
+function soutenanceExistByEtudiant($cne){
+    require('database_connect.php');
+    $query = "SELECT * FROM soutenance WHERE etudiant = '$cne' LIMIT 1 ";
+    $res = mysqli_query($db, $query);
+    return mysqli_num_rows($res)!=0;
+}
+function get_soutenance_by_etudiant($cne){
+    require('database_connect.php');
+    $query = "SELECT * FROM soutenance WHERE etudiant = '$cne' LIMIT 1 ";
+    $res = mysqli_query($db, $query);
+    return $res->fetch_assoc();
+}
 function get_etudiant_byCNE($cne)
 {
     require('database_connect.php');
@@ -28,6 +51,20 @@ function get_prof_byID($id)
     $query = "SELECT * FROM prof WHERE id = '$id' LIMIT 1 ";
     $res = mysqli_query($db, $query);
     return $res->fetch_assoc();
+}
+function get_all_prof()
+{
+    require('database_connect.php');
+    $query = "SELECT * FROM prof ";
+    $res = mysqli_query($db, $query);
+    return $res;
+}
+function get_all_prof_except($id)
+{
+    require('database_connect.php');
+    $query = "SELECT * FROM prof WHERE id!=$id";
+    $res = mysqli_query($db, $query);
+    return $res;
 }
 
 function get_soutenance_byID($id)

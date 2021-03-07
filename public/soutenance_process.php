@@ -5,31 +5,24 @@ session_start();
 // Submit Soutenance : 
 if (isset($_POST['submit_soutenence'])) {
 
-    $date_depot = $_POST['date_depot_sujet'];
-    $date_field = date('Y-m-d', strtotime($date_depot));
-    $directeur_id = substr($_POST['directeur_these'], 5);
-    $intitule = $_POST['intitule'];
-    $nature = $_POST['nature'];
-    $materiel_echan = $_POST['materiel_echan'];
-    $duree = $_POST['duree'];
-    $lieu = $_POST['lieu'];
-    $objectifs = $_POST['obj_etude'];
-    $mots_cles = $_POST['mots_cles'];
+
     $president_id = substr($_POST['president_these'], 5);
     $jury1_id = substr($_POST['jury1'], 5);
     $jury2_id = substr($_POST['jury2'], 5);
     $jury3_id = substr($_POST['jury3'], 5);
     $jury4_id = substr($_POST['jury4'], 5);
     $etudiant_id = $_SESSION['CNE'];
+    $these_id = $_POST['these'];
+    $directeur = $_POST['directeur'];
     $etat = 0;
 
-    $stmt = $db->prepare("INSERT INTO soutenance(date_depot_sujet,directeur,intitule_these,nature_these,materiel_d_etude_et_echantillioannage,duree_d_etude,lieu_d_etude,objectif_d_etude,mots_cles,president,jury1,jury2,jury3,jury4,etudiant,etat) VALUES ( ?, ? ,?,?,?, ? , ?,? ,? , ? , ? , ? , ?, ? , ?,  ?)");
+    $stmt = $db->prepare("INSERT INTO soutenance(directeur,president,jury1,jury2,jury3,jury4,etudiant,etat,these) VALUES ( ? , ? , ?, ? , ?,  ?,?,?,?)");
 
-    $stmt->bind_param("sisssssssiiiiisi", $date_field, $directeur_id, $intitule, $nature, $materiel_echan, $duree, $lieu, $objectifs, $mots_cles, $president_id, $jury1_id, $jury2_id, $jury3_id, $jury4_id, $etudiant_id, $etat);
+    $stmt->bind_param("iiiiiisii",  $directeur,$president_id, $jury1_id, $jury2_id, $jury3_id, $jury4_id, $etudiant_id, $etat,$these_id);
+
     $sql = $stmt->execute();
-
     var_dump($db->error_list);
-    var_dump(substr($directeur_id, 5));
+
 
 
     if ($sql) {
@@ -51,14 +44,6 @@ if (isset($_POST['valider_date_etudiant'])) {
 }
 if (isset($_POST['submit_edit_soutenance'])) {
     $soutenance_id = $_POST['soutenance_id'];
-    $directeur_id = empty($_POST['directeur_these']) ? "" : ",directeur =" . $_POST['directeur_these'];
-    $intitule = $_POST['intitule'];
-    $nature = $_POST['nature'];
-    $materiel_echan = $_POST['materiel_echan'];
-    $duree = $_POST['duree'];
-    $lieu = $_POST['lieu'];
-    $objectifs = $_POST['obj_etude'];
-    $mots_cles = $_POST['mots_cles'];
     $president_id = empty($_POST['president_these']) ? "" : ",president =" . $_POST['president_these'];
     $jury1_id = $_POST['jury1'];
     $jury2_id = $_POST['jury2'];
@@ -68,16 +53,13 @@ if (isset($_POST['submit_edit_soutenance'])) {
     $result = $db->query($query);
     $soutenance = $result->fetch_assoc();
     $pre = empty($_POST['president_these']) ? $soutenance['president'] : $_POST['president_these'];
-    $dir = empty($_POST['directeur_these']) ? $soutenance['directeur'] : $_POST['directeur_these'];
 
     $etat=2;
 
-    $stmt = $db->prepare("UPDATE soutenance SET intitule_these=? ,
-     nature_these=? , materiel_d_etude_et_echantillioannage=? , duree_d_etude=? , 
-     lieu_d_etude=? , objectif_d_etude=? , mots_cles=? , jury1=? , jury2=? , jury3=? , jury4=?
-       " . $directeur_id . $president_id  . " , etat = ? where soutenance_id=?");
+    $stmt = $db->prepare("UPDATE soutenance SET   jury1=? , jury2=? , jury3=? , jury4=?
+       "  . $president_id  . " , etat = ? where soutenance_id=?");
 
-    $stmt->bind_param("sssssssiiiiii", $intitule, $nature, $materiel_echan, $duree, $lieu, $objectifs, $mots_cles, $jury1_id, $jury2_id, $jury3_id, $jury4_id, $etat, $soutenance_id);
+    $stmt->bind_param("iiiiii",  $jury1_id, $jury2_id, $jury3_id, $jury4_id, $etat, $soutenance_id);
     $sql = $stmt->execute();
     if ($sql) {
 
